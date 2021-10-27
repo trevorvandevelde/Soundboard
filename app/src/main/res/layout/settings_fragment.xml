@@ -17,8 +17,13 @@
             <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Hello from the profile fragment" />
+                    android:text="Hello from the settings fragment" />
 
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:lineHeight="36dp"
+                    android:text="@string/filler_text" />
 
         </LinearLayout>
 
@@ -26,3 +31,4 @@
 
 
 </LinearLayout>
+

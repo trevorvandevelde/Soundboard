@@ -8,34 +8,34 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var textMessage: TextView
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
 
+        val homeFragment = HomeFragment()
+        val discoverFragment = DiscoverFragment()
         val profileFragment = ProfileFragment()
+        val settingsFragment = SettingsFragment()
 
-        textMessage = findViewById(R.id.message)
+        setCurrentFragment(homeFragment)    //start on home
 
         navView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.navigation_home -> {
-                    textMessage.setText(R.string.title_home)
+                    setCurrentFragment(homeFragment)
                     true
                 }
                 R.id.navigation_discover -> {
-                    textMessage.setText(R.string.title_discover)
+                    setCurrentFragment(discoverFragment)
                     true
                 }
                 R.id.navigation_profile -> {
                     setCurrentFragment(profileFragment)
-                    textMessage.setText(R.string.title_profile)
                     true
                 }
                 R.id.navigation_settings -> {
-                    textMessage.setText(R.string.title_settings)
+                    setCurrentFragment(settingsFragment)
                     true
                 }
                 else -> false
