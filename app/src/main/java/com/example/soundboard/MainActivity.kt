@@ -15,6 +15,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
 
+        val profileFragment = ProfileFragment()
+
         textMessage = findViewById(R.id.message)
 
         navView.setOnItemSelectedListener { item ->
@@ -23,12 +25,17 @@ class MainActivity : AppCompatActivity() {
                     textMessage.setText(R.string.title_home)
                     true
                 }
-                R.id.navigation_dashboard -> {
-                    textMessage.setText(R.string.title_dashboard)
+                R.id.navigation_discover -> {
+                    textMessage.setText(R.string.title_discover)
                     true
                 }
-                R.id.navigation_notifications -> {
-                    textMessage.setText(R.string.title_notifications)
+                R.id.navigation_profile -> {
+                    setCurrentFragment(profileFragment)
+                    textMessage.setText(R.string.title_profile)
+                    true
+                }
+                R.id.navigation_settings -> {
+                    textMessage.setText(R.string.title_settings)
                     true
                 }
                 else -> false
