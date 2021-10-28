@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "808603893803",
+    "project_id": "soundboard-ec791",
+    "storage_bucket": "soundboard-ec791.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:808603893803:android:44f3cf719d170d383e2a6e",
+        "android_client_info": {
+          "package_name": "com.example.soundboard"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "808603893803-cpoaodsa4pk1p6kd8aipderqdc7t22jm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC5FHOpO_nVz8SRsM7yfu6zM7FbLzqeSxg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "808603893803-cpoaodsa4pk1p6kd8aipderqdc7t22jm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
