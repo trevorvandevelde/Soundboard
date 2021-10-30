@@ -42,7 +42,7 @@ class UploadSoundByteActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_upload)
+        setContentView(R.layout.activity_upload_sound_byte)
 
         storageReference = FirebaseStorage.getInstance().reference
         println("gonna make storage asdfadfasdfasf")

@@ -19,6 +19,14 @@
                     android:layout_height="wrap_content"
                     android:text="Hello from the home fragment" />
 
+            <Button
+                    android:id="@+id/launchButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Launch UploadSoundByte Activity"
+                    android:onClick="onLaunchUploadClicked"
+                    android:minWidth="125dp"/>
+
         </LinearLayout>
 
     </ScrollView>
