@@ -36,13 +36,9 @@ class UploadSoundByteActivity : AppCompatActivity() {
     private lateinit var audioFileNameEditText : TextView
 
 
-
-
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_upload)
+        setContentView(R.layout.activity_upload_sound_byte)
 
         storageReference = FirebaseStorage.getInstance().reference
         println("gonna make storage asdfadfasdfasf")
@@ -134,7 +130,7 @@ class UploadSoundByteActivity : AppCompatActivity() {
             Toast.makeText(this, "Please select an audio clip", Toast.LENGTH_SHORT).show()
         } else {
             fileName = audioFileNameEditText.text.toString()
-            uploadFileToServer(uriAudio, fileName, "Trevor")
+            uploadFileToServer(uriAudio, fileName, uploaderUserName)
         }
     }
 }
