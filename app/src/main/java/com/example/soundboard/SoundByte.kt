@@ -8,7 +8,7 @@ class SoundByte {
     private lateinit var uploaderUserName : String
     private lateinit var id: String
     private lateinit var description: String
-    private lateinit var tag: String
+    private lateinit var tag: ArrayList<String>
 
 
 
