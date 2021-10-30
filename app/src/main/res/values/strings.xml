@@ -7,6 +7,6 @@
     <string name="title_profile">Profile</string>
     <string name="title_settings">Settings</string>
 
-    <string name="filler_text">hello world again!</string>
+    <string name="filler_text">hello world again*3!</string>
     <string name="main_shared_preferences_key">main_shared_preferences</string>
 </resources>
