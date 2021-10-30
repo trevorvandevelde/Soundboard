@@ -45,7 +45,7 @@ class UploadSoundByteActivity : AppCompatActivity() {
         setContentView(R.layout.activity_upload_sound_byte)
 
         storageReference = FirebaseStorage.getInstance().reference
-        println("gonna make storage asdfadfasdfasf")
+        println("gonna make storage")
         println(storageReference)
         progressDialog = ProgressDialog(this)
 
