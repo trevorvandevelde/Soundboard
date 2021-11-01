@@ -9,4 +9,7 @@
 
     <string name="filler_text">hello world again*3!</string>
     <string name="main_shared_preferences_key">main_shared_preferences</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="prompt_login">Login</string>
 </resources>
