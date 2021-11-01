@@ -12,4 +12,6 @@
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
     <string name="prompt_login">Login</string>
+    <string name="prompt_register">Register</string>
+    <string name="prompt_confirm_password">Confirm Password</string>
 </resources>
