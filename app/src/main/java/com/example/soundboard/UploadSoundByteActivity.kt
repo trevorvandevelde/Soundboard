@@ -116,6 +116,10 @@ class UploadSoundByteActivity : AppCompatActivity() {
             var progress = (100.0 * taskSnapshot.bytesTransferred)/taskSnapshot.totalByteCount
             var currentProgress = progress.toInt()
             progressDialog.setMessage("Uploading: " + currentProgress + "%")
+            if(currentProgress == 100){
+                progressDialog.dismiss()
+                Toast.makeText(this, "Uploaded audio!", Toast.LENGTH_SHORT).show()
+            }
         }.addOnFailureListener{
             progressDialog.dismiss()
             Toast.makeText(this, "Upload Failed!", Toast.LENGTH_SHORT).show()
@@ -130,7 +134,7 @@ class UploadSoundByteActivity : AppCompatActivity() {
     }
 
     private fun upload() {
-        if (uriAudio == null){
+        if (!this::uriAudio.isInitialized){
             Toast.makeText(this, "Please select an audio clip", Toast.LENGTH_SHORT).show()
         } else {
             fileName = audioFileNameEditText.text.toString()
