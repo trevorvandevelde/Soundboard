@@ -34,7 +34,9 @@ class HomeFragment : Fragment() {
             startActivity(intent)
         }
 
-        initData()
+        if(datalist.size == 0) {
+            initData()
+        }
         main_listview = view.findViewById(R.id.home_listview)
         soundbyteAdapter = SoundbyteAdapter(requireContext(), R.layout.soundbyte_item,datalist)
         main_listview.adapter = soundbyteAdapter
