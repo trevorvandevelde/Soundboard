@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/cardview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="8dp"
+        android:layout_margin="8dp"
+        android:elevation="0dp">
+
+<LinearLayout
         android:orientation="vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp">
+        android:layout_margin="5dp"
+        android:background="@drawable/cardview_selector">
     <ImageView
             android:id="@+id/board_image"
             android:layout_width="180dp"
@@ -27,3 +38,4 @@
             android:layout_gravity="left"
             android:text = "test texts, test texts!"/>
 </LinearLayout>
+</androidx.cardview.widget.CardView>

@@ -2,11 +2,14 @@ package com.example.soundboard
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 
 class BoardAdapter(var data: List<BoardEntry>)
@@ -16,6 +19,7 @@ class BoardAdapter(var data: List<BoardEntry>)
         val image:ImageView = view.findViewById(R.id.board_image)
         val title:TextView = view.findViewById(R.id.board_name)
         val intro:TextView = view.findViewById(R.id.board_intro)
+        val cardview: CardView = view.findViewById(R.id.cardview)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
