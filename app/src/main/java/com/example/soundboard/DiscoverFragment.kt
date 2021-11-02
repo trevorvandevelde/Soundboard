@@ -18,7 +18,7 @@ class DiscoverFragment : Fragment() {
 
     private lateinit var viewModel: DiscoverViewModel
     private lateinit var soundbyteAdapter: SoundbyteAdapter
-    private lateinit var main_listview: ListView
+    private lateinit var discover_listview: ListView
     private var datalist = ArrayList<SoundByteEntry>()
 
     override fun onCreateView(
@@ -26,12 +26,13 @@ class DiscoverFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.discover_fragment, container, false)
-
-        initData()
-        main_listview = view.findViewById(R.id.discover_listview)
+        if(datalist.size == 0) {
+            initData()
+        }
+        discover_listview = view.findViewById(R.id.discover_listview)
         soundbyteAdapter = SoundbyteAdapter(requireContext(), R.layout.soundbyte_item, datalist)
-        main_listview.adapter = soundbyteAdapter
-        main_listview.setOnItemClickListener{ parent: AdapterView<*>, view: View, position: Int, id: Long ->
+        discover_listview.adapter = soundbyteAdapter
+        discover_listview.setOnItemClickListener{ parent: AdapterView<*>, view: View, position: Int, id: Long ->
             val soundbyte = datalist[position]
             val intent = Intent(requireActivity(), PlayActivity::class.java)
             intent.putExtra("image", soundbyte.imageID)
@@ -46,6 +47,7 @@ class DiscoverFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this).get(DiscoverViewModel::class.java)
     }
+
 
     private fun initData(){
         repeat(10){
