@@ -22,6 +22,7 @@
 
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:theme="@style/Widget.BottomNavigationView"
             android:id="@+id/nav_view"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
