@@ -9,22 +9,31 @@
     <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-        <RelativeLayout
+        <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_weight=".5"
-                android:gravity="center"
-                android:layout_height="120dp">
+                android:weightSum="4"
+                android:orientation="vertical"
+                android:layout_height="match_parent">
 
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="30dp"
-                    android:fontFamily="@font/inter_semibold"
-                    android:textColor="@color/cardview_light_background"
-                    android:text="Hi, Mira!">
-            </TextView>
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_weight=".7"
+                    android:layout_height="0dp"
+                    android:gravity="center">
 
-        </RelativeLayout>
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="30dp"
+                        android:fontFamily="@font/inter_semibold"
+                        android:textColor="@color/cardview_light_background"
+                        android:text="Hi, Mira!">
+                </TextView>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
 
         <ScrollView
                 android:layout_width="match_parent"

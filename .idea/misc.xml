@@ -22,6 +22,8 @@
         <entry key="app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.16510416666666666" />
         <entry key="app/src/main/res/drawable/ic_home.xml" value="0.16510416666666666" />
         <entry key="app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.16510416666666666" />
+        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.16510416666666666" />
+        <entry key="app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.16510416666666666" />
         <entry key="app/src/main/res/drawable/ic_profile.xml" value="0.16510416666666666" />
         <entry key="app/src/main/res/drawable/ic_setting.xml" value="0.16510416666666666" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
@@ -30,6 +32,7 @@
         <entry key="app/src/main/res/layout/profile_fragment.xml" value="0.13360507246376813" />
         <entry key="app/src/main/res/layout/settings_fragment.xml" value="0.1" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.165" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.16510416666666666" />
       </map>
     </option>
   </component>
