@@ -22,14 +22,60 @@
                 android:src="@drawable/ic_home_black_24dp"
                 android:contentDescription="SoundBoard logo" />
 
-        <EditText
-                android:id="@+id/registerEmail"
+
+
+        <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/registerEmailLayout"
                 android:layout_width="match_parent"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_height="wrap_content"
-                android:hint="@string/prompt_email"
-                android:inputType="textEmailAddress"
+                app:errorEnabled="true"
+                >
+
+            <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/registerEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/prompt_email"
+                    android:inputType="textEmailAddress"
+                    android:layout_marginTop="@dimen/activity_vertical_margin" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/registerPasswordLayout"
+                android:layout_width="match_parent"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
-                />
+                app:errorEnabled="true"
+                >
+
+            <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/registerPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/prompt_password"
+                    android:inputType="textPassword"
+                    app:passwordToggleEnabled="true"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/registerConfirmPasswordLayout"
+                android:layout_width="match_parent"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/activity_vertical_margin"
+                app:errorEnabled="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/registerConfirmPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/prompt_confirm_password"
+                    android:inputType="textPassword" />
+        </com.google.android.material.textfield.TextInputLayout>
 
 
         <Button

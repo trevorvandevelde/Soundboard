@@ -9,10 +9,6 @@ import android.view.ViewGroup
 
 class LoginFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = LoginFragment()
-    }
-
     private lateinit var viewModel: LoginViewModel
 
     override fun onCreateView(
