@@ -74,4 +74,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics-ktx'
     // Add the dependencies for any other desired Firebase products
     // https://firebase.google.com/docs/android/setup#available-libraries
+
+    // adding chibdde audio visualizer library
+    implementation 'com.chibde:audiovisualizer:2.2.0'
+
 }
