@@ -1,6 +1,7 @@
 package com.example.soundboard
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,7 +21,18 @@ class BoardAdapter(var data: List<BoardEntry>)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.board_item, parent, false)
-        return ViewHolder(view)
+        val viewholder = ViewHolder(view)
+        viewholder.itemView.setOnClickListener {
+            val position = viewholder.adapterPosition
+            val board = data[position]
+
+            val intent = Intent(view.getContext(), BoardActivity::class.java)
+            intent.putExtra("image", board.imageID)
+            intent.putExtra("title", board.title)
+            view.getContext().startActivity(intent)
+        }
+
+        return viewholder
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {

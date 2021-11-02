@@ -29,7 +29,7 @@ class ProfileFragment : Fragment() {
             initData()
         }
         discover_recyclerview = view.findViewById(R.id.board_recyclerview)
-        val layoutManager = StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL)
+        val layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         discover_recyclerview.layoutManager = layoutManager
         val adapter = BoardAdapter(datalist)
         discover_recyclerview.adapter = adapter
