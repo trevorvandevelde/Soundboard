@@ -12,7 +12,7 @@
     <FrameLayout
             android:id="@+id/fragmentContainer"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -27,6 +27,7 @@
             android:id="@+id/nav_view"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:padding="4dp"
             android:layout_marginEnd="0dp"
             android:layout_marginStart="0dp"
             android:elevation="8dp"
