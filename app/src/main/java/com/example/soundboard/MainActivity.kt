@@ -24,12 +24,16 @@ class MainActivity : AppCompatActivity() {
         val discoverFragment = DiscoverFragment()
         val profileFragment = ProfileFragment()
         val settingsFragment = SettingsFragment()
+        val loginFragment = LoginFragment()
+        val registerFragment = RegisterFragment()
 
         fragments = ArrayList<Fragment>()
         fragments.add(homeFragment)
         fragments.add(discoverFragment)
         fragments.add(profileFragment)
         fragments.add(settingsFragment)
+        fragments.add(loginFragment)
+        fragments.add(registerFragment)
 
         if (savedInstanceState != null) {
             lastFragmentIndex = savedInstanceState.getInt("last_fragment_key")
@@ -51,7 +55,7 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.navigation_settings -> {
-                    setCurrentFragment(3)
+                    setCurrentFragment(5)
                     true
                 }
                 else -> false
