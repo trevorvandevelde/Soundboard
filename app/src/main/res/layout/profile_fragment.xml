@@ -1,28 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
+                android:orientation="horizontal"
                 android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
                 android:paddingVertical="@dimen/activity_vertical_margin">
 
-            <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Hello from the profile fragment" />
+            <ImageView
+                    android:id = "@+id/user_image"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="50dp"
+                    android:src="@drawable/dartmouth"/>
 
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="60dp"
+                    android:text="Test Text for Test User" />
 
         </LinearLayout>
 
-    </ScrollView>
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/board_recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+
 
 
 </LinearLayout>
