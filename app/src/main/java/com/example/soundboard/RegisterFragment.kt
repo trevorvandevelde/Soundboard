@@ -51,10 +51,6 @@ class RegisterFragment : Fragment() {
         loginRedirect = view.findViewById(R.id.loginHere)
 
         registerButton.setOnClickListener {
-            emailLayout.error = null
-            passwordLayout.error = null
-            confirmPasswordLayout.error = null
-
             val email = emailLayout.editText?.text.toString()
             val password = passwordLayout.editText?.text.toString()
             val confirmPassword = confirmPasswordLayout.editText?.text.toString()
@@ -77,6 +73,10 @@ class RegisterFragment : Fragment() {
 
     //checks if user can register, handles errors, and calls firebase to register if valid
     private fun registerUser(email : String, password : String, confirmPassword : String){
+        emailLayout.error = null
+        passwordLayout.error = null
+        confirmPasswordLayout.error = null
+
         if(isEmailValid(email) && isPasswordValid(password) && confirmPassword.equals(password)){
             mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener {
                 if (it.isSuccessful) {
@@ -99,6 +99,7 @@ class RegisterFragment : Fragment() {
             }
         }
     }
+
 
     public fun isEmailValid(email :String) : Boolean{
         return if (email.contains('@')) {

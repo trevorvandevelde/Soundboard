@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.navigation_settings -> {
-                    setCurrentFragment(5)
+                    setCurrentFragment(4)
                     true
                 }
                 else -> false

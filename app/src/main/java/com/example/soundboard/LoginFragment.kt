@@ -77,16 +77,29 @@ class LoginFragment : Fragment() {
      * only cleared on mAuth.signOut()
      */
     private fun loginUser(email : String, password : String){
-        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener{
-            if(it.isSuccessful){
+        emailLayout.error = null
+        passwordLayout.error = null
 
-                val user : FirebaseUser = mAuth.currentUser!!
-                val userId = user.uid
-                val userEmail = user.email
-                Toast.makeText(requireContext(), "successfully logged in", Toast.LENGTH_SHORT ).show()
-            }else{
-                //TODO: better login exception display, use errors?
-                Toast.makeText(requireContext(), it.exception.toString(), Toast.LENGTH_SHORT ).show()
+        if(email.isNotBlank() && password.isNotBlank()) {
+            mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
+                if (it.isSuccessful) {
+                    val user: FirebaseUser = mAuth.currentUser!!
+                    val userId = user.uid
+                    val userEmail = user.email
+                    Toast.makeText(requireContext(), "successfully logged in", Toast.LENGTH_SHORT)
+                        .show()
+                } else {
+                    //TODO: better login exception display, use errors?
+                    Toast.makeText(requireContext(), it.exception.toString(), Toast.LENGTH_SHORT)
+                        .show()
+                }
+            }
+        }else{
+            if(email.isBlank()){
+                emailLayout.error = "Email cannot be blank"
+            }
+            if(password.isBlank()){
+                passwordLayout.error = "Password cannot be blank"
             }
         }
     }
