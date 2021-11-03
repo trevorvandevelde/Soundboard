@@ -12,7 +12,7 @@
     <FrameLayout
             android:id="@+id/fragmentContainer"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -20,18 +20,28 @@
             app:layout_constraintBottom_toTopOf="@+id/nav_view" />
 
 
+<!--    android:background="?android:attr/windowBackground"-->
     <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:theme="@style/Widget.BottomNavigationView"
             android:id="@+id/nav_view"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:padding="10dp"
             android:layout_marginEnd="0dp"
             android:layout_marginStart="0dp"
-            android:background="?android:attr/windowBackground"
+            android:elevation="8dp"
+            android:outlineAmbientShadowColor="@color/colorShadow"
+            android:outlineSpotShadowColor="@color/colorShadow"
+            android:background="@drawable/bottom_navigation_background"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fragmentContainer"
+            android:layout_marginBottom="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
             app:menu="@menu/bottom_nav_menu"
+            app:itemIconTint="@drawable/bottom_navigation_selector"
+            app:itemTextColor="@drawable/bottom_navigation_selector"
             app:labelVisibilityMode="labeled"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

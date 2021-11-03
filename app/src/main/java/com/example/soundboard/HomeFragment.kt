@@ -24,7 +24,7 @@ class HomeFragment : Fragment() {
     private var datalist = ArrayList<SoundByteEntry>()
 
     override fun onCreateView( inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?): View? {
+                               savedInstanceState: Bundle?): View? {
 
         val view = inflater.inflate(R.layout.home_fragment, container, false)
 

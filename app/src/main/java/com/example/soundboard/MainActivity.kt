@@ -3,6 +3,8 @@ package com.example.soundboard
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.view.View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+import android.view.WindowManager
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -19,6 +21,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         navView = findViewById(R.id.nav_view)
+
+        // hide the navigation bar
+//        getWindow().getDecorView().setSystemUiVisibility(SYSTEM_UI_FLAG_HIDE_NAVIGATION);
+//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
 
         val homeFragment = HomeFragment()
@@ -91,5 +97,7 @@ class MainActivity : AppCompatActivity() {
         outState.putInt("last_fragment_key", lastFragmentIndex)
         super.onSaveInstanceState(outState)
     }
+
+
 
 }

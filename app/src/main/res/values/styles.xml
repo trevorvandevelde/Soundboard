@@ -1,12 +1,20 @@
 <resources>
 
     <!-- Base application theme. -->
-
-    <!--Need parent Theme.MaterialComponents for login/register Google Material Comp to work -->
-    <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
+<!--        <item name="android:buttonStyle">@style/InterButtonStyle</item>-->
+        <item name="android:fontFamily">@font/quicksand_regular</item>
     </style>
+
+    <style name="Widget.BottomNavigationView"
+            parent="Widget.Design.BottomNavigationView">
+        <item name="fontFamily">@font/quicksand_bold</item>
+    </style>
+
 
 </resources>
