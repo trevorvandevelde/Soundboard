@@ -3,6 +3,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
         <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -10,15 +14,15 @@
                 android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
                 android:paddingVertical="@dimen/activity_vertical_margin">
 
-            <ListView
-                    android:id="@+id/discover_listview"
+            <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="50dp" />
+                    android:layout_height="wrap_content"
+                    android:text="Hello from the play" />
 
 
         </LinearLayout>
 
+    </ScrollView>
 
 
 </LinearLayout>
