@@ -1,28 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <ScrollView
+    <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="390dp"
+            android:orientation="vertical">
 
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:orientation="horizontal"
+            android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
+            android:paddingVertical="@dimen/activity_vertical_margin">
+
+        <ImageView
+                android:id = "@+id/creator_image"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="30dp"
+                android:src="@drawable/dartmouth"/>
+
+        <TextView
+                android:id="@+id/creator_intro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:text="Test Text for Test Creator" />
+
+    </LinearLayout>
+
+        <com.chibde.visualizer.LineVisualizer
+                android:id="@+id/visualizerLine"
+                android:layout_width="match_parent"
+                android:layout_height="240dp" />
+
+        <com.chibde.visualizer.BarVisualizer
+                android:id="@+id/visualizerBar"
+                android:layout_width="match_parent"
+                android:layout_height="240dp" />
+
+        <com.chibde.visualizer.CircleBarVisualizer
+                android:id = "@+id/visualizerCircleBar"
+                android:layout_width = "match_parent"
+                android:layout_height = "240dp"/>
+
+        <com.chibde.visualizer.CircleVisualizer
+                android:id = "@+id/visualizerCircle"
+                android:layout_width = "match_parent"
+                android:layout_height = "240dp"/>
+
+        <com.chibde.visualizer.SquareBarVisualizer
+                android:id = "@+id/visualizerSquareBar"
+                android:layout_width = "match_parent"
+                android:layout_height = "240dp"/>
+
+        <com.chibde.visualizer.LineBarVisualizer
+                android:id="@+id/visualizerLineBar"
+                android:layout_width="match_parent"
+                android:layout_height="240dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="vertical">
+
+        <SeekBar
+                android:id="@+id/positionBar"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"/>
         <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
-                android:paddingVertical="@dimen/activity_vertical_margin">
+                android:layout_height="wrap_content">
 
             <TextView
-                    android:layout_width="match_parent"
+                    android:id="@+id/elapsedTimeLabel"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Hello from the play" />
+                    android:layout_marginLeft="40dp"
+                    android:text="0:11" />
 
-
+            <TextView
+                    android:id="@+id/remainingTimeLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="240dp"
+                    android:text="-1:11" />
         </LinearLayout>
+        <Button
+                android:id="@+id/playbutton"
+                android:layout_width="153dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:onClick="playClicked"
+                android:text="PLAY"/>
 
-    </ScrollView>
+        <Button
+                android:id="@+id/save_to_board"
+                android:layout_marginTop="100dp"
+                android:layout_marginBottom="50dp"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:onClick="savetoboardClicked"
+                android:text="Save to Board"/>
+
+    </LinearLayout>
 
 
-</LinearLayout>
+</RelativeLayout>

@@ -11,4 +11,11 @@
 
 <!--    <string name="filler_text">hello world again*3!</string>-->
     <string name="main_shared_preferences_key">main_shared_preferences</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="prompt_login">Login</string>
+    <string name="prompt_register">Register</string>
+    <string name="prompt_confirm_password">Confirm Password</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
