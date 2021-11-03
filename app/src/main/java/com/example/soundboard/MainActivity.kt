@@ -64,9 +64,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    public fun registerToLogin(){
-        setCurrentFragment(6)
-    }
 
     private fun setCurrentFragment(index : Int) {
         lastFragmentIndex = index

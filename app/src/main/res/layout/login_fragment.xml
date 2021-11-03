@@ -27,7 +27,8 @@
                 android:id="@+id/loginEmailLayout"
                 android:layout_width="match_parent"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                app:errorEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
@@ -44,6 +45,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="@dimen/activity_vertical_margin"
+                app:errorEnabled="true"
                 app:endIconMode="password_toggle">
 
             <com.google.android.material.textfield.TextInputEditText
