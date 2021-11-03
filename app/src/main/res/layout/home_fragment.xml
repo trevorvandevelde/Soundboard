@@ -1,186 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:weightSum="4"
-        android:background="@drawable/ic_gradient_bg1">
+        android:layout_height="match_parent">
 
-    <RelativeLayout
+
+    <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-        <LinearLayout
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
+            android:paddingVertical="@dimen/activity_vertical_margin">
+
+        <TextView
                 android:layout_width="match_parent"
-                android:weightSum="4"
-                android:orientation="vertical"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:text="Hello from the home fragment" />
 
-            <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_weight=".7"
-                    android:layout_height="0dp"
-                    android:gravity="center">
+        <Button
+                android:id="@+id/launchButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Launch UploadSoundByte Activity"
+                android:onClick="onLaunchUploadClicked"
+                android:minWidth="125dp"/>
 
-                <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="30dp"
-                        android:fontFamily="@font/inter_semibold"
-                        android:textColor="@color/cardview_light_background"
-                        android:text="Hi, Mira!">
-                </TextView>
-
-            </RelativeLayout>
-
-        </LinearLayout>
-
-
-<!--        <ScrollView-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent"-->
-<!--                android:id="@+id/home_scroll"-->
-<!--                >-->
-
-
-<!--            <LinearLayout-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="match_parent"-->
-<!--                    android:orientation="vertical">-->
-
-<!--                <RelativeLayout-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_weight=".5"-->
-<!--                        android:gravity="center"-->
-<!--                        android:layout_height="0dp">-->
-
-<!--                </RelativeLayout>-->
-
-<!--                <RelativeLayout-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_weight="3.5"-->
-<!--                        android:background="@drawable/card_background"-->
-<!--                        android:padding="16dp"-->
-<!--                        android:layout_height="0dp">-->
-
-<!--                    <LinearLayout-->
-<!--                            android:layout_width="match_parent"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:orientation="vertical"-->
-<!--                            android:layout_marginHorizontal="@dimen/activity_horizontal_margin"-->
-<!--                            android:paddingVertical="@dimen/activity_vertical_margin">-->
-
-<!--&lt;!&ndash;                     <View&ndash;&gt;-->
-<!--&lt;!&ndash;                        android:id="@+id/divider"&ndash;&gt;-->
-<!--&lt;!&ndash;                        android:layout_marginBottom="16dp"&ndash;&gt;-->
-<!--&lt;!&ndash;                        android:layout_width="100dp"&ndash;&gt;-->
-<!--&lt;!&ndash;                        android:layout_height="8dp"&ndash;&gt;-->
-<!--&lt;!&ndash;                        android:layout_gravity="center"&ndash;&gt;-->
-<!--&lt;!&ndash;                        android:backgroundTint="#DBDBE3"&ndash;&gt;-->
-<!--&lt;!&ndash;                        android:background="@drawable/bottom_navigation_background" />&ndash;&gt;-->
-
-<!--                        <TextView-->
-<!--                                android:layout_width="match_parent"-->
-<!--                                android:layout_height="wrap_content"-->
-<!--                                android:fontFamily="@font/inter_semibold"-->
-<!--                                android:textSize="20dp"-->
-<!--                                android:layout_marginBottom="8dp"-->
-<!--                                android:textColor="@color/colorCharcoal"-->
-<!--                                android:text="Soundbytes for you:" />-->
-
-<!--                        <Button-->
-<!--                                android:id="@+id/launchButton"-->
-<!--                                android:text="upload soundbye"-->
-<!--                                android:onClick="onLaunchUploadClicked"-->
-<!--                                android:layout_width="wrap_content"-->
-<!--                                android:layout_height="wrap_content"/>-->
-
-<!--&lt;!&ndash;                        <ListView&ndash;&gt;-->
-<!--&lt;!&ndash;                                android:id="@+id/home_listview"&ndash;&gt;-->
-<!--&lt;!&ndash;                                android:layout_width="match_parent"&ndash;&gt;-->
-<!--&lt;!&ndash;                                android:scrollbars="none"&ndash;&gt;-->
-<!--&lt;!&ndash;                                android:layout_height="wrap_content"&ndash;&gt;-->
-<!--&lt;!&ndash;                                android:layout_marginBottom="100dp"/>&ndash;&gt;-->
-<!--                        -->
-<!--                        <TextView-->
-<!--                                android:layout_width="match_parent"-->
-<!--                                android:layout_height="wrap_content"-->
-<!--                                android:text="@string/filler_text" />-->
-
-<!--                    </LinearLayout>-->
-<!--                </RelativeLayout>-->
-<!--            </LinearLayout>-->
-
-<!--        </ScrollView>-->
-
-        <LinearLayout
+        <ListView
+                android:id="@+id/home_listview"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/home_scroll"
-                android:orientation="vertical">
+                android:layout_marginTop="50dp" />
 
-            <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_weight=".5"
-                    android:gravity="center"
-                    android:layout_height="0dp">
+    </LinearLayout>
 
-            </RelativeLayout>
-
-            <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_weight="3.5"
-                    android:background="@drawable/card_background"
-                    android:padding="16dp"
-                    android:layout_height="0dp">
-
-                <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
-                        android:paddingVertical="@dimen/activity_vertical_margin">
-
-                    <!--                     <View-->
-                    <!--                        android:id="@+id/divider"-->
-                    <!--                        android:layout_marginBottom="16dp"-->
-                    <!--                        android:layout_width="100dp"-->
-                    <!--                        android:layout_height="8dp"-->
-                    <!--                        android:layout_gravity="center"-->
-                    <!--                        android:backgroundTint="#DBDBE3"-->
-                    <!--                        android:background="@drawable/bottom_navigation_background" />-->
-
-                    <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/inter_semibold"
-                            android:textSize="20dp"
-                            android:layout_marginBottom="8dp"
-                            android:textColor="@color/colorCharcoal"
-                            android:text="Soundbytes for you:" />
-
-                    <Button
-                            android:id="@+id/launchButton"
-                            android:text="upload soundbye"
-                            android:onClick="onLaunchUploadClicked"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-
-                    <ListView
-                            android:id="@+id/home_listview"
-                            android:layout_width="match_parent"
-                            android:scrollbars="none"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/home_scroll"
-                            android:layout_marginBottom="100dp"/>
-                </LinearLayout>
-            </RelativeLayout>
-        </LinearLayout>
-
-    </RelativeLayout>
 
 </LinearLayout>
 
-<!--<?xml version="1.0" encoding="utf-8"?>-->
+
+        <!--<?xml version="1.0" encoding="utf-8"?>-->
 <!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
 <!--        android:layout_width="match_parent"-->
 <!--        android:layout_height="match_parent"-->
@@ -188,13 +44,9 @@
 <!--        android:weightSum="4"-->
 <!--        android:background="@drawable/ic_gradient_bg1">-->
 
-<!--<<<<<<< HEAD-->
 <!--    <RelativeLayout-->
 <!--            android:layout_width="match_parent"-->
 <!--            android:layout_height="match_parent">-->
-<!--=======-->
-
-<!--&gt;>>>>>> f324d1333e23eff8de57ebb0b111d82c3f111cf6-->
 <!--        <LinearLayout-->
 <!--                android:layout_width="match_parent"-->
 <!--                android:weightSum="4"-->
@@ -218,36 +70,91 @@
 
 <!--            </RelativeLayout>-->
 
-<!--            <Button-->
-<!--                    android:id="@+id/launchButton"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="Launch UploadSoundByte Activity"-->
-<!--                    android:onClick="onLaunchUploadClicked"-->
-<!--                    android:minWidth="125dp"/>-->
-
-<!--<<<<<<< HEAD-->
-<!--=======-->
-<!--            <ListView-->
-<!--                    android:id="@+id/home_listview"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="match_parent"-->
-<!--                    android:layout_marginTop="50dp" />-->
-
 <!--        </LinearLayout>-->
-<!--&gt;>>>>>> f324d1333e23eff8de57ebb0b111d82c3f111cf6-->
 
-<!--        <ScrollView-->
+
+<!--&lt;!&ndash;        <ScrollView&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_height="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:id="@+id/home_scroll"&ndash;&gt;-->
+<!--&lt;!&ndash;                >&ndash;&gt;-->
+
+
+<!--&lt;!&ndash;            <LinearLayout&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_height="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:orientation="vertical">&ndash;&gt;-->
+
+<!--&lt;!&ndash;                <RelativeLayout&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:layout_weight=".5"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:gravity="center"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:layout_height="0dp">&ndash;&gt;-->
+
+<!--&lt;!&ndash;                </RelativeLayout>&ndash;&gt;-->
+
+<!--&lt;!&ndash;                <RelativeLayout&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:layout_weight="3.5"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:background="@drawable/card_background"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:padding="16dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:layout_height="0dp">&ndash;&gt;-->
+
+<!--&lt;!&ndash;                    <LinearLayout&ndash;&gt;-->
+<!--&lt;!&ndash;                            android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;                            android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                            android:orientation="vertical"&ndash;&gt;-->
+<!--&lt;!&ndash;                            android:layout_marginHorizontal="@dimen/activity_horizontal_margin"&ndash;&gt;-->
+<!--&lt;!&ndash;                            android:paddingVertical="@dimen/activity_vertical_margin">&ndash;&gt;-->
+
+<!--&lt;!&ndash;&lt;!&ndash;                     <View&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                        android:id="@+id/divider"&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                        android:layout_marginBottom="16dp"&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                        android:layout_width="100dp"&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                        android:layout_height="8dp"&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                        android:layout_gravity="center"&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                        android:backgroundTint="#DBDBE3"&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                        android:background="@drawable/bottom_navigation_background" />&ndash;&gt;&ndash;&gt;-->
+
+<!--&lt;!&ndash;                        <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;                                android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;                                android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                                android:fontFamily="@font/inter_semibold"&ndash;&gt;-->
+<!--&lt;!&ndash;                                android:textSize="20dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                                android:layout_marginBottom="8dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                                android:textColor="@color/colorCharcoal"&ndash;&gt;-->
+<!--&lt;!&ndash;                                android:text="Soundbytes for you:" />&ndash;&gt;-->
+
+<!--&lt;!&ndash;                        <Button&ndash;&gt;-->
+<!--&lt;!&ndash;                                android:id="@+id/launchButton"&ndash;&gt;-->
+<!--&lt;!&ndash;                                android:text="upload soundbye"&ndash;&gt;-->
+<!--&lt;!&ndash;                                android:onClick="onLaunchUploadClicked"&ndash;&gt;-->
+<!--&lt;!&ndash;                                android:layout_width="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                                android:layout_height="wrap_content"/>&ndash;&gt;-->
+
+<!--&lt;!&ndash;&lt;!&ndash;                        <ListView&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                                android:id="@+id/home_listview"&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                                android:layout_width="match_parent"&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                                android:scrollbars="none"&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                                android:layout_height="wrap_content"&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                                android:layout_marginBottom="100dp"/>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                        &ndash;&gt;-->
+<!--&lt;!&ndash;                        <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;                                android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;                                android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                                android:text="@string/filler_text" />&ndash;&gt;-->
+
+<!--&lt;!&ndash;                    </LinearLayout>&ndash;&gt;-->
+<!--&lt;!&ndash;                </RelativeLayout>&ndash;&gt;-->
+<!--&lt;!&ndash;            </LinearLayout>&ndash;&gt;-->
+
+<!--&lt;!&ndash;        </ScrollView>&ndash;&gt;-->
+
+<!--        <LinearLayout-->
 <!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_height="match_parent"-->
 <!--                android:id="@+id/home_scroll"-->
-<!--                >-->
-
-
-<!--            <LinearLayout-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="match_parent"-->
-<!--                    android:orientation="vertical">-->
+<!--                android:orientation="vertical">-->
 
 <!--            <RelativeLayout-->
 <!--                    android:layout_width="match_parent"-->
@@ -271,16 +178,16 @@
 <!--                        android:layout_marginHorizontal="@dimen/activity_horizontal_margin"-->
 <!--                        android:paddingVertical="@dimen/activity_vertical_margin">-->
 
-<!--&lt;!&ndash;                         <View&ndash;&gt;-->
-<!--&lt;!&ndash;                            android:id="@+id/divider"&ndash;&gt;-->
-<!--&lt;!&ndash;                            android:layout_marginBottom="16dp"&ndash;&gt;-->
-<!--&lt;!&ndash;                            android:layout_width="100dp"&ndash;&gt;-->
-<!--&lt;!&ndash;                            android:layout_height="8dp"&ndash;&gt;-->
-<!--&lt;!&ndash;                            android:layout_gravity="center"&ndash;&gt;-->
-<!--&lt;!&ndash;                            android:backgroundTint="#DBDBE3"&ndash;&gt;-->
-<!--&lt;!&ndash;                            android:background="@drawable/bottom_navigation_background" />&ndash;&gt;-->
+<!--                    &lt;!&ndash;                     <View&ndash;&gt;-->
+<!--                    &lt;!&ndash;                        android:id="@+id/divider"&ndash;&gt;-->
+<!--                    &lt;!&ndash;                        android:layout_marginBottom="16dp"&ndash;&gt;-->
+<!--                    &lt;!&ndash;                        android:layout_width="100dp"&ndash;&gt;-->
+<!--                    &lt;!&ndash;                        android:layout_height="8dp"&ndash;&gt;-->
+<!--                    &lt;!&ndash;                        android:layout_gravity="center"&ndash;&gt;-->
+<!--                    &lt;!&ndash;                        android:backgroundTint="#DBDBE3"&ndash;&gt;-->
+<!--                    &lt;!&ndash;                        android:background="@drawable/bottom_navigation_background" />&ndash;&gt;-->
 
-<!--                        <TextView-->
+<!--                    <TextView-->
 <!--                            android:layout_width="match_parent"-->
 <!--                            android:layout_height="wrap_content"-->
 <!--                            android:fontFamily="@font/inter_semibold"-->
@@ -289,18 +196,149 @@
 <!--                            android:textColor="@color/colorCharcoal"-->
 <!--                            android:text="Soundbytes for you:" />-->
 
-<!--                        <TextView-->
-<!--                                android:layout_width="match_parent"-->
-<!--                                android:layout_height="wrap_content"-->
-<!--                                android:text="@string/filler_text" />-->
+<!--                    <Button-->
+<!--                            android:id="@+id/launchButton"-->
+<!--                            android:text="upload soundbye"-->
+<!--                            android:onClick="onLaunchUploadClicked"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"/>-->
 
-
+<!--                    <ListView-->
+<!--                            android:id="@+id/home_listview"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:scrollbars="none"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_below="@id/home_scroll"-->
+<!--                            android:layout_marginBottom="100dp"/>-->
 <!--                </LinearLayout>-->
 <!--            </RelativeLayout>-->
-<!--            </LinearLayout>-->
+<!--        </LinearLayout>-->
 
-<!--        </ScrollView>-->
 <!--    </RelativeLayout>-->
 
 <!--</LinearLayout>-->
+
+<!--&lt;!&ndash;<?xml version="1.0" encoding="utf-8"?>&ndash;&gt;-->
+<!--&lt;!&ndash;<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_height="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:orientation="vertical"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:weightSum="4"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:background="@drawable/ic_gradient_bg1">&ndash;&gt;-->
+
+<!--&lt;!&ndash;<<<<<<< HEAD&ndash;&gt;-->
+<!--&lt;!&ndash;    <RelativeLayout&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_height="match_parent">&ndash;&gt;-->
+<!--&lt;!&ndash;=======&ndash;&gt;-->
+
+<!--&lt;!&ndash;&gt;>>>>>> f324d1333e23eff8de57ebb0b111d82c3f111cf6&ndash;&gt;-->
+<!--&lt;!&ndash;        <LinearLayout&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:weightSum="4"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:orientation="vertical"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_height="match_parent">&ndash;&gt;-->
+
+<!--&lt;!&ndash;            <RelativeLayout&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_weight=".7"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_height="0dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:gravity="center">&ndash;&gt;-->
+
+<!--&lt;!&ndash;                <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:layout_width="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:textSize="30dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:fontFamily="@font/inter_semibold"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:textColor="@color/cardview_light_background"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:text="Hi, Mira!">&ndash;&gt;-->
+<!--&lt;!&ndash;                </TextView>&ndash;&gt;-->
+
+<!--&lt;!&ndash;            </RelativeLayout>&ndash;&gt;-->
+
+<!--&lt;!&ndash;            <Button&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:id="@+id/launchButton"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_width="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:text="Launch UploadSoundByte Activity"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:onClick="onLaunchUploadClicked"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:minWidth="125dp"/>&ndash;&gt;-->
+
+<!--&lt;!&ndash;<<<<<<< HEAD&ndash;&gt;-->
+<!--&lt;!&ndash;=======&ndash;&gt;-->
+<!--&lt;!&ndash;            <ListView&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:id="@+id/home_listview"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_height="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_marginTop="50dp" />&ndash;&gt;-->
+
+<!--&lt;!&ndash;        </LinearLayout>&ndash;&gt;-->
+<!--&lt;!&ndash;&gt;>>>>>> f324d1333e23eff8de57ebb0b111d82c3f111cf6&ndash;&gt;-->
+
+<!--&lt;!&ndash;        <ScrollView&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:id="@+id/home_scroll"&ndash;&gt;-->
+<!--&lt;!&ndash;                >&ndash;&gt;-->
+
+
+<!--&lt;!&ndash;            <LinearLayout&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_height="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:orientation="vertical">&ndash;&gt;-->
+
+<!--&lt;!&ndash;            <RelativeLayout&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_weight=".5"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:gravity="center"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_height="0dp">&ndash;&gt;-->
+
+<!--&lt;!&ndash;            </RelativeLayout>&ndash;&gt;-->
+
+<!--&lt;!&ndash;            <RelativeLayout&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_weight="3.5"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:background="@drawable/card_background"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:padding="16dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_height="0dp">&ndash;&gt;-->
+
+<!--&lt;!&ndash;                <LinearLayout&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:orientation="vertical"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:layout_marginHorizontal="@dimen/activity_horizontal_margin"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:paddingVertical="@dimen/activity_vertical_margin">&ndash;&gt;-->
+
+<!--&lt;!&ndash;&lt;!&ndash;                         <View&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                            android:id="@+id/divider"&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                            android:layout_marginBottom="16dp"&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                            android:layout_width="100dp"&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                            android:layout_height="8dp"&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                            android:layout_gravity="center"&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                            android:backgroundTint="#DBDBE3"&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                            android:background="@drawable/bottom_navigation_background" />&ndash;&gt;&ndash;&gt;-->
+
+<!--&lt;!&ndash;                        <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;                            android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;                            android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                            android:fontFamily="@font/inter_semibold"&ndash;&gt;-->
+<!--&lt;!&ndash;                            android:textSize="20dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                            android:layout_marginBottom="8dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                            android:textColor="@color/colorCharcoal"&ndash;&gt;-->
+<!--&lt;!&ndash;                            android:text="Soundbytes for you:" />&ndash;&gt;-->
+
+<!--&lt;!&ndash;                        <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;                                android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;                                android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                                android:text="@string/filler_text" />&ndash;&gt;-->
+
+
+<!--&lt;!&ndash;                </LinearLayout>&ndash;&gt;-->
+<!--&lt;!&ndash;            </RelativeLayout>&ndash;&gt;-->
+<!--&lt;!&ndash;            </LinearLayout>&ndash;&gt;-->
+
+<!--&lt;!&ndash;        </ScrollView>&ndash;&gt;-->
+<!--&lt;!&ndash;    </RelativeLayout>&ndash;&gt;-->
+
+<!--&lt;!&ndash;</LinearLayout>&ndash;&gt;-->
 
