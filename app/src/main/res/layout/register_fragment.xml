@@ -33,7 +33,6 @@
                 >
 
             <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/registerEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/prompt_email"
@@ -53,7 +52,6 @@
                 >
 
             <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/registerPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/prompt_password"
@@ -70,7 +68,6 @@
                 app:errorEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/registerConfirmPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/prompt_confirm_password"
@@ -94,7 +91,7 @@
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Already registered?" />
+                    android:text="Already registered?"/>
 
             <TextView
                     android:id="@+id/loginHere"
@@ -102,7 +99,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
                     android:text="Login here"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:textColor="@color/colorAccent"/>
 
         </LinearLayout>
 

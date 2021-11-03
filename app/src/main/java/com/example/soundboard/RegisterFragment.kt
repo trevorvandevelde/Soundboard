@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.view.doOnPreDraw
 import androidx.core.widget.doAfterTextChanged
 import androidx.core.widget.doOnTextChanged
@@ -21,7 +22,6 @@ import com.google.firebase.auth.FirebaseAuth
 
 class RegisterFragment : Fragment() {
 
-    private lateinit var viewModel: RegisterViewModel
     private lateinit var emailLayout: TextInputLayout
     private lateinit var passwordLayout: TextInputLayout
     private lateinit var confirmPasswordLayout: TextInputLayout
@@ -50,7 +50,7 @@ class RegisterFragment : Fragment() {
         registerButton = view.findViewById(R.id.registerButton)
         loginRedirect = view.findViewById(R.id.loginHere)
 
-        registerButton.setOnClickListener { view ->
+        registerButton.setOnClickListener {
             emailLayout.error = null
             passwordLayout.error = null
             confirmPasswordLayout.error = null
@@ -59,29 +59,45 @@ class RegisterFragment : Fragment() {
             val password = passwordLayout.editText?.text.toString()
             val confirmPassword = confirmPasswordLayout.editText?.text.toString()
 
+            registerUser(email, password, confirmPassword)
+        }
 
-            if(isEmailValid(email) && isPasswordValid(password) && confirmPassword.equals(password)){
-                mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener {
-                    if (it.isSuccessful) {
-                        println("success!")
-                    } else {
-                        println("not successful")
-                        it.exception
-                    }
-                }
-            }else{
-                if (!isEmailValid(email)) {
-                    emailLayout.error = "Invalid email"
-                }
-                if (!isPasswordValid(password)) {
-                    passwordLayout.error = "Invalid password: minimum 8 characters and 1 digit"
-                }
-                if(!confirmPassword.equals(password)){
-                    confirmPasswordLayout.error = "Passwords do not match"
-                }
+
+        loginRedirect.setOnClickListener{
+            //Fragment fragment = fm.findFragmentByTag("TagName")
+            parentFragmentManager.beginTransaction().apply {
+                replace(R.id.fragmentContainer, LoginFragment() )
+                addToBackStack(null)
+                commit()
             }
         }
 
+    }
+
+
+    //checks if user can register, handles errors, and calls firebase to register if valid
+    private fun registerUser(email : String, password : String, confirmPassword : String){
+        if(isEmailValid(email) && isPasswordValid(password) && confirmPassword.equals(password)){
+            mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener {
+                if (it.isSuccessful) {
+                    Toast.makeText(requireContext(), "User registered", Toast.LENGTH_SHORT ).show()
+                    //stored user info somewhere
+                } else {
+                    Toast.makeText(requireContext(), it.exception.toString(), Toast.LENGTH_SHORT ).show()
+                    //TODO: nicer register exception prompts
+                }
+            }
+        }else{
+            if (!isEmailValid(email)) {
+                emailLayout.error = "Invalid email"
+            }
+            if (!isPasswordValid(password)) {
+                passwordLayout.error = "Invalid password: minimum 8 characters and 1 digit"
+            }
+            if(!confirmPassword.equals(password)){
+                confirmPasswordLayout.error = "Passwords do not match"
+            }
+        }
     }
 
     public fun isEmailValid(email :String) : Boolean{
@@ -104,15 +120,18 @@ class RegisterFragment : Fragment() {
 
     }
 
-    //saves text on text change
+    //saves text on orientation change. some issues
+    //activity onSaveInstanceState will mess with this, avoid calling view stuff in here
     override fun onSaveInstanceState(outState: Bundle) {
-        outState.putString(SAVED_REGISTER_EMAIL, emailLayout.editText?.text.toString() )
-        outState.putString(SAVED_REGISTER_PASSWORD, passwordLayout.editText?.text.toString())
-        println("email: " + emailLayout.editText?.text.toString())
+        if(this::emailLayout.isInitialized) {
+            outState.putString(SAVED_REGISTER_EMAIL, emailLayout.editText?.text.toString())
+            outState.putString(SAVED_REGISTER_PASSWORD, passwordLayout.editText?.text.toString())
+            println("email: " + emailLayout.editText?.text.toString())
+        }
         super.onSaveInstanceState(outState)
     }
 
-    //TODO: should set text, but settext not working in if even when not null
+    //FIXME: should set text, but settext not working even when instancestate not null
     override fun onViewStateRestored(savedInstanceState: Bundle?) {
         super.onViewStateRestored(savedInstanceState)
 
