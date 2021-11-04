@@ -8,10 +8,10 @@ class SoundByte {
     private lateinit var uploaderUserName: String
     private lateinit var id: String
     private lateinit var description: String
-    private lateinit var tags: Array<String>
+    private lateinit var tags: MutableList<String>
 
 
-    fun SoundByte(soundName: String, soundUrl: String, uploaderUserName: String, description: String, tags: Array<String>) {
+    fun SoundByte(soundName: String, soundUrl: String, uploaderUserName: String, description: String, tags: MutableList<String>) {
         this.soundName = soundName
         this.soundUrl = soundUrl
         //this.imageUrl = imageUrl
@@ -30,11 +30,11 @@ class SoundByte {
         this.description = newDescription
     }
 
-    fun getTags(): Array<String> {
+    fun getTags(): MutableList<String> {
         return tags
     }
 
-    fun setTags(newTags : Array<String>) {
+    fun setTags(newTags : MutableList<String>) {
         this.tags = newTags
     }
 

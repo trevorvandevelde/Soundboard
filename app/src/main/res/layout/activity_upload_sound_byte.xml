@@ -35,31 +35,24 @@
 
         <EditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="84dp"
                 android:inputType="textPersonName"
-                android:hint="User Name"
+                android:hint="Audio File Name"
                 android:ems="10"
-                android:id="@+id/userNameEditText" />
+                android:id="@+id/uploaderNewFileNameEditText" />
 
         <EditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="103dp"
                 android:inputType="textPersonName"
                 android:ems="10"
                 android:id="@+id/descriptionEditText"
                 android:hint="Write a Description Here" />
 
         <TextView
-                android:text="FileName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/fileNameTextView"
-                android:textSize="24sp" />
-
-        <TextView
                 android:text="Tags"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="61dp"
                 android:id="@+id/tagsTextView"
                 android:textSize="24sp" />
 
