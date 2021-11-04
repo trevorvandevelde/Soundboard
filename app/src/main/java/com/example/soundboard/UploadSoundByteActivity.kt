@@ -19,6 +19,7 @@ import co.lujun.androidtagview.ColorFactory
 import co.lujun.androidtagview.TagContainerLayout
 import co.lujun.androidtagview.TagView
 import co.lujun.androidtagview.TagView.OnTagClickListener
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
@@ -27,20 +28,23 @@ import com.google.firebase.storage.StorageReference
 class UploadSoundByteActivity : AppCompatActivity() {
 
     private lateinit var storageReference : StorageReference
+    private lateinit var mAuth : FirebaseAuth
     private lateinit var uriAudio : Uri
     private lateinit var bytes : ByteArray
     private lateinit var fileName : String
     private lateinit var songUrl : String
     private lateinit var uploaderUserName : String
-    private lateinit var description : String
-    private lateinit var tags : Array<String>
+    //private lateinit var description : String
+    //private lateinit var tags : Array<String>
 
 
 
     private lateinit var progressDialog: ProgressDialog
     private lateinit var uploadButton : Button
     private lateinit var selectAudioButton : Button
-    private lateinit var uploaderUserNameEditText : EditText
+
+    private lateinit var descriptionEditText: EditText
+    private lateinit var uploaderNewFileNameEditText : EditText
     private lateinit var audioFileNameEditText : TextView
 
 
@@ -59,8 +63,9 @@ class UploadSoundByteActivity : AppCompatActivity() {
         setContentView(R.layout.activity_upload_sound_byte)
 
         storageReference = FirebaseStorage.getInstance().reference
-        println("gonna make storage")
-        println(storageReference)
+        mAuth = FirebaseAuth.getInstance()
+        //println("gonna make storage")
+        //println(storageReference)
         progressDialog = ProgressDialog(this)
 
         uploadButton = findViewById(R.id.uploadAudio)
@@ -72,8 +77,11 @@ class UploadSoundByteActivity : AppCompatActivity() {
         selectAudioButton.setOnClickListener{
             pickSong()
         }
-        uploaderUserNameEditText = findViewById(R.id.userNameEditText)
-        audioFileNameEditText = findViewById(R.id.fileNameTextView)
+        uploaderNewFileNameEditText = findViewById(R.id.uploaderNewFileNameEditText)
+        descriptionEditText = findViewById(R.id.descriptionEditText)
+
+
+
 
 
 
@@ -91,11 +99,15 @@ class UploadSoundByteActivity : AppCompatActivity() {
         audioTagButton.setOnClickListener{
 
             var tagText = audioTagText.text.toString()
-            audioTagContainer.addTag(tagText)
+
+            if (tagText != null) {
+                audioTagContainer.addTag(tagText)
+            }
             audioTagText.text = null
         }
 
         audioTagContainer.setOnTagClickListener(object : OnTagClickListener {
+
             override fun onTagClick(position: Int, text: String) {
                 // ...
             }
@@ -127,9 +139,9 @@ class UploadSoundByteActivity : AppCompatActivity() {
 
     }
 
-    public fun getFileName(uri : Uri) : String? {
+    private fun getFileName(uri : Uri) : String? {
         var result = uri.path
-        println(result)
+        //println(result)
         if (result != null) {
             var cut = result?.lastIndexOf('/')
             if (cut != -1){
@@ -156,7 +168,13 @@ class UploadSoundByteActivity : AppCompatActivity() {
             var urlSong = uriTask.result
             songUrl = urlSong.toString()
             println("success url " + songUrl)
-            uploadDetailsToDatabase(fileName, songUrl, "REPLACE NAME WITH ID")
+            println("fileName " + fileName)
+
+            var newAudioFileName = uploaderNewFileNameEditText.text.toString()
+            var newAudioDescription = descriptionEditText.text.toString()
+            var newAudioTags = audioTagContainer.tags
+
+            uploadDetailsToDatabase(newAudioFileName, songUrl, mAuth.uid.toString(), newAudioDescription, newAudioTags)
             //progressDialog.dismiss()
 
 
@@ -174,13 +192,14 @@ class UploadSoundByteActivity : AppCompatActivity() {
         }
     }
 
-    public fun uploadDetailsToDatabase(songName : String, songUrl : String, uploader : String){
+    private fun uploadDetailsToDatabase(songName : String, songUrl : String, uploader : String, description : String, tags: MutableList<String>){
         var soundByte = SoundByte()
         soundByte.SoundByte(songName, songUrl, uploader, description, tags)
         FirebaseDatabase.getInstance().getReference("Audio").push().setValue(soundByte)
             .addOnCompleteListener{
             Toast.makeText(this, "Added File Info to Database", Toast.LENGTH_SHORT).show()
             progressDialog.dismiss()
+                finish()
 
             }.addOnFailureListener{
                 Toast.makeText(this, "Failed to Add to Database", Toast.LENGTH_SHORT).show()
@@ -191,9 +210,15 @@ class UploadSoundByteActivity : AppCompatActivity() {
     private fun upload() {
         if (!this::uriAudio.isInitialized){
             Toast.makeText(this, "Please select an audio clip", Toast.LENGTH_SHORT).show()
-        } else {
-            fileName = audioFileNameEditText.text.toString()
-            uploadFileToServer(uriAudio, fileName, "Trevor")
+        } else if (uploaderNewFileNameEditText.text.toString().isEmpty()){
+            Toast.makeText(this, "Please add a File Name", Toast.LENGTH_SHORT).show()
+        } else if (descriptionEditText.text.toString().isEmpty()){
+            Toast.makeText(this, "Please add a Description", Toast.LENGTH_SHORT).show()
+        } else if (mAuth.uid == null) {
+            Toast.makeText(this, "Login Error: Please make sure you are logged in", Toast.LENGTH_SHORT).show()
+        }else {
+            fileName = uploaderNewFileNameEditText.text.toString()
+            uploadFileToServer(uriAudio, fileName, mAuth.uid.toString())
         }
     }
 }
