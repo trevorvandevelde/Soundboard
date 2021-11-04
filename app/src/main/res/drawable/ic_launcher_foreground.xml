@@ -8,6 +8,7 @@
       android:scaleY="0.3635122"
       android:translateX="16.74"
       android:translateY="16.74">
+
     <path
         android:pathData="M0,0h205v205h-205z">
       <aapt:attr name="android:fillColor">
