@@ -45,7 +45,7 @@ class UploadSoundByteActivity : AppCompatActivity() {
 
     private lateinit var descriptionEditText: EditText
     private lateinit var uploaderNewFileNameEditText : EditText
-    private lateinit var audioFileNameEditText : TextView
+    // private lateinit var audioFileNameEditText : TextView
 
 
     //Tag System
@@ -133,7 +133,7 @@ class UploadSoundByteActivity : AppCompatActivity() {
         if(result.resultCode == Activity.RESULT_OK) {
             uriAudio = result.data?.data!!
             fileName = getFileName(uriAudio)!!
-            audioFileNameEditText.text = fileName
+            // audioFileNameEditText.text = fileName
 
         }
 
