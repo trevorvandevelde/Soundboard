@@ -1,6 +1,8 @@
 package com.example.soundboard
 
+import android.Manifest
 import android.annotation.SuppressLint
+import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.content.ContextCompat
@@ -17,11 +19,13 @@ import com.chibde.visualizer.SquareBarVisualizer
 import android.media.MediaPlayer.OnCompletionListener
 import android.media.MediaPlayer.create
 import android.net.Uri
+import android.os.Build
 import android.os.Handler
 import android.os.Message
 import android.widget.Button
 import android.widget.SeekBar
 import android.widget.TextView
+import androidx.core.app.ActivityCompat
 
 class PlayActivity : AppCompatActivity(){
 
@@ -40,13 +44,18 @@ class PlayActivity : AppCompatActivity(){
     lateinit var playlist: ArrayList<Int>
     lateinit var thread:Thread
 
+    var init: Boolean= true
     var total_time:Int = 0
     var music_id = 1
 
-    override fun onCreate(savedInstanceState: Bundle?){
+
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_play)
+    }
 
+    override fun onResume() {
+        super.onResume()
         mediaPlayer = MediaPlayer.create(this, R.raw.tokyo)
         mediaPlayer.isLooping = true
 
@@ -94,13 +103,7 @@ class PlayActivity : AppCompatActivity(){
         }).start()
 
         clear()
-        lineVisualizer.visibility = View.VISIBLE
-        lineVisualizer.setColor(ContextCompat.getColor(this, R.color.purple_700))
-        lineVisualizer.setStrokeWidth(1)
-        lineVisualizer.setPlayer(mediaPlayer.audioSessionId)
     }
-
-
 
 
     var handler = object: Handler(){
@@ -203,6 +206,13 @@ class PlayActivity : AppCompatActivity(){
             playbutton.setText("PLAY")
         }
         else{
+            if(init){
+                lineVisualizer.visibility = View.VISIBLE
+                lineVisualizer.setColor(ContextCompat.getColor(this, R.color.purple_700))
+                lineVisualizer.setStrokeWidth(1)
+                lineVisualizer.setPlayer(mediaPlayer.audioSessionId)
+                init = false
+            }
             mediaPlayer.start()
             playbutton.setText("PAUSE")
         }
