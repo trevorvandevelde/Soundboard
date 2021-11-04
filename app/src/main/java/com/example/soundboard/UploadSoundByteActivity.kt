@@ -19,6 +19,7 @@ import co.lujun.androidtagview.ColorFactory
 import co.lujun.androidtagview.TagContainerLayout
 import co.lujun.androidtagview.TagView
 import co.lujun.androidtagview.TagView.OnTagClickListener
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
@@ -27,6 +28,7 @@ import com.google.firebase.storage.StorageReference
 class UploadSoundByteActivity : AppCompatActivity() {
 
     private lateinit var storageReference : StorageReference
+    private lateinit var mAuth : FirebaseAuth
     private lateinit var uriAudio : Uri
     private lateinit var bytes : ByteArray
     private lateinit var fileName : String
@@ -156,7 +158,8 @@ class UploadSoundByteActivity : AppCompatActivity() {
             var urlSong = uriTask.result
             songUrl = urlSong.toString()
             println("success url " + songUrl)
-            uploadDetailsToDatabase(fileName, songUrl, "REPLACE NAME WITH ID")
+
+            uploadDetailsToDatabase(fileName, songUrl, mAuth.uid.toString())
             //progressDialog.dismiss()
 
 
@@ -181,6 +184,7 @@ class UploadSoundByteActivity : AppCompatActivity() {
             .addOnCompleteListener{
             Toast.makeText(this, "Added File Info to Database", Toast.LENGTH_SHORT).show()
             progressDialog.dismiss()
+                finish()
 
             }.addOnFailureListener{
                 Toast.makeText(this, "Failed to Add to Database", Toast.LENGTH_SHORT).show()
@@ -193,7 +197,7 @@ class UploadSoundByteActivity : AppCompatActivity() {
             Toast.makeText(this, "Please select an audio clip", Toast.LENGTH_SHORT).show()
         } else {
             fileName = audioFileNameEditText.text.toString()
-            uploadFileToServer(uriAudio, fileName, "Trevor")
+            uploadFileToServer(uriAudio, fileName, mAuth.uid.toString())
         }
     }
 }
