@@ -208,6 +208,7 @@ class PlayActivity : AppCompatActivity(){
                 lineVisualizer.setColor(ContextCompat.getColor(this, R.color.purple_700))
                 lineVisualizer.setStrokeWidth(1)
                 lineVisualizer.setPlayer(mediaPlayer.audioSessionId)
+                init = false
             }
             mediaPlayer.start()
             playbutton.setText("PAUSE")
