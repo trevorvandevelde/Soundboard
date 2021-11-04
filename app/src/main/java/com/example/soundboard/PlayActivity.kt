@@ -44,18 +44,15 @@ class PlayActivity : AppCompatActivity(){
     lateinit var playlist: ArrayList<Int>
     lateinit var thread:Thread
 
-    var init: Boolean= true
     var total_time:Int = 0
     var music_id = 1
+    var init: Boolean = true
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_play)
-    }
 
-    override fun onResume() {
-        super.onResume()
         mediaPlayer = MediaPlayer.create(this, R.raw.tokyo)
         mediaPlayer.isLooping = true
 
@@ -102,7 +99,6 @@ class PlayActivity : AppCompatActivity(){
             }
         }).start()
 
-        clear()
     }
 
 
@@ -206,12 +202,12 @@ class PlayActivity : AppCompatActivity(){
             playbutton.setText("PLAY")
         }
         else{
-            if(init){
+            if(init==true){
+                clear()
                 lineVisualizer.visibility = View.VISIBLE
                 lineVisualizer.setColor(ContextCompat.getColor(this, R.color.purple_700))
                 lineVisualizer.setStrokeWidth(1)
                 lineVisualizer.setPlayer(mediaPlayer.audioSessionId)
-                init = false
             }
             mediaPlayer.start()
             playbutton.setText("PAUSE")
