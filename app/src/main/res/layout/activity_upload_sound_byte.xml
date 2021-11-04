@@ -11,24 +11,19 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-        <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPersonName"
-                android:text="User Name"
-                android:ems="10"
-                android:id="@+id/userNameEditText" />
-
         <TextView
-                android:text="FileName"
+                android:text="Upload Audio"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/fileNameTextView" />
+                android:layout_height="101dp"
+                android:id="@+id/textView2"
+                android:gravity="center"
+                android:textSize="24sp" />
 
         <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="65dp">
+                android:layout_height="65dp"
+                android:gravity="center">
 
             <Button
                     android:text="select audio"
@@ -36,11 +31,88 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/selectAudioButton" />
 
+        </LinearLayout>
+
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:hint="User Name"
+                android:ems="10"
+                android:id="@+id/userNameEditText" />
+
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:id="@+id/descriptionEditText"
+                android:hint="Write a Description Here" />
+
+        <TextView
+                android:text="FileName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/fileNameTextView"
+                android:textSize="24sp" />
+
+        <TextView
+                android:text="Tags"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tagsTextView"
+                android:textSize="24sp" />
+
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:foregroundGravity="center">
+
+            <EditText
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:ems="10"
+                    android:id="@+id/editTextTag"
+                    android:layout_weight="1"
+                    android:hint="Ex: DIY" />
+
+            <Button
+                    android:text="Add Tag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/addTagButton"
+                    android:layout_weight="1" />
+        </LinearLayout>
+
+        <co.lujun.androidtagview.TagContainerLayout
+                android:id="@+id/tagContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="0dp"
+                android:padding="10dp"
+                app:container_enable_drag="false"
+                app:horizontal_interval="10dp"
+                app:vertical_interval="10dp"
+                app:tag_clickable="true"
+                app:tag_selectable="true"
+                app:tag_enable_cross="true"
+                app:tag_theme="none"
+                android:background="#FFFFFF" />
+
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center">
+
             <Button
                     android:text="upload"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/uploadAudio" />
+                    android:id="@+id/uploadAudio"
+                    android:gravity="center" />
         </LinearLayout>
 
     </LinearLayout>
