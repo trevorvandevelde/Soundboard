@@ -35,7 +35,7 @@ class BoardActivity : AppCompatActivity(){
 
     private fun initData(){
         repeat(10){
-            datalist.add(SoundByteEntry( R.drawable.dartmouth,"Test"))
+            datalist.add(SoundByteEntry( "@ username", R.drawable.dartmouth,"soundbyte title", "12s"))
         }
     }
 

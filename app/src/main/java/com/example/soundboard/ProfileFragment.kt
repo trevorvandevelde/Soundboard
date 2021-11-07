@@ -44,7 +44,7 @@ class ProfileFragment : Fragment() {
 
     private fun initData(){
         repeat(10){
-            datalist.add(BoardEntry( R.drawable.dartmouth,"Test Board", "Test text for test board!"))
+            datalist.add(BoardEntry( R.drawable.dartmouth,"Board name", "23 soundbytes"))
         }
     }
 
