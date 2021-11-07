@@ -3,12 +3,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:fitsSystemWindows="true"
         android:weightSum="4"
-        android:background="@drawable/ic_gradient_bg1">
+        android:background="@drawable/ic_gradient_bg2">
+
 
     <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
+
         <LinearLayout
                 android:layout_width="match_parent"
                 android:weightSum="4"
@@ -150,6 +154,8 @@
 <!--            </LinearLayout>-->
 
 <!--        </ScrollView>-->
+
+
     <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -172,7 +178,7 @@
                     android:layout_width="match_parent"
                     android:layout_weight="3.6"
                     android:background="@drawable/card_background"
-                    android:padding="16dp"
+                    android:padding="8dp"
                     android:layout_height="0dp">
 
                 <LinearLayout
@@ -195,25 +201,28 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/inter_semibold"
+                            android:layout_marginLeft="8dp"
                             android:textSize="20dp"
                             android:layout_marginBottom="8dp"
                             android:textColor="@color/colorCharcoal"
                             android:text="Soundbytes for you:" />
 
-                    <Button
-                            android:id="@+id/launchButton"
-                            android:text="upload soundbye"
-                            android:onClick="onLaunchUploadClicked"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
+<!--                    <Button-->
+<!--                            android:id="@+id/launchButton"-->
+<!--                            android:text="upload soundbye"-->
+<!--                            android:onClick="onLaunchUploadClicked"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"/>-->
 
                     <ListView
                             android:id="@+id/home_listview"
                             android:layout_width="match_parent"
+                            android:divider="@null"
                             android:scrollbars="none"
+                            android:paddingBottom="100dp"
+                            android:clipToPadding="false"
                             android:layout_height="1000dp"
-                            android:layout_below="@id/home_scroll"
-                            android:layout_marginBottom="100dp" />
+                            android:layout_below="@id/home_scroll" />
                 </LinearLayout>
             </RelativeLayout>
         </LinearLayout>
