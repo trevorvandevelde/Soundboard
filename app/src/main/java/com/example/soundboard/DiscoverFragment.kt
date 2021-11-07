@@ -50,8 +50,9 @@ class DiscoverFragment : Fragment() {
 
 
     private fun initData(){
+        val tag_list:List<String> = listOf("DIY","SHIBUYA","AKIHABARA","GINZA")
         repeat(10){
-            datalist.add(SoundByteEntry("@ username", R.drawable.dartmouth,"soundbyte title", "12s"))
+            datalist.add(SoundByteEntry("@ username", R.drawable.dartmouth,"soundbyte title", "12s",tag_list))
         }
     }
 

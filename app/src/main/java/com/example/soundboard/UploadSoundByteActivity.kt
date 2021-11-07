@@ -53,11 +53,6 @@ class UploadSoundByteActivity : AppCompatActivity() {
     private lateinit var audioTagButton : Button
     private lateinit var audioTagText : EditText
 
-
-
-
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_upload_sound_byte)
