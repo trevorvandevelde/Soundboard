@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<androidx.coordinatorlayout.widget.CoordinatorLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/container"
+        android:windowTranslucentStatus="false"
+        android:fitsSystemWindows="true"
         android:layout_width="match_parent"
+        android:background="@drawable/ic_gradient_bg2"
         android:layout_height="match_parent"
         android:paddingTop="0dp"
         tools:context=".MainActivity">
 
     <FrameLayout
             android:id="@+id/fragmentContainer"
+            android:fitsSystemWindows="true"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -19,29 +23,52 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintBottom_toTopOf="@+id/nav_view" />
 
+    <LinearLayout
+            android:layout_gravity="bottom"
+            android:padding="16dp"
+            android:clipToPadding="false"
 
-<!--    android:background="?android:attr/windowBackground"-->
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:theme="@style/Widget.BottomNavigationView"
-            android:id="@+id/nav_view"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:layout_marginEnd="0dp"
-            android:layout_marginStart="0dp"
-            android:elevation="8dp"
-            android:outlineAmbientShadowColor="@color/colorShadow"
-            android:outlineSpotShadowColor="@color/colorShadow"
-            android:background="@drawable/bottom_navigation_background"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            android:layout_marginBottom="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            app:menu="@menu/bottom_nav_menu"
-            app:itemIconTint="@drawable/bottom_navigation_selector"
-            app:itemTextColor="@drawable/bottom_navigation_selector"
-            app:labelVisibilityMode="labeled"/>
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/uploadSoundbyteFab"
+                app:itemRippleColor="@color/colorPrimary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:backgroundTint="@color/colorButton"
+                app:tint="@color/white"
+                android:layout_gravity="bottom|end"
+                android:layout_marginEnd="@dimen/fab_margin"
+                android:layout_marginBottom="16dp"
+                android:outlineAmbientShadowColor="@color/colorShadow"
+                android:outlineSpotShadowColor="@color/colorShadow"
+                app:srcCompat="@drawable/ic_plus" />
+
+        <!--    android:background="?android:attr/windowBackground"-->
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:theme="@style/Widget.BottomNavigationView"
+                android:layout_gravity="bottom|center"
+                android:id="@+id/nav_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:layout_marginEnd="0dp"
+                android:layout_marginStart="0dp"
+                android:elevation="8dp"
+                android:outlineAmbientShadowColor="@color/colorShadow"
+                android:outlineSpotShadowColor="@color/colorShadow"
+                android:background="@drawable/bottom_navigation_background"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:menu="@menu/bottom_nav_menu"
+                app:itemIconTint="@drawable/bottom_navigation_selector"
+                app:itemTextColor="@drawable/bottom_navigation_selector"
+                app:labelVisibilityMode="labeled"/>
+
+    </LinearLayout>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

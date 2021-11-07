@@ -28,11 +28,11 @@ class HomeFragment : Fragment() {
 
         val view = inflater.inflate(R.layout.home_fragment, container, false)
 
-        launchButton = view.findViewById(R.id.launchButton)
-        launchButton.setOnClickListener{
-            val intent = Intent(context, UploadSoundByteActivity::class.java)
-            startActivity(intent)
-        }
+//        launchButton = view.findViewById(R.id.launchButton)
+//        launchButton.setOnClickListener{
+//            val intent = Intent(context, UploadSoundByteActivity::class.java)
+//            startActivity(intent)
+//        }
 
         if(datalist.size == 0) {
             initData()
