@@ -178,7 +178,7 @@
                     android:layout_width="match_parent"
                     android:layout_weight="3.6"
                     android:background="@drawable/card_background"
-                    android:padding="16dp"
+                    android:padding="8dp"
                     android:layout_height="0dp">
 
                 <LinearLayout
@@ -201,6 +201,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/inter_semibold"
+                            android:layout_marginLeft="8dp"
                             android:textSize="20dp"
                             android:layout_marginBottom="8dp"
                             android:textColor="@color/colorCharcoal"
@@ -216,6 +217,7 @@
                     <ListView
                             android:id="@+id/home_listview"
                             android:layout_width="match_parent"
+                            android:divider="@null"
                             android:scrollbars="none"
                             android:paddingBottom="100dp"
                             android:clipToPadding="false"

@@ -1,18 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:clipToPadding="false"
+        android:layout_marginBottom="16dp"
+        android:padding="8dp">
 
-    <ImageView
-            android:id = "@+id/soundbyte_image"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_margin="25dp"/>
-    <TextView
-            android:id = "@+id/soundbyte_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:text = "Default"/>
+    <androidx.cardview.widget.CardView
+            android:elevation="15dp"
+            android:outlineSpotShadowColor="@color/colorShadow"
+            app:cardCornerRadius="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bottom_navigation_background"
+
+                >
+            <ImageView
+                    android:id = "@+id/soundbyte_image"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:background="@color/colorCharcoal"
+                    />
+
+            <LinearLayout
+                    android:layout_marginLeft="16sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center_vertical"
+                    android:layout_gravity="center_vertical">
+                <TextView
+                        android:id = "@+id/soundbyte_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/inter_bold"
+                        android:textSize="18dp"
+                        android:text = "Soundbyte Title"/>
+                <TextView
+                        android:id = "@+id/soundbyte_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/inter_medium"
+                        android:textSize="16dp"
+                        android:text = "12s"/>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
 
 </LinearLayout>
