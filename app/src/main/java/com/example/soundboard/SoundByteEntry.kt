@@ -4,5 +4,6 @@ class SoundByteEntry(
         val author: String = "@ username",
         val imageID: Int = 0,
         val title: String = "soundbyte title",
-        val time: String = "12s"
+        val time: String = "12s",
+        val tag_list:List<String> = listOf("DIY")
 )
