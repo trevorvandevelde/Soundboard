@@ -4,80 +4,36 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:clipToPadding="false"
         android:layout_marginBottom="16dp"
-        android:padding="8dp">
+        android:padding="8dp"
+        android:orientation="vertical">
+
+    <TextView
+            android:id="@+id/soundbyte_author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text = " @ username"
+            android:textStyle="bold"
+            android:textSize="15dp"
+            android:fontFamily="@font/inter_bold"
+            android:layout_marginLeft="5dp"
+            android:layout_marginBottom="10dp"/>
 
     <androidx.cardview.widget.CardView
             android:elevation="15dp"
             android:outlineSpotShadowColor="@color/colorShadow"
             app:cardCornerRadius="8dp"
             android:layout_width="match_parent"
-<<<<<<< HEAD
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-    <ImageView
-            android:id = "@+id/soundbyte_image"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="10dp"/>
-
-    <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-    <TextView
-            android:id = "@+id/soundbyte_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
-            android:text = "soundbyte title"
-            android:textStyle="bold"
-            android:textSize="18dp"/>
-
-    <TextView
-            android:id="@+id/soundbyte_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:text="12s"
-            android:textSize="18dp" />
-
-    </LinearLayout>
-
-    </LinearLayout>
-
-    <co.lujun.androidtagview.TagContainerLayout
-            android:id="@+id/soundbyte_tagContainer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:layout_marginBottom="10dp"
-            app:tag_text_size="10dp"
-            app:tag_corner_radius="10dp"
-            app:container_enable_drag="false"
-            app:horizontal_interval="10dp"
-            app:vertical_interval="5dp"
-            app:tag_clickable="false"
-            app:tag_selectable="false"
-            app:tag_enable_cross="false"
-            app:tag_theme="none"/>
-=======
-            android:layout_height="wrap_content">
 
         <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bottom_navigation_background"
-
-                >
+                android:background="@drawable/bottom_navigation_background">
             <ImageView
                     android:id = "@+id/soundbyte_image"
                     android:layout_width="100dp"
@@ -113,6 +69,21 @@
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
->>>>>>> fe028ef301d1be934fe01817884ec27c0e3c3e16
+
+    <co.lujun.androidtagview.TagContainerLayout
+            android:id="@+id/soundbyte_tagContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:layout_marginBottom="10dp"
+            app:tag_text_size="10dp"
+            app:tag_corner_radius="10dp"
+            app:container_enable_drag="false"
+            app:horizontal_interval="10dp"
+            app:vertical_interval="5dp"
+            app:tag_clickable="false"
+            app:tag_selectable="false"
+            app:tag_enable_cross="false"
+            app:tag_theme="none"/>
 
 </LinearLayout>
