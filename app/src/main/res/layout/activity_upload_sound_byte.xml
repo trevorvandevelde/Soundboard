@@ -65,20 +65,14 @@
                     <com.chibde.visualizer.LineBarVisualizer
                             android:id="@+id/visualizerLineBar"
                             android:layout_width="match_parent"
-                            android:layout_height="73dp" />
+                            android:layout_height="73dp"
+                            android:clickable="true"
+                            android:onClick="playClicked" />
 
                     <LinearLayout
                             android:orientation="horizontal"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
-
-                        <Button
-                                android:text="PLAY"
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:id="@+id/playButton"
-                                android:layout_weight="1"
-                                android:onClick="playClicked" />
 
                         <SeekBar
                                 android:id="@+id/positionBar"
