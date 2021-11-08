@@ -32,6 +32,20 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import java.io.ByteArrayOutputStream
 import java.io.IOException
+import android.util.Log
+
+import androidx.annotation.NonNull
+
+import com.google.android.gms.tasks.OnFailureListener
+
+import com.google.android.gms.tasks.Task
+
+import com.google.firebase.storage.UploadTask
+
+import com.google.android.gms.tasks.OnSuccessListener
+
+
+
 
 
 class UploadSoundByteActivity : AppCompatActivity() {
@@ -43,6 +57,7 @@ class UploadSoundByteActivity : AppCompatActivity() {
     private lateinit var bytes : ByteArray
     private lateinit var fileName : String
     private lateinit var songUrl : String
+    private lateinit var imageUrl: String
     private lateinit var uploaderUserName : String
 
 
@@ -99,7 +114,7 @@ class UploadSoundByteActivity : AppCompatActivity() {
             //remainingtimelable.text = "-$remainingtime"
         }
     }
-    
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_upload_sound_byte)
@@ -235,7 +250,7 @@ class UploadSoundByteActivity : AppCompatActivity() {
 
 
                 var bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, uriImage)
-                bitmap = rotateBitmap(bitmap, -90f)
+                //bitmap = rotateBitmap(bitmap, -90f)
                 selectImage.setImageBitmap(bitmap)
                 val byteArrayOutputStream = ByteArrayOutputStream()
                 bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream)
@@ -302,7 +317,7 @@ class UploadSoundByteActivity : AppCompatActivity() {
             var newAudioDescription = descriptionEditText.text.toString()
             var newAudioTags = audioTagContainer.tags
 
-            uploadDetailsToDatabase(newAudioFileName, songUrl, mAuth.uid.toString(), newAudioDescription, newAudioTags)
+            uploadDetailsToDatabase(newAudioFileName, imageUrl, songUrl, mAuth.uid.toString(), newAudioDescription, newAudioTags)
             //progressDialog.dismiss()
 
 
@@ -320,9 +335,9 @@ class UploadSoundByteActivity : AppCompatActivity() {
         }
     }
 
-    private fun uploadDetailsToDatabase(songName : String, songUrl : String, uploader : String, description : String, tags: MutableList<String>){
+    private fun uploadDetailsToDatabase(songName : String, imageUrl: String, songUrl : String, uploader : String, description : String, tags: MutableList<String>){
         var soundByte = SoundByte()
-        soundByte.SoundByte(songName, songUrl, uploader, description, tags)
+        soundByte.SoundByte(songName, imageUrl, songUrl, uploader, description, tags)
         FirebaseDatabase.getInstance().getReference("Audio").push().setValue(soundByte)
             .addOnCompleteListener{
             Toast.makeText(this, "Added File Info to Database", Toast.LENGTH_SHORT).show()
@@ -346,8 +361,23 @@ class UploadSoundByteActivity : AppCompatActivity() {
             Toast.makeText(this, "Login Error: Please make sure you are logged in", Toast.LENGTH_SHORT).show()
         }else {
             fileName = uploaderNewFileNameEditText.text.toString()
+            uploadImageToServer(bytes, fileName)
             uploadFileToServer(uriAudio, fileName, mAuth.uid.toString())
         }
+    }
+
+    fun uploadImageToServer(image: ByteArray?, fileName: String?) {
+        val uploadTask = storageReference.child("Thumbnails").child(fileName!!).putBytes(
+            image!!
+        )
+        progressDialog.show()
+        uploadTask.addOnSuccessListener { taskSnapshot ->
+            val task = taskSnapshot.storage.downloadUrl
+            while (!task.isComplete);
+            val urlsong = task.result
+            imageUrl = urlsong.toString()
+            //                Log.i("image url", imageUrl);
+        }.addOnFailureListener { Log.i("image url", "failed") }
     }
 
     override fun onDestroy() {
