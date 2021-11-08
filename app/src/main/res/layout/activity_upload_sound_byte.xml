@@ -33,6 +33,67 @@
 
         </LinearLayout>
 
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="116dp"
+                android:orientation="vertical">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="127dp"
+                    android:orientation="horizontal"
+                    android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
+                    android:paddingVertical="@dimen/activity_vertical_margin"
+                    android:gravity="center">
+
+                <ImageView
+                        android:id="@+id/selectImage"
+                        android:layout_width="77dp"
+                        android:layout_height="77dp"
+                        android:layout_margin="30dp"
+                        android:src="@drawable/dartmouth"
+                        android:foregroundGravity="center_vertical|clip_horizontal|center"
+                        android:clickable="false"
+                        android:longClickable="true" />
+
+
+                <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    <com.chibde.visualizer.LineBarVisualizer
+                            android:id="@+id/visualizerLineBar"
+                            android:layout_width="match_parent"
+                            android:layout_height="73dp" />
+
+                    <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                        <Button
+                                android:text="PLAY"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:id="@+id/playButton"
+                                android:layout_weight="1"
+                                android:onClick="playClicked" />
+
+                        <SeekBar
+                                android:id="@+id/positionBar"
+                                android:layout_width="208dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
         <EditText
                 android:layout_width="match_parent"
                 android:layout_height="84dp"
@@ -102,10 +163,18 @@
 
             <Button
                     android:text="upload"
-                    android:layout_width="wrap_content"
+                    android:layout_width="210dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/uploadAudio"
                     android:gravity="center" />
+
+            <Button
+                    android:text="cancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:onClick="onCancel" />
+
         </LinearLayout>
 
     </LinearLayout>
