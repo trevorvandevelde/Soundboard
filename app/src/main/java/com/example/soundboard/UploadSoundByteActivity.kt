@@ -63,8 +63,6 @@ class UploadSoundByteActivity : AppCompatActivity() {
     private lateinit var audioTagButton : Button
     private lateinit var audioTagText : EditText
 
-<<<<<<< HEAD
-=======
 
     //Media Play System
     lateinit var mediaPlayer: MediaPlayer
@@ -101,10 +99,7 @@ class UploadSoundByteActivity : AppCompatActivity() {
             //remainingtimelable.text = "-$remainingtime"
         }
     }
-
-
-
->>>>>>> 9551b40 (can preview audio and add images)
+    
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_upload_sound_byte)
