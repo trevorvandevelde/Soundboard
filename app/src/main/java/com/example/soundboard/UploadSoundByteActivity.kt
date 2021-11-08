@@ -140,7 +140,7 @@ class UploadSoundByteActivity : AppCompatActivity() {
         mediaPlayer.isLooping = true
         //Media Play System
         lineBarVisualizer = findViewById(R.id.visualizerLineBar)
-        playbutton = findViewById(R.id.playButton)
+        //playbutton = findViewById(R.id.playButton)
         positionBar = findViewById(R.id.positionBar)
         positionBar.setOnSeekBarChangeListener(
             object : SeekBar.OnSeekBarChangeListener{
@@ -394,11 +394,9 @@ class UploadSoundByteActivity : AppCompatActivity() {
     fun playClicked(view: View){
         if(mediaPlayer.isPlaying){
             mediaPlayer.pause()
-            playbutton.setText("PLAY")
         }
         else{
             mediaPlayer.start()
-            playbutton.setText("PAUSE")
         }
     }
 
