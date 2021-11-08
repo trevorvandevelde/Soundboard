@@ -3,6 +3,7 @@ package com.example.soundboard
 import android.Manifest
 import android.annotation.SuppressLint
 import android.content.pm.PackageManager
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.content.ContextCompat
@@ -26,6 +27,11 @@ import android.widget.Button
 import android.widget.SeekBar
 import android.widget.TextView
 import androidx.core.app.ActivityCompat
+
+import co.lujun.androidtagview.ColorFactory
+import co.lujun.androidtagview.TagContainerLayout
+import co.lujun.androidtagview.TagView
+import co.lujun.androidtagview.TagView.OnTagClickListener
 
 class PlayActivity : AppCompatActivity(){
 
@@ -73,13 +79,18 @@ class PlayActivity : AppCompatActivity(){
         total_time = mediaPlayer.duration
         positionBar.max = total_time
         positionBar.setOnSeekBarChangeListener(
-            object : SeekBar.OnSeekBarChangeListener{
-                override fun onProgressChanged(seekbar: SeekBar?, progress: Int, fromUser: Boolean) {
-                    if(fromUser){
+            object : SeekBar.OnSeekBarChangeListener {
+                override fun onProgressChanged(
+                    seekbar: SeekBar?,
+                    progress: Int,
+                    fromUser: Boolean
+                ) {
+                    if (fromUser) {
                         mediaPlayer.seekTo(progress)
                     }
                 }
-                override fun onStartTrackingTouch(p0: SeekBar?){
+
+                override fun onStartTrackingTouch(p0: SeekBar?) {
                 }
 
                 override fun onStopTrackingTouch(p0: SeekBar?) {
@@ -87,17 +98,30 @@ class PlayActivity : AppCompatActivity(){
             }
         )
 
-        Thread(Runnable{
-            while(mediaPlayer!=null){
-                try{
+        Thread(Runnable {
+            while (mediaPlayer != null) {
+                try {
                     var msg = Message()
                     msg.what = mediaPlayer.currentPosition
                     handler.sendMessage(msg)
                     Thread.sleep(1000)
-                }catch(e: InterruptedException){
+                } catch (e: InterruptedException) {
                 }
             }
         }).start()
+
+        // tag container
+        val tag_container: TagContainerLayout = findViewById(R.id.soundbyte_tagContainer)
+        tag_container.backgroundColor = Color.TRANSPARENT
+        tag_container.borderColor = Color.TRANSPARENT
+        tag_container.tagBackgroundColor = Color.rgb(245, 245, 245)
+        tag_container.tagBorderColor = Color.TRANSPARENT
+        tag_container.removeAllTags()
+        val list_tags: List<String> = listOf("DIY")
+        for (item in list_tags){
+        tag_container.addTag(item)
+         }
+
 
     }
 
