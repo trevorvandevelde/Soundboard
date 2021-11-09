@@ -11,14 +11,13 @@ class SoundByte {
     private lateinit var tags: MutableList<String>
 
 
-    fun SoundByte(soundName: String, soundUrl: String, imageUrl: String, uploaderUserName: String, description: String, tags: MutableList<String>) {
+    fun SoundByte(soundName: String, imageUrl: String, soundUrl: String, uploaderUserName: String, description: String, tags: MutableList<String>) {
         this.soundName = soundName
         this.soundUrl = soundUrl
         this.imageUrl = imageUrl
         this.uploaderUserName = uploaderUserName
         this.description = description
         this.tags = tags
-
 
     }
 

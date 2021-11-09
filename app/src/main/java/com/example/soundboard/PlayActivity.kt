@@ -59,7 +59,15 @@ class PlayActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_play)
 
-        mediaPlayer = MediaPlayer.create(this, R.raw.tokyo)
+        val audioUrl =  intent.getStringExtra("audio")
+        if(audioUrl != null) {
+            val uri = Uri.parse(audioUrl)
+            // mediaPlayer = MediaPlayer.create(this, R.raw.tokyo)
+            mediaPlayer = MediaPlayer.create(this, uri)
+        }
+        else{
+            mediaPlayer = MediaPlayer.create(this, R.raw.tokyo)
+        }
         mediaPlayer.isLooping = true
 
         lineVisualizer = findViewById(R.id.visualizerLine)
@@ -117,10 +125,17 @@ class PlayActivity : AppCompatActivity(){
         tag_container.tagBackgroundColor = Color.rgb(245, 245, 245)
         tag_container.tagBorderColor = Color.TRANSPARENT
         tag_container.removeAllTags()
-        val list_tags: List<String> = listOf("DIY")
-        for (item in list_tags){
-        tag_container.addTag(item)
-         }
+
+        val list_tags:ArrayList<String>? = intent.getStringArrayListExtra("tags")
+        if(list_tags == null){
+            tag_container.addTag("DIY")
+        }
+        else {
+            //val list_tags: List<String> = listOf("DIY")
+            for (item in list_tags) {
+                tag_container.addTag(item)
+            }
+        }
 
 
     }
