@@ -12,12 +12,21 @@
                 android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
                 android:paddingVertical="@dimen/activity_vertical_margin">
 
+            <SearchView
+                    android:id = "@+id/discover_search"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:iconifiedByDefault="false"
+                    android:layout_gravity="center_vertical"
+                    android:queryHint = "Input Audio Name"/>
+
+
             <ListView
                     android:id="@+id/discover_listview"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:divider="@null"
-                    android:layout_marginTop="50dp" />
+                    android:layout_marginTop="10dp" />
 
 
         </LinearLayout>

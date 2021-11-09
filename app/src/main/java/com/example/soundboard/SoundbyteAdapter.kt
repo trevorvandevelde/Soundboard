@@ -70,4 +70,6 @@ class SoundbyteAdapter(context: Context, val resourceID: Int,
              }
              return view
          }
+
+
 }
