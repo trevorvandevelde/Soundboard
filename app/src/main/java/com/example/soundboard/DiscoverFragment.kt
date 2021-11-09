@@ -35,7 +35,7 @@ class DiscoverFragment : Fragment() {
         discover_listview.setOnItemClickListener{ parent: AdapterView<*>, view: View, position: Int, id: Long ->
             val soundbyte = datalist[position]
             val intent = Intent(requireActivity(), PlayActivity::class.java)
-            intent.putExtra("image", soundbyte.imageID)
+            intent.putExtra("image", soundbyte.imageUrl)
             intent.putExtra("title", soundbyte.title)
             startActivity(intent)
         }
@@ -50,9 +50,9 @@ class DiscoverFragment : Fragment() {
 
 
     private fun initData(){
-        val tag_list:List<String> = listOf("DIY","SHIBUYA","AKIHABARA","GINZA")
+        val tag_list:MutableList<String> = mutableListOf("DIY","SHIBUYA","AKIHABARA","GINZA")
         repeat(10){
-            datalist.add(SoundByteEntry("@ username", R.drawable.dartmouth,"soundbyte title", "12s",tag_list))
+            datalist.add(SoundByteEntry("@ username", "NA","soundbyte title", "12s",tag_list))
         }
     }
 

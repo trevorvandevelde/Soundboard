@@ -27,7 +27,7 @@ class BoardActivity : AppCompatActivity(){
         board_listview.setOnItemClickListener{ parent: AdapterView<*>, view: View, position: Int, id: Long ->
             val soundbyte = datalist[position]
             val intent = Intent(this, PlayActivity::class.java)
-            intent.putExtra("image", soundbyte.imageID)
+            intent.putExtra("image", soundbyte.imageUrl)
             intent.putExtra("title", soundbyte.title)
             startActivity(intent)
         }
@@ -35,7 +35,7 @@ class BoardActivity : AppCompatActivity(){
 
     private fun initData(){
         repeat(10){
-            datalist.add(SoundByteEntry( "@ username", R.drawable.dartmouth,"soundbyte title", "12s"))
+            datalist.add(SoundByteEntry( "@ username", "NA","soundbyte title", "12s"))
         }
     }
 

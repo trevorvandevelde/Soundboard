@@ -1,7 +1,9 @@
 package com.example.soundboard
 
 import android.content.Context
+import android.graphics.BitmapFactory
 import android.graphics.Color
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +16,10 @@ import co.lujun.androidtagview.ColorFactory
 import co.lujun.androidtagview.TagContainerLayout
 import co.lujun.androidtagview.TagView
 import co.lujun.androidtagview.TagView.OnTagClickListener
+import java.net.URL
+
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Transformation;
 
 class SoundbyteAdapter(context: Context, val resourceID: Int,
                        var data: List<SoundByteEntry>)
@@ -46,7 +52,14 @@ class SoundbyteAdapter(context: Context, val resourceID: Int,
 
              val SoundByteEntry = getItem(position)
              if(SoundByteEntry!=null){
-                 viewHolder.image.setImageResource(SoundByteEntry.imageID)
+                 if(SoundByteEntry.imageUrl != "NA") {
+                     //val url = URL(SoundByteEntry.imageUrl)
+                    // viewHolder.image.setImageURI(Uri.parse(SoundByteEntry.imageUrl))
+                     Picasso.get().load(SoundByteEntry.imageUrl).into(viewHolder.image)
+                 }
+                 else{
+                     viewHolder.image.setImageResource(R.drawable.dartmouth)
+                 }
                  viewHolder.title.text = SoundByteEntry.title
                  viewHolder.author.text = SoundByteEntry.author
                  viewHolder.time.text = SoundByteEntry.time
