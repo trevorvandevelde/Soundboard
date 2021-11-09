@@ -46,16 +46,12 @@ class MainActivity : AppCompatActivity() {
         val discoverFragment = DiscoverFragment()
         val profileFragment = ProfileFragment()
         val settingsFragment = SettingsFragment()
-        val loginFragment = LoginFragment()
-        val registerFragment = RegisterFragment()
 
         fragments = ArrayList<Fragment>()
         fragments.add(homeFragment)
         fragments.add(discoverFragment)
         fragments.add(profileFragment)
         fragments.add(settingsFragment)
-        fragments.add(loginFragment)
-        fragments.add(registerFragment)
 
         if (savedInstanceState != null) {
             lastFragmentIndex = savedInstanceState.getInt("last_fragment_key")
@@ -77,7 +73,7 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.navigation_settings -> {
-                    setCurrentFragment(4)
+                    setCurrentFragment(3)
                     true
                 }
                 else -> false
@@ -127,6 +123,9 @@ class MainActivity : AppCompatActivity() {
     }
 
 
+    /**
+     * Changes fragment with fragment manager and makes sure last fragment index/position is saved
+     */
     private fun setCurrentFragment(index : Int) {
         lastFragmentIndex = index
         supportFragmentManager.beginTransaction().apply {
@@ -138,12 +137,10 @@ class MainActivity : AppCompatActivity() {
 
     /* overrides back press to have instagram-esqe functionality
      * back on homescreen exits, back on anything else goes to home
-     * TODO: figure out login/register back behavior
      */
     override fun onBackPressed() {
         if( navView.selectedItemId == R.id.navigation_home ){
-            super.onBackPressed()
-            finish()
+            finishAffinity() //exits all activites
         }else{
             navView.selectedItemId = R.id.navigation_home
         }

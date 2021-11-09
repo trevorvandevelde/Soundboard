@@ -11,6 +11,10 @@ import android.widget.Toast
 import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import android.content.Intent
+
+
+
 
 class LoginFragment : Fragment() {
 
@@ -88,6 +92,8 @@ class LoginFragment : Fragment() {
                     val userEmail = user.email
                     Toast.makeText(requireContext(), "successfully logged in", Toast.LENGTH_SHORT)
                         .show()
+                    val intent = Intent(requireActivity(), MainActivity::class.java)
+                    startActivity(intent)
                 } else {
                     //TODO: better login exception display, use errors?
                     Toast.makeText(requireContext(), it.exception.toString(), Toast.LENGTH_SHORT)
