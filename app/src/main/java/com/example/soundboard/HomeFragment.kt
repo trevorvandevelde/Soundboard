@@ -104,6 +104,7 @@ class HomeFragment : Fragment() {
         val database_reference: DatabaseReference = FirebaseDatabase.getInstance().getReference("Audio")
         database_reference.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
+                datalist.clear()
                 for (ds in snapshot.children) {
                     val song:SoundByte?= ds.getValue(SoundByte::class.java)
                     datalist.add(SoundByteEntry(song!!.getUploaderUserName(), song!!.getImageUrl(),

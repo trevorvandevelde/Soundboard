@@ -54,7 +54,7 @@ class SoundByte {
     }
 
     fun getImageUrl(): String {
-       return imageUrl
+        return imageUrl
     }
 
     fun setImageUrl(imageUrl : String){

@@ -1,33 +1,34 @@
 {
   "project_info": {
-    "project_number": "350590172662",
-    "project_id": "soundboard-34493",
-    "storage_bucket": "soundboard-34493.appspot.com"
+    "project_number": "153899491546",
+    "firebase_url": "https://soundboard2-1d1a2-default-rtdb.firebaseio.com",
+    "project_id": "soundboard2-1d1a2",
+    "storage_bucket": "soundboard2-1d1a2.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:350590172662:android:c01f629624924920631bd7",
+        "mobilesdk_app_id": "1:153899491546:android:b6e21a388f2e39c10645e3",
         "android_client_info": {
           "package_name": "com.example.soundboard"
         }
       },
       "oauth_client": [
         {
-          "client_id": "350590172662-cfos1kujj8f0snjeg9blpknkth1kdl3u.apps.googleusercontent.com",
+          "client_id": "153899491546-a1v7qv2fj6msrogr49543jhl2478uue1.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBt_9COmh_qE3PVM1lmaz1MbM89PZRUKrU"
+          "current_key": "AIzaSyBvgRS1gpaF2tOc9UYigc0E-cHbv3AShnI"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "350590172662-cfos1kujj8f0snjeg9blpknkth1kdl3u.apps.googleusercontent.com",
+              "client_id": "153899491546-a1v7qv2fj6msrogr49543jhl2478uue1.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

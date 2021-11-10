@@ -349,8 +349,8 @@ class UploadSoundByteActivity : AppCompatActivity() {
         soundByte.SoundByte(songName, imageUrl, songUrl, uploader, description, tags)
         FirebaseDatabase.getInstance().getReference("Audio").push().setValue(soundByte)
             .addOnCompleteListener{
-            Toast.makeText(this, "Added File Info to Database", Toast.LENGTH_SHORT).show()
-            progressDialog.dismiss()
+                Toast.makeText(this, "Added File Info to Database", Toast.LENGTH_SHORT).show()
+                progressDialog.dismiss()
                 finish()
 
             }.addOnFailureListener{
@@ -410,4 +410,3 @@ class UploadSoundByteActivity : AppCompatActivity() {
     }
 
 }
-
