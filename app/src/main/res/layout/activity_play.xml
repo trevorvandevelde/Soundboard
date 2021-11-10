@@ -17,17 +17,21 @@
             android:paddingVertical="@dimen/activity_vertical_margin">
 
         <ImageView
-                android:id = "@+id/creator_image"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_margin="30dp"
+                android:id = "@+id/play_image"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="40dp"
                 android:src="@drawable/dartmouth"/>
 
         <TextView
-                android:id="@+id/creator_intro"
+                android:id="@+id/play_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="50dp"
+                android:layout_marginLeft="20dp"
+                android:textStyle="bold"
+                android:textSize="20dp"
                 android:text="Test Text for Test Creator" />
 
     </LinearLayout>

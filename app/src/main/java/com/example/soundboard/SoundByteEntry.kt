@@ -7,5 +7,5 @@ class SoundByteEntry(
         val title: String = "soundbyte title",
         val time: String = "12s",
         val tag_list:MutableList<String> =  mutableListOf("DIY"),
-        val audioUrl:String = "NA"
+        val audioUrl:String = "NA",
 )

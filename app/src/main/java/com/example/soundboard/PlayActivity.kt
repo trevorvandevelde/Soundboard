@@ -23,15 +23,14 @@ import android.net.Uri
 import android.os.Build
 import android.os.Handler
 import android.os.Message
-import android.widget.Button
-import android.widget.SeekBar
-import android.widget.TextView
+import android.widget.*
 import androidx.core.app.ActivityCompat
 
 import co.lujun.androidtagview.ColorFactory
 import co.lujun.androidtagview.TagContainerLayout
 import co.lujun.androidtagview.TagView
 import co.lujun.androidtagview.TagView.OnTagClickListener
+import com.squareup.picasso.Picasso
 
 class PlayActivity : AppCompatActivity(){
 
@@ -60,6 +59,7 @@ class PlayActivity : AppCompatActivity(){
         setContentView(R.layout.activity_play)
 
         val audioUrl =  intent.getStringExtra("audio")
+
         if(audioUrl != null) {
             val uri = Uri.parse(audioUrl)
             // mediaPlayer = MediaPlayer.create(this, R.raw.tokyo)
@@ -118,6 +118,13 @@ class PlayActivity : AppCompatActivity(){
             }
         }).start()
 
+        val play_image: ImageView = findViewById(R.id.play_image)
+        val play_title: TextView = findViewById(R.id.play_title)
+        val coverUrl = intent.getStringExtra("image")
+        val title = intent.getStringExtra("title")
+        Picasso.get().load(coverUrl).into(play_image)
+        play_title.setText(title)
+
         // tag container
         val tag_container: TagContainerLayout = findViewById(R.id.soundbyte_tagContainer)
         tag_container.backgroundColor = Color.TRANSPARENT
@@ -136,7 +143,6 @@ class PlayActivity : AppCompatActivity(){
                 tag_container.addTag(item)
             }
         }
-
 
     }
 
