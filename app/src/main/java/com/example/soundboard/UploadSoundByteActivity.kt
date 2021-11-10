@@ -55,6 +55,7 @@ class UploadSoundByteActivity : AppCompatActivity() {
     private lateinit var songUrl : String
     private lateinit var imageUrl: String
     private lateinit var uploaderUserName : String
+    private lateinit var durationSeconds : String
 
 
 
@@ -67,6 +68,11 @@ class UploadSoundByteActivity : AppCompatActivity() {
     private lateinit var descriptionEditText: EditText
     private lateinit var uploaderNewFileNameEditText : EditText
     // private lateinit var audioFileNameEditText : TextView
+
+    //Tag System
+    private lateinit var audioTagContainer: TagContainerLayout
+    private lateinit var audioTagButton : Button
+    private lateinit var audioTagText : EditText
 
 
     //Media Play System
@@ -113,11 +119,12 @@ class UploadSoundByteActivity : AppCompatActivity() {
         mAuth = FirebaseAuth.getInstance()
         progressDialog = ProgressDialog(this)
 
+
         // adds back button fab
-        val backButton: View = findViewById(R.id.back_arrow)
-        backButton.setOnClickListener { view ->
-            finish()
-        }
+        //val backButton: View = findViewById(R.id.back_arrow)
+        //backButton.setOnClickListener { view ->
+            //finish()
+        //}
 
 
         uploadButton = findViewById(R.id.uploadAudio)
@@ -207,6 +214,7 @@ class UploadSoundByteActivity : AppCompatActivity() {
             mediaPlayer.isLooping = true
 
             total_time = mediaPlayer.duration
+            durationSeconds = (mediaPlayer.duration/1000).toString()
             positionBar.max = total_time
 
             lineBarVisualizer.visibility = View.VISIBLE
@@ -336,7 +344,7 @@ class UploadSoundByteActivity : AppCompatActivity() {
 
     private fun uploadDetailsToDatabase(songName : String, imageUrl: String, songUrl : String, uploader : String, description : String, tags: MutableList<String>){
         var soundByte = SoundByte()
-        soundByte.SoundByte(songName, imageUrl, songUrl, uploader, description, tags)
+        soundByte.SoundByte(songName, imageUrl, songUrl, uploader, description, tags, durationSeconds)
         FirebaseDatabase.getInstance().getReference("Audio").push().setValue(soundByte)
             .addOnCompleteListener{
                 Toast.makeText(this, "Added File Info to Database", Toast.LENGTH_SHORT).show()
