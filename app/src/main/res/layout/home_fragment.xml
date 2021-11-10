@@ -201,7 +201,7 @@
                     <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/inter_semibold"
+                            android:fontFamily="@font/quicksand_bold"
                             android:layout_marginLeft="8dp"
                             android:textSize="20dp"
                             android:layout_marginBottom="8dp"

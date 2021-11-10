@@ -2,17 +2,28 @@ package com.example.soundboard
 
 class User {
 
-    private lateinit var userID : String
+    //note: storing user with key as userid in firebase,
+    //FirebaseDatabase.getInstance().getReference() -> snapshot.child("Users").child(<userId>).getValue(User::class.java)
+    private lateinit var userNickname : String
     private lateinit var userDescription : String
     private lateinit var soundBoardsList : MutableList<SoundBoard>
     private lateinit var userSounds : MutableList<SoundByte>
 
 
-    fun User(userID : String) {
-        this.userID = userID
+    fun User(userNickname : String) {
+        this.userNickname = userNickname
         userDescription = "Hi this is where you edit a description"
         soundBoardsList = arrayListOf()
         userSounds = arrayListOf()
+    }
+
+
+    fun getUserNickname() : String {
+        return userNickname
+    }
+
+    fun setUserNickname(newNickname : String) {
+        userNickname= newNickname
     }
 
     fun getUserDescription() : String {
@@ -23,9 +34,6 @@ class User {
         userDescription = newDescription
     }
 
-    fun getUserID() : String {
-        return userID
-    }
 
     fun addSoundBoard(newSoundBoard : SoundBoard) {
         soundBoardsList.add(newSoundBoard)
