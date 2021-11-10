@@ -7,10 +7,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.EditText
-import android.widget.ListView
-import android.widget.SearchView
+import android.widget.*
+import com.google.firebase.database.*
 
 
 class DiscoverFragment : Fragment() {
@@ -25,19 +23,25 @@ class DiscoverFragment : Fragment() {
     private lateinit var discover_search: SearchView
     private var datalist = ArrayList<SoundByteEntry>()
 
+    private lateinit var database_reference: DatabaseReference
+    private lateinit var database_event_listener: ValueEventListener
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.discover_fragment, container, false)
+        /*
         if(datalist.size == 0) {
             initData()
         }
+         */
+        retrieve_audio()
         discover_search = view.findViewById(R.id.discover_search)
         discover_listview = view.findViewById(R.id.discover_listview)
         //discover_listview.setTextFilterEnabled(true)
-        soundbyteAdapter = SoundbyteAdapter(requireContext(), R.layout.soundbyte_item, datalist)
-        discover_listview.adapter = soundbyteAdapter
+        //soundbyteAdapter = SoundbyteAdapter(requireContext(), R.layout.soundbyte_item, datalist)
+        //discover_listview.adapter = soundbyteAdapter
         discover_listview.setOnItemClickListener{ parent: AdapterView<*>, view: View, position: Int, id: Long ->
             val soundbyte = datalist[position]
             val intent = Intent(requireActivity(), PlayActivity::class.java)
@@ -129,4 +133,52 @@ class DiscoverFragment : Fragment() {
         }
     }
 
+    private fun retrieve_audio() {
+        database_reference = FirebaseDatabase.getInstance().getReference()
+        database_event_listener = object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                datalist.clear()
+                for (ds in snapshot.child("Audio").children) {
+                    val song: SoundByte? = ds.getValue(SoundByte::class.java)
+                    val user: User? = snapshot.child("Users").child(song!!.getUploaderUserName())
+                        .getValue(User::class.java)
+
+                    // for the safety
+                    val username = song!!.getUploaderUserName()
+                    val imageurl = song!!.getImageUrl()
+                    val soundname = song!!.getSoundName()
+                    val duration = song!!.getDuration() + "s"
+                    val tags = song!!.getTags()
+                    val songurl = song!!.getSoundUrl()
+                    if (username != null && imageurl != null && soundname != null && duration != null
+                        && tags != null && songurl != null
+                    ) {
+                        datalist.add(
+                            SoundByteEntry(
+                                username, imageurl,
+                                soundname, duration, tags, songurl
+                            )
+                        )
+                    } else {
+                        datalist.add(SoundByteEntry())
+                    }
+
+                    /*
+                    audio_namelist.add(song!!.getSoundName())
+                    audio_urllist.add(song!!.getSoundUrl())
+                    audio_artisitlist.add(song!!.getUploaderUserName())
+                    audio_coverlist.add(song!!.getImageUrl())
+                    audio_taglists.add(song!!.getTags())
+                     */
+
+                    soundbyteAdapter = SoundbyteAdapter(requireContext(), R.layout.soundbyte_item,datalist)
+                    discover_listview.adapter = soundbyteAdapter
+                }
+            }
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(requireContext(), "FAILED!", Toast.LENGTH_SHORT).show()
+            }
+        }
+        database_reference.addValueEventListener(database_event_listener )
+        }
 }
