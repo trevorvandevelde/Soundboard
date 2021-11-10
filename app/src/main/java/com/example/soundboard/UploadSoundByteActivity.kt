@@ -58,7 +58,9 @@ class UploadSoundByteActivity : AppCompatActivity() {
     private lateinit var fileName : String
     private lateinit var songUrl : String
     private lateinit var imageUrl: String
+    
     private lateinit var uploaderUserName : String
+    private lateinit  var durationSeconds : String
 
 
 
@@ -216,6 +218,7 @@ class UploadSoundByteActivity : AppCompatActivity() {
 
 
             mediaPlayer = MediaPlayer.create(this, uriAudio)
+            durationSeconds = (mediaPlayer.duration/1000).toString()
             mediaPlayer.isLooping = true
 
             total_time = mediaPlayer.duration
@@ -348,7 +351,7 @@ class UploadSoundByteActivity : AppCompatActivity() {
 
     private fun uploadDetailsToDatabase(songName : String, imageUrl: String, songUrl : String, uploader : String, description : String, tags: MutableList<String>){
         var soundByte = SoundByte()
-        soundByte.SoundByte(songName, imageUrl, songUrl, uploader, description, tags)
+        soundByte.SoundByte(songName, imageUrl, songUrl, uploader, description, tags, durationSeconds)
         FirebaseDatabase.getInstance().getReference("Audio").push().setValue(soundByte)
             .addOnCompleteListener{
             Toast.makeText(this, "Added File Info to Database", Toast.LENGTH_SHORT).show()
