@@ -60,7 +60,7 @@ class PlayActivity : AppCompatActivity(){
 
         val audioUrl =  intent.getStringExtra("audio")
 
-        if(audioUrl != null) {
+        if(audioUrl != "NA" && audioUrl != null) {
             val uri = Uri.parse(audioUrl)
             // mediaPlayer = MediaPlayer.create(this, R.raw.tokyo)
             mediaPlayer = MediaPlayer.create(this, uri)
@@ -122,8 +122,11 @@ class PlayActivity : AppCompatActivity(){
         val play_title: TextView = findViewById(R.id.play_title)
         val coverUrl = intent.getStringExtra("image")
         val title = intent.getStringExtra("title")
-        Picasso.get().load(coverUrl).into(play_image)
+        if(coverUrl != "NA"){
+          Picasso.get().load(coverUrl).into(play_image)
+        }
         play_title.setText(title)
+
 
         // tag container
         val tag_container: TagContainerLayout = findViewById(R.id.soundbyte_tagContainer)
