@@ -29,18 +29,7 @@
                     android:paddingBottom="100dp"
                     android:clipToPadding="false"
                     android:layout_marginBottom="0dp"
-<<<<<<< HEAD
                     android:layout_marginTop="10dp" />
-
-=======
-<<<<<<< HEAD
-                    android:layout_marginTop="50dp" />
-=======
-                    android:layout_marginTop="10dp" />
-
->>>>>>> 022a4da (fixed conflicts)
->>>>>>> 5dbf54f (fixed conflicts)
-
 
         </LinearLayout>
 
