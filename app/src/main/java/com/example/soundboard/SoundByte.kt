@@ -10,9 +10,10 @@ class SoundByte {
     private lateinit var id: String
     private lateinit var description: String
     private lateinit var tags: MutableList<String>
+    private lateinit var durationSeconds: String
 
 
-    fun SoundByte(soundName: String, imageUrl: String, soundUrl: String, uploaderUserName: String, description: String, tags: MutableList<String>) {
+    fun SoundByte(soundName: String, imageUrl: String, soundUrl: String, uploaderUserName: String, description: String, tags: MutableList<String>, durationSeconds: String) {
         this.soundName = soundName
         this.soundUrl = soundUrl
         this.imageUrl = imageUrl
@@ -32,6 +33,7 @@ class SoundByte {
         this.uploaderUserName = uploaderUserName
         this.description = description
         this.tags = tags
+        this.durationSeconds = durationSeconds
 
 <<<<<<< HEAD
 =======
@@ -114,5 +116,13 @@ class SoundByte {
 
     fun setUploaderUserName(uploaderUserName: String){
         this.uploaderUserName = uploaderUserName
+    }
+
+    fun getDuration() : String {
+        return durationSeconds
+    }
+
+    fun setDuration(newDuration: String){
+        this.durationSeconds = newDuration
     }
 }
