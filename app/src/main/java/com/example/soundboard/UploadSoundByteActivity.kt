@@ -46,6 +46,9 @@ import com.google.android.gms.tasks.OnSuccessListener
 
 
 
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 
 
 class UploadSoundByteActivity : AppCompatActivity() {
@@ -61,6 +64,7 @@ class UploadSoundByteActivity : AppCompatActivity() {
     
     private lateinit var uploaderUserName : String
     private lateinit  var durationSeconds : String
+    private lateinit var description : String
 
 
 
@@ -73,6 +77,12 @@ class UploadSoundByteActivity : AppCompatActivity() {
     private lateinit var descriptionEditText: EditText
     private lateinit var uploaderNewFileNameEditText : EditText
     // private lateinit var audioFileNameEditText : TextView
+
+    //Tag System
+    private lateinit var audioTagContainer: TagContainerLayout
+    private lateinit var audioTagButton : Button
+    private lateinit var audioTagText : EditText
+
 
 
     //Tag System
@@ -176,7 +186,11 @@ class UploadSoundByteActivity : AppCompatActivity() {
         )
 
 
+        selectImage = findViewById(R.id.selectImage)
 
+        selectImage.setOnClickListener{ //change photo
+            pickPhoto()
+        }
 
         //Tag System
         audioTagContainer = findViewById(R.id.tagContainer)
@@ -192,6 +206,23 @@ class UploadSoundByteActivity : AppCompatActivity() {
             }
             audioTagText.text = null
         }
+
+
+        audioTagContainer = findViewById(R.id.tagContainer)
+        audioTagButton = findViewById(R.id.addTagButton)
+        audioTagText = findViewById(R.id.editTextTag)
+
+        audioTagContainer.tagBackgroundColor = Color.TRANSPARENT
+        audioTagContainer.theme = ColorFactory.NONE
+        audioTagContainer.addTag("DIY")
+
+        audioTagButton.setOnClickListener{
+
+            var tagText = audioTagText.text.toString()
+            audioTagContainer.addTag(tagText)
+            audioTagText.text = null
+        }
+
         audioTagContainer.setOnTagClickListener(object : OnTagClickListener {
             override fun onTagClick(position: Int, text: String) {
                 // ...
@@ -332,7 +363,6 @@ class UploadSoundByteActivity : AppCompatActivity() {
             var newAudioTags = audioTagContainer.tags
 
             uploadDetailsToDatabase(newAudioFileName, imageUrl, songUrl, mAuth.uid.toString(), newAudioDescription, newAudioTags)
-            //progressDialog.dismiss()
 
 
         }.addOnProgressListener {  taskSnapshot ->
@@ -356,7 +386,6 @@ class UploadSoundByteActivity : AppCompatActivity() {
             .addOnCompleteListener{
             Toast.makeText(this, "Added File Info to Database", Toast.LENGTH_SHORT).show()
             progressDialog.dismiss()
-                finish()
 
             }.addOnFailureListener{
                 Toast.makeText(this, "Failed to Add to Database", Toast.LENGTH_SHORT).show()
