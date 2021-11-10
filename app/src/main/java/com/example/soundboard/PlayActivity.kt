@@ -60,7 +60,7 @@ class PlayActivity : AppCompatActivity(){
 
         val audioUrl =  intent.getStringExtra("audio")
 
-        if(audioUrl != null) {
+        if(audioUrl != "NA" && audioUrl != null) {
             val uri = Uri.parse(audioUrl)
             // mediaPlayer = MediaPlayer.create(this, R.raw.tokyo)
             mediaPlayer = MediaPlayer.create(this, uri)

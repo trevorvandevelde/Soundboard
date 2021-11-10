@@ -43,6 +43,12 @@ class DiscoverFragment : Fragment() {
             val intent = Intent(requireActivity(), PlayActivity::class.java)
             intent.putExtra("image", soundbyte.imageUrl)
             intent.putExtra("title", soundbyte.title)
+            intent.putExtra("audio", soundbyte.audioUrl)
+            var tags:ArrayList<String> = ArrayList<String>()
+            for(item in soundbyte.tag_list){
+                tags.add(item)
+            }
+            intent.putStringArrayListExtra("tags", tags)
             startActivity(intent)
         }
 
