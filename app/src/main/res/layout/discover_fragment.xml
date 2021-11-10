@@ -26,14 +26,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:divider="@null"
-<<<<<<< HEAD
-                    android:layout_marginTop="10dp" />
-=======
                     android:paddingBottom="100dp"
                     android:clipToPadding="false"
                     android:layout_marginBottom="0dp"
-                    android:layout_marginTop="50dp" />
->>>>>>> 2166607057bb83a7a82b31b7832db91ed43afb79
+                    android:layout_marginTop="10dp" />
+
 
 
         </LinearLayout>
