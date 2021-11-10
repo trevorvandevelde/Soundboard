@@ -44,10 +44,6 @@ import com.google.firebase.storage.UploadTask
 
 import com.google.android.gms.tasks.OnSuccessListener
 
-
-
-
-
 class UploadSoundByteActivity : AppCompatActivity() {
 
     private lateinit var storageReference : StorageReference
@@ -71,12 +67,6 @@ class UploadSoundByteActivity : AppCompatActivity() {
     private lateinit var descriptionEditText: EditText
     private lateinit var uploaderNewFileNameEditText : EditText
     // private lateinit var audioFileNameEditText : TextView
-
-
-    //Tag System
-    private lateinit var audioTagContainer: TagContainerLayout
-    private lateinit var audioTagButton : Button
-    private lateinit var audioTagText : EditText
 
 
     //Media Play System

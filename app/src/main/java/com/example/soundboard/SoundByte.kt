@@ -11,21 +11,29 @@ class SoundByte {
     private lateinit var tags: MutableList<String>
 
 
-    fun SoundByte(soundName: String, imageUrl: String, soundUrl: String, uploaderUserName: String, description: String, tags: MutableList<String>) {
+    fun SoundByte(
+        soundName: String,
+        imageUrl: String,
+        soundUrl: String,
+        uploaderUserName: String,
+        description: String,
+        tags: MutableList<String>,
+        durationSeconds: String
+    ) {
         this.soundName = soundName
         this.soundUrl = soundUrl
         this.imageUrl = imageUrl
         this.uploaderUserName = uploaderUserName
         this.description = description
         this.tags = tags
-
+        this.durationSeconds = durationSeconds
     }
 
     fun getSoundDescription(): String {
         return description
     }
 
-    fun setSoundDescription(newDescription : String){
+    fun setSoundDescription(newDescription: String) {
         this.description = newDescription
     }
 
@@ -33,7 +41,7 @@ class SoundByte {
         return tags
     }
 
-    fun setTags(newTags : MutableList<String>) {
+    fun setTags(newTags: MutableList<String>) {
         this.tags = newTags
     }
 
@@ -49,7 +57,7 @@ class SoundByte {
         return soundUrl
     }
 
-    fun setSoundUrl(soundUrl : String){
+    fun setSoundUrl(soundUrl: String) {
         this.soundUrl = soundUrl
     }
 
@@ -57,15 +65,24 @@ class SoundByte {
         return imageUrl
     }
 
-    fun setImageUrl(imageUrl : String){
-        this.imageUrl = imageUrl
-    }
 
-    fun getUploaderUserName() : String {
-        return uploaderUserName
-    }
+        fun setImageUrl(imageUrl: String) {
+            this.imageUrl = imageUrl
+        }
 
-    fun setUploaderUserName(uploaderUserName: String){
-        this.uploaderUserName = uploaderUserName
+        fun getUploaderUserName(): String {
+            return uploaderUserName
+        }
+
+        fun setUploaderUserName(uploaderUserName: String) {
+            this.uploaderUserName = uploaderUserName
+        }
+
+        fun getDuration(): String {
+            return durationSeconds
+        }
+
+        fun setDuration(newDuration: String) {
+            this.durationSeconds = newDuration
+        }
     }
-}

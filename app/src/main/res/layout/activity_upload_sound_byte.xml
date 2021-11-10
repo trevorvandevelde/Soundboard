@@ -19,11 +19,14 @@
         <include layout="@layout/header_layout"/>
 
 
+        <LinearLayout
+
         <ScrollView
                 android:clipToPadding="false"
                 android:paddingTop="24dp"
                 android:layout_marginLeft="24dp"
                 android:layout_marginRight="24dp"
+      
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
@@ -266,7 +269,30 @@
             </LinearLayout>
 
 
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="84dp"
+                android:inputType="textPersonName"
+                android:hint="Audio File Name"
+                android:ems="10"
+                android:id="@+id/uploaderNewFileNameEditText" />
 
+
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:id="@+id/descriptionEditText"
+                android:hint="Write a Description Here" />
+
+
+        <TextView
+                android:text="Tags"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tagsTextView"
+                android:textSize="24sp" />
 
         </ScrollView>
 
@@ -313,8 +339,13 @@
 
     </RelativeLayout>
 
-
-
+            <Button
+                    android:text="cancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:onClick="onCancel" />
+        </LinearLayout>
 
 
 
