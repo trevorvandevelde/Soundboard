@@ -20,7 +20,7 @@
             android:layout_marginBottom="8dp"/>
 
     <androidx.cardview.widget.CardView
-            android:elevation="15dp"
+            android:elevation="20dp"
             android:outlineSpotShadowColor="@color/colorShadow"
             app:cardCornerRadius="8dp"
             android:layout_width="match_parent"
