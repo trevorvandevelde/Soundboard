@@ -13,12 +13,18 @@
         <entry key="app/src/main/res/layout/activity_fabactivity.xml" value="0.13360507246376813" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_play.xml" value="0.18020833333333333" />
+<<<<<<< HEAD
+        <entry key="app/src/main/res/layout/activity_upload_sound_byte.xml" value="0.2546875" />
+        <entry key="app/src/main/res/layout/board_item.xml" value="0.22407407407407406" />
+        <entry key="app/src/main/res/layout/discover_fragment.xml" value="0.2125" />
+=======
         <entry key="app/src/main/res/layout/board_item.xml" value="0.25" />
         <entry key="app/src/main/res/layout/content_fabactivity.xml" value="0.13360507246376813" />
         <entry key="app/src/main/res/layout/discover_fragment.xml" value="0.13360507246376813" />
         <entry key="app/src/main/res/layout/fragment_first.xml" value="0.13360507246376813" />
         <entry key="app/src/main/res/layout/fragment_second.xml" value="0.13360507246376813" />
         <entry key="app/src/main/res/layout/home_fragment.xml" value="0.1" />
+>>>>>>> 2166607057bb83a7a82b31b7832db91ed43afb79
         <entry key="app/src/main/res/layout/login_fragment.xml" value="0.18020833333333333" />
         <entry key="app/src/main/res/layout/profile_fragment.xml" value="0.25" />
         <entry key="app/src/main/res/layout/register_fragment.xml" value="0.18020833333333333" />
