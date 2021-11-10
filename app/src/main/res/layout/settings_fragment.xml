@@ -18,10 +18,54 @@
             <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Settings" />
+                    android:text="Settings"
+
+                    android:textSize="24dp"
+                    android:fontFamily="@font/quicksand_bold"/>
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginVertical="@dimen/activity_vertical_margin">
+                <EditText
+                        android:id="@+id/userNicknameEditText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:hint="New nickname"
+                        android:text="">
+                </EditText>
+                <Button
+                        android:id="@+id/userNicknameButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Change Nickname"/>
+            </LinearLayout>
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                    android:layout_marginVertical="@dimen/activity_vertical_margin">
+
+                <EditText
+                        android:id="@+id/userDescriptionEditText"
+                        android:layout_width="0dp"
+                        android:layout_height="200dp"
+                        android:layout_weight="2"
+                        android:hint="Description"
+                        android:text="test">
+                </EditText>
+                <Button
+                        android:id="@+id/userDescriptionButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Change Description"/>
+            </LinearLayout>
             <Button
                     android:id="@+id/signoutButton"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Sign Out"/>
 

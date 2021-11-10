@@ -122,45 +122,55 @@ class HomeFragment : Fragment() {
     }
 
     private fun retrieve_audio(){
-        database_reference = FirebaseDatabase.getInstance().getReference()
+        database_reference = FirebaseDatabase.getInstance().getReference().child("Audio")
         database_event_listener =  object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                datalist.clear()
-                for (ds in snapshot.child("Audio").children) {
-                    val song:SoundByte?= ds.getValue(SoundByte::class.java)
-                    val user : User? =  snapshot.child("Users").child(song!!.getUploaderUserName()).getValue(User::class.java)
 
-                    // for the safety
-                    val username = song!!.getUploaderUserName()
-                    val imageurl = song!!.getImageUrl()
-                    val soundname = song!!.getSoundName()
-                    val duration = song!!.getDuration() + "s"
-                    val tags = song!!.getTags()
-                    val songurl = song!!.getSoundUrl()
-                    if(username !=null && imageurl != null && soundname != null && duration != null
-                        && tags != null && songurl != null) {
-                        datalist.add(
-                            SoundByteEntry(
-                                username, imageurl,
-                                soundname, duration, tags, songurl
-                            )
-                        )
+                //gets list of users only once, for names. so doesn't fetch data on every nickname change
+                val users_ref = FirebaseDatabase.getInstance().getReference().child("Users").addListenerForSingleValueEvent(
+                    object : ValueEventListener {
+                        override fun onDataChange(users_snapshot: DataSnapshot) {
+                            datalist.clear()
+                            for (ds in snapshot.children) {
+                                val song:SoundByte?= ds.getValue(SoundByte::class.java)
+                                val user : User? =  users_snapshot.child(song!!.getUploaderUserName()).getValue(User::class.java)
+
+                                // for the safety
+                                val username = user!!.getUserNickname()
+                                val imageurl = song!!.getImageUrl()
+                                val soundname = song!!.getSoundName()
+                                val duration = song!!.getDuration() + "s"
+                                val tags = song!!.getTags()
+                                val songurl = song!!.getSoundUrl()
+                                if(username !=null && imageurl != null && soundname != null && duration != null
+                                    && tags != null && songurl != null) {
+                                    datalist.add(
+                                        SoundByteEntry(
+                                            username, imageurl,
+                                            soundname, duration, tags, songurl
+                                        )
+                                    )
+                                }
+                                else{
+                                    datalist.add(SoundByteEntry())
+                                }
+
+                                /*
+                                audio_namelist.add(song!!.getSoundName())
+                                audio_urllist.add(song!!.getSoundUrl())
+                                audio_artisitlist.add(song!!.getUploaderUserName())
+                                audio_coverlist.add(song!!.getImageUrl())
+                                audio_taglists.add(song!!.getTags())
+                                 */
+                            }
+                            soundbyteAdapter = SoundbyteAdapter(requireContext(), R.layout.soundbyte_item,datalist)
+                            main_listview.adapter = soundbyteAdapter
+                        }
+
+                        override fun onCancelled(error: DatabaseError) {
+                        }
                     }
-                    else{
-                        datalist.add(SoundByteEntry())
-                    }
-
-                    /*
-                    audio_namelist.add(song!!.getSoundName())
-                    audio_urllist.add(song!!.getSoundUrl())
-                    audio_artisitlist.add(song!!.getUploaderUserName())
-                    audio_coverlist.add(song!!.getImageUrl())
-                    audio_taglists.add(song!!.getTags())
-                     */
-                }
-                soundbyteAdapter = SoundbyteAdapter(requireContext(), R.layout.soundbyte_item,datalist)
-                main_listview.adapter = soundbyteAdapter
-
+                )
             }
 
             override fun onCancelled(error: DatabaseError) {
