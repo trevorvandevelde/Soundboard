@@ -33,6 +33,7 @@
 
         </LinearLayout>
 
+<<<<<<< HEAD
         <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="116dp"
@@ -88,6 +89,8 @@
 
         </LinearLayout>
 
+=======
+>>>>>>> ca732aa (updated layout, added tags)
         <EditText
                 android:layout_width="match_parent"
                 android:layout_height="84dp"
@@ -100,6 +103,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="103dp"
                 android:inputType="textPersonName"
+<<<<<<< HEAD
+=======
+                android:hint="User Name"
+>>>>>>> ca732aa (updated layout, added tags)
+                android:ems="10"
+                android:id="@+id/descriptionEditText"
+                android:hint="Write a Description Here" />
+
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
                 android:ems="10"
                 android:id="@+id/descriptionEditText"
                 android:hint="Write a Description Here" />
@@ -107,7 +122,18 @@
         <TextView
                 android:text="Tags"
                 android:layout_width="match_parent"
+<<<<<<< HEAD
                 android:layout_height="61dp"
+=======
+                android:layout_height="wrap_content"
+                android:id="@+id/fileNameTextView"
+                android:textSize="24sp" />
+
+        <TextView
+                android:text="Tags"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+>>>>>>> ca732aa (updated layout, added tags)
                 android:id="@+id/tagsTextView"
                 android:textSize="24sp" />
 
@@ -166,9 +192,14 @@
                     android:text="cancel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+<<<<<<< HEAD
                     android:layout_weight="1"
                     android:onClick="onCancel" />
 
+=======
+                    android:id="@+id/uploadAudio"
+                    android:gravity="center" />
+>>>>>>> ca732aa (updated layout, added tags)
         </LinearLayout>
 
     </LinearLayout>
