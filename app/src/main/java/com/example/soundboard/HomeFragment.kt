@@ -13,6 +13,7 @@ import androidx.annotation.NonNull
 
 import android.R.attr.thumbnail
 import android.widget.*
+import androidx.fragment.app.FragmentTransaction
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 
@@ -28,7 +29,7 @@ class HomeFragment : Fragment() {
     }
 
     private lateinit var viewModel: HomeViewModel
-    private lateinit var launchButton : Button
+    private lateinit var discoverShortcut : ImageButton
     private lateinit var soundbyteAdapter: SoundbyteAdapter
     private lateinit var main_listview: ListView
     private lateinit var welcomeUserTv: TextView
@@ -53,11 +54,13 @@ class HomeFragment : Fragment() {
 
         val view = inflater.inflate(R.layout.home_fragment, container, false)
 
-//        launchButton = view.findViewById(R.id.launchButton)
-//        launchButton.setOnClickListener{
-//            val intent = Intent(context, UploadSoundByteActivity::class.java)
-//            startActivity(intent)
-//        }
+        discoverShortcut = view.findViewById(R.id.discover_shortcut)
+        discoverShortcut.setOnClickListener{
+            val discoverFragment: Fragment = DiscoverFragment()
+            val transaction: FragmentTransaction = parentFragmentManager.beginTransaction()
+            transaction.replace(R.id.fragmentContainer, discoverFragment).commit()
+        }
+
         welcomeUserTv = view.findViewById(R.id.welcomeUserTv)
         user_reference = FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().currentUser!!.uid)
         user_event_listener =  object : ValueEventListener {
@@ -173,5 +176,6 @@ class HomeFragment : Fragment() {
         user_reference.removeEventListener(user_event_listener)
         super.onDestroy()
     }
+
 
 }
