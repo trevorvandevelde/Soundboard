@@ -41,9 +41,10 @@
                     android:id="@+id/user_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/colorCharcoal"
                     android:fontFamily="@font/quicksand_bold"
-                    android:text=" @username"
-                    android:textSize="16dp"
+                    android:text="@string/username"
+                    android:textSize="20dp"
                     android:textStyle="bold"/>
 
 
