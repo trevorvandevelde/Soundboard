@@ -13,12 +13,11 @@
             android:id="@+id/soundbyte_author"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text = " @ username"
+            android:text = " @username"
             android:textStyle="bold"
             android:textSize="15dp"
             android:fontFamily="@font/inter_bold"
-            android:layout_marginLeft="5dp"
-            android:layout_marginBottom="10dp"/>
+            android:layout_marginBottom="8dp"/>
 
     <androidx.cardview.widget.CardView
             android:elevation="15dp"
@@ -74,16 +73,18 @@
             android:id="@+id/soundbyte_tagContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="5dp"
+            android:paddingTop="8dp"
+            android:paddingRight="8dp"
             android:layout_marginBottom="10dp"
-            app:tag_text_size="10dp"
-            app:tag_corner_radius="10dp"
+            app:tag_text_size="14dp"
+            app:tag_corner_radius="100dp"
             app:container_enable_drag="false"
             app:horizontal_interval="10dp"
             app:vertical_interval="5dp"
             app:tag_clickable="false"
             app:tag_selectable="false"
             app:tag_enable_cross="false"
-            app:tag_theme="none"/>
+            app:tag_theme="none"
+            />
 
 </LinearLayout>
