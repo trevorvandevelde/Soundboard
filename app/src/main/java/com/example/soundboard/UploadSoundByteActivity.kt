@@ -121,10 +121,10 @@ class UploadSoundByteActivity : AppCompatActivity() {
 
 
         // adds back button fab
-        //val backButton: View = findViewById(R.id.back_arrow)
-        //backButton.setOnClickListener { view ->
-            //finish()
-        //}
+        val backButton: View = findViewById(R.id.back_arrow)
+        backButton.setOnClickListener { view ->
+            finish()
+        }
 
 
         uploadButton = findViewById(R.id.uploadAudio)
