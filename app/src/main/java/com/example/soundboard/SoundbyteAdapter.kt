@@ -71,4 +71,12 @@ class SoundbyteAdapter(context: Context, val resourceID: Int,
              }
              return view
          }
+<<<<<<< HEAD
     }
+=======
+<<<<<<< HEAD
+}
+=======
+    }
+>>>>>>> 022a4da (fixed conflicts)
+>>>>>>> 5dbf54f (fixed conflicts)
