@@ -108,7 +108,7 @@ class HomeFragment : Fragment() {
                 for (ds in snapshot.children) {
                     val song:SoundByte?= ds.getValue(SoundByte::class.java)
                     datalist.add(SoundByteEntry(song!!.getUploaderUserName(), song!!.getImageUrl(),
-                        song!!.getSoundName(), "12s", song!!.getTags(), song!!.getSoundUrl() ))
+                        song!!.getSoundName(), song!!.getDuration()+"s", song!!.getTags(), song!!.getSoundUrl() ))
                     /*
                     audio_namelist.add(song!!.getSoundName())
                     audio_urllist.add(song!!.getSoundUrl())
