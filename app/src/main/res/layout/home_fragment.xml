@@ -26,13 +26,13 @@
                     android:gravity="center">
 
                 <TextView
+                        android:id="@+id/welcomeUserTv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="30dp"
                         android:fontFamily="@font/inter_semibold"
                         android:textColor="@color/cardview_light_background"
-                        android:text="Hi, Mira!">
-                </TextView>
+                        android:text=""></TextView>
 
             </RelativeLayout>
 
