@@ -47,6 +47,8 @@ class HomeFragment : Fragment() {
     private  var audio_taglists: MutableList<MutableList<String>> = mutableListOf()
 
     private var datalist = ArrayList<SoundByteEntry>()
+    private lateinit var database_reference: DatabaseReference
+    private lateinit var valueEventListener: ValueEventListener
 
     override fun onCreateView( inflater: LayoutInflater, container: ViewGroup?,
                                savedInstanceState: Bundle?): View? {
@@ -101,8 +103,8 @@ class HomeFragment : Fragment() {
     }
 
     private fun retrieve_audio(){
-        val database_reference: DatabaseReference = FirebaseDatabase.getInstance().getReference()
-        database_reference.addValueEventListener(object : ValueEventListener {
+        database_reference = FirebaseDatabase.getInstance().getReference()
+        valueEventListener =  object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 datalist.clear()
                 for (ds in snapshot.child("Audio").children) {
@@ -126,8 +128,14 @@ class HomeFragment : Fragment() {
             override fun onCancelled(error: DatabaseError) {
                 Toast.makeText(requireContext(), "FAILED!", Toast.LENGTH_SHORT).show()
             }
-        })
+        }
+        database_reference.addValueEventListener(valueEventListener )
     }
 
+    //remove listener on exiting, else new users added notifies listener not attached to context
+    override fun onDestroy() {
+        database_reference.removeEventListener(valueEventListener)
+        super.onDestroy()
+    }
 
 }
