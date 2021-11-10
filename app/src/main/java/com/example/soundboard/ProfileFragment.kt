@@ -6,8 +6,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
+import org.w3c.dom.Text
 
 class ProfileFragment : Fragment() {
 
@@ -18,6 +22,12 @@ class ProfileFragment : Fragment() {
     private lateinit var viewModel: ProfileViewModel
     private val datalist = ArrayList<BoardEntry>()
     private lateinit var discover_recyclerview : RecyclerView
+
+    private lateinit var userDescription : TextView
+    private lateinit var userNickname : TextView
+
+    private lateinit var user_reference: DatabaseReference
+    private lateinit var user_event_listener:  ValueEventListener
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,6 +44,26 @@ class ProfileFragment : Fragment() {
         val adapter = BoardAdapter(datalist)
         discover_recyclerview.adapter = adapter
 
+        userNickname = view.findViewById(R.id.user_name)
+        userDescription = view.findViewById(R.id.user_intro)
+
+        user_reference = FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().currentUser!!.uid)
+        user_event_listener =  object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                //for (ds in snapshot.child("Audio").children)
+                val user : User? =  snapshot.getValue(User::class.java)
+                if(user != null){
+                    userNickname.text = user.getUserNickname()
+                    userDescription.text = user.getUserDescription()
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+        }
+        user_reference.addValueEventListener(user_event_listener)
+
         return view
     }
 
@@ -46,6 +76,11 @@ class ProfileFragment : Fragment() {
         repeat(10){
             datalist.add(BoardEntry( R.drawable.dartmouth,"Board name", "23 soundbytes"))
         }
+    }
+
+    override fun onDestroy() {
+        user_reference.removeEventListener(user_event_listener)
+        super.onDestroy()
     }
 
 }

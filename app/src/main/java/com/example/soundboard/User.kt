@@ -12,7 +12,7 @@ class User {
 
     fun User(userNickname : String) {
         this.userNickname = userNickname
-        userDescription = "Hi this is where you edit a description"
+        userDescription = "Welcome! You can change your description in settings."
         soundBoardsList = arrayListOf()
         userSounds = arrayListOf()
     }
