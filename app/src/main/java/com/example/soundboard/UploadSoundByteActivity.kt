@@ -123,6 +123,13 @@ class UploadSoundByteActivity : AppCompatActivity() {
         mAuth = FirebaseAuth.getInstance()
         progressDialog = ProgressDialog(this)
 
+        // adds back button fab
+        val backButton: View = findViewById(R.id.back_arrow)
+        backButton.setOnClickListener { view ->
+            finish()
+        }
+
+
         uploadButton = findViewById(R.id.uploadAudio)
         uploadButton.setOnClickListener{
             upload()
@@ -193,6 +200,8 @@ class UploadSoundByteActivity : AppCompatActivity() {
                 audioTagContainer.removeTag(position)
             }
         })
+
+
     }
 
     val audioResult: ActivityResultLauncher<Intent> = registerForActivityResult(
