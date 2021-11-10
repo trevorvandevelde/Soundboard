@@ -122,8 +122,11 @@ class PlayActivity : AppCompatActivity(){
         val play_title: TextView = findViewById(R.id.play_title)
         val coverUrl = intent.getStringExtra("image")
         val title = intent.getStringExtra("title")
-        Picasso.get().load(coverUrl).into(play_image)
+        if(coverUrl != "NA"){
+          Picasso.get().load(coverUrl).into(play_image)
+        }
         play_title.setText(title)
+
 
         // tag container
         val tag_container: TagContainerLayout = findViewById(R.id.soundbyte_tagContainer)

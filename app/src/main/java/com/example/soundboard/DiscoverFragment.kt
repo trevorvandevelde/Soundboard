@@ -12,6 +12,7 @@ import android.widget.EditText
 import android.widget.ListView
 import android.widget.SearchView
 
+
 class DiscoverFragment : Fragment() {
 
     companion object {
@@ -34,7 +35,7 @@ class DiscoverFragment : Fragment() {
         }
         discover_search = view.findViewById(R.id.discover_search)
         discover_listview = view.findViewById(R.id.discover_listview)
-        discover_listview.setTextFilterEnabled(true)
+        //discover_listview.setTextFilterEnabled(true)
         soundbyteAdapter = SoundbyteAdapter(requireContext(), R.layout.soundbyte_item, datalist)
         discover_listview.adapter = soundbyteAdapter
         discover_listview.setOnItemClickListener{ parent: AdapterView<*>, view: View, position: Int, id: Long ->
@@ -47,16 +48,61 @@ class DiscoverFragment : Fragment() {
 
         discover_search.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query : String): Boolean{
-                soundbyteAdapter.filter.filter(query)
-                discover_listview.setAdapter(soundbyteAdapter)
-                return true
+                //soundbyteAdapter.filter.filter(query)
+                var querylist = ArrayList<SoundByteEntry>()
+                var found:Boolean = false
+                for(item in datalist) {
+                    if (item.title.contains(query, ignoreCase = true)) {
+                        querylist.add(item)
+                        found = true
+                    }
+                    else{
+                        for(tag in item.tag_list){
+                            if(tag.contains(query, ignoreCase = true)||
+                                    query.contains(tag, ignoreCase = true)){
+                                querylist.add(item)
+                                found = true
+                                break
+                            }
+                        }
+                    }
+                }
+                soundbyteAdapter = SoundbyteAdapter(requireContext(), R.layout.soundbyte_item, querylist)
+                discover_listview.adapter = soundbyteAdapter
+                return found
             }
 
-            override fun onQueryTextChange(p0: String?): Boolean {
-                soundbyteAdapter.filter.filter(p0)
-                return false
+            override fun onQueryTextChange(query: String?): Boolean {
+                //soundbyteAdapter.filter.filter(p0)
+                if(query == ""){
+                    soundbyteAdapter = SoundbyteAdapter(requireContext(), R.layout.soundbyte_item, datalist)
+                    discover_listview.adapter = soundbyteAdapter
+                    return false
+                }
+                var querylist = ArrayList<SoundByteEntry>()
+                var found:Boolean = false
+                for(item in datalist) {
+                    if (item.title.contains(query!!, ignoreCase = true)) {
+                        querylist.add(item)
+                        found = true
+                    }
+                    else{
+                        for(tag in item.tag_list){
+                            if(tag.contains(query, ignoreCase = true)||
+                                query.contains(tag, ignoreCase = true)){
+                                querylist.add(item)
+                                found = true
+                                break
+                            }
+                        }
+                    }
+                }
+                soundbyteAdapter = SoundbyteAdapter(requireContext(), R.layout.soundbyte_item, querylist)
+                discover_listview.adapter = soundbyteAdapter
+                return found
             }
-        })
+
+    })
 
         return view
     }
@@ -67,10 +113,13 @@ class DiscoverFragment : Fragment() {
     }
 
 
+    // used to test
     private fun initData(){
         val tag_list:MutableList<String> = mutableListOf("DIY","SHIBUYA","AKIHABARA","GINZA")
+        var time = 1
         repeat(10){
-            datalist.add(SoundByteEntry("@ username", "NA","soundbyte title", "12s",tag_list))
+            datalist.add(SoundByteEntry("@ username", "NA",time.toString(), "12s",tag_list))
+            time++
         }
     }
 
