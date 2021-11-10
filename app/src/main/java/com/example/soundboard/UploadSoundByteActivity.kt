@@ -207,11 +207,14 @@ class UploadSoundByteActivity : AppCompatActivity() {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         selectImage = findViewById(R.id.selectImage)
 
         selectImage.setOnClickListener{ //change photo
             pickPhoto()
         }
+=======
+>>>>>>> b76b510 (editing user database)
 =======
 >>>>>>> b76b510 (editing user database)
 
