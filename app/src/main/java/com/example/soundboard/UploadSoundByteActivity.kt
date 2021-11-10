@@ -144,6 +144,22 @@ class UploadSoundByteActivity : AppCompatActivity() {
         mAuth = FirebaseAuth.getInstance()
         progressDialog = ProgressDialog(this)
 
+        selectImage = findViewById(R.id.selectImage)
+
+        selectImage.setOnClickListener{ //change photo
+            pickPhoto()
+        }
+
+
+        uriImage = Uri.parse("android.resource://com.example.soundboard//" + R.drawable.dartmouth)
+        val bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, uriImage)
+        selectImage.setImageBitmap(bitmap)
+        val byteArrayOutputStream = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream)
+        bytes = byteArrayOutputStream.toByteArray()
+
+
+
         uploadButton = findViewById(R.id.uploadAudio)
         uploadButton.setOnClickListener{
             upload()
@@ -185,11 +201,14 @@ class UploadSoundByteActivity : AppCompatActivity() {
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         selectImage = findViewById(R.id.selectImage)
 
         selectImage.setOnClickListener{ //change photo
             pickPhoto()
         }
+=======
+>>>>>>> b76b510 (editing user database)
 
 
         //Tag System
@@ -350,7 +369,7 @@ class UploadSoundByteActivity : AppCompatActivity() {
 
     private fun pickPhoto(){
         intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
-        intent.type = "image/"
+        intent.type = "image/*"
         imageResult.launch(intent)
     }
 
@@ -457,6 +476,8 @@ class UploadSoundByteActivity : AppCompatActivity() {
     }
 
     fun onCancel(view: View){
+        mediaPlayer.stop()
+        mediaPlayer.reset()
         finish()
     }
 
