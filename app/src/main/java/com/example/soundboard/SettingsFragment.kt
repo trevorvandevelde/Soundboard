@@ -48,4 +48,18 @@ class SettingsFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(SettingsViewModel::class.java)
     }
 
+    /**
+     *  var soundByte = SoundByte()
+    soundByte.SoundByte(songName, imageUrl, songUrl, uploader, description, tags)
+    FirebaseDatabase.getInstance().getReference("Audio").push().setValue(soundByte)
+    .addOnCompleteListener{
+    Toast.makeText(this, "Added File Info to Database", Toast.LENGTH_SHORT).show()
+    progressDialog.dismiss()
+    finish()
+
+    }.addOnFailureListener{
+    Toast.makeText(this, "Failed to Add to Database", Toast.LENGTH_SHORT).show()
+    }
+     */
+
 }
