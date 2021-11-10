@@ -8,20 +8,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.Button
-import android.widget.ListView
-
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
-import android.widget.Toast
 
 import androidx.annotation.NonNull
 
 import android.R.attr.thumbnail
+import android.widget.*
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
 
 // import androidx.test.core.app.ApplicationProvider.getApplicationContext
 
@@ -38,6 +31,7 @@ class HomeFragment : Fragment() {
     private lateinit var launchButton : Button
     private lateinit var soundbyteAdapter: SoundbyteAdapter
     private lateinit var main_listview: ListView
+    private lateinit var welcomeUserTv: TextView
 
     private  var audio_namelist: MutableList<String> = mutableListOf()
     private  var audio_urllist: MutableList<String> = mutableListOf()
@@ -48,7 +42,11 @@ class HomeFragment : Fragment() {
 
     private var datalist = ArrayList<SoundByteEntry>()
     private lateinit var database_reference: DatabaseReference
-    private lateinit var valueEventListener: ValueEventListener
+    private lateinit var database_event_listener: ValueEventListener
+
+
+    private lateinit var user_reference: DatabaseReference
+    private lateinit var user_event_listener:  ValueEventListener
 
     override fun onCreateView( inflater: LayoutInflater, container: ViewGroup?,
                                savedInstanceState: Bundle?): View? {
@@ -60,6 +58,24 @@ class HomeFragment : Fragment() {
 //            val intent = Intent(context, UploadSoundByteActivity::class.java)
 //            startActivity(intent)
 //        }
+        welcomeUserTv = view.findViewById(R.id.welcomeUserTv)
+        user_reference = FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().currentUser!!.uid)
+        user_event_listener =  object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                //for (ds in snapshot.child("Audio").children)
+                val user : User? =  snapshot.getValue(User::class.java)
+                if(user != null){
+                    welcomeUserTv.text = "Hi, ${user.getUserNickname()}!"
+                }else{
+                    welcomeUserTv.text = "Welcome!"
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+        }
+        user_reference.addValueEventListener(user_event_listener)
 
         main_listview = view.findViewById(R.id.home_listview)
         if(datalist.size == 0) {
@@ -104,7 +120,7 @@ class HomeFragment : Fragment() {
 
     private fun retrieve_audio(){
         database_reference = FirebaseDatabase.getInstance().getReference()
-        valueEventListener =  object : ValueEventListener {
+        database_event_listener =  object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 datalist.clear()
                 for (ds in snapshot.child("Audio").children) {
@@ -129,12 +145,13 @@ class HomeFragment : Fragment() {
                 Toast.makeText(requireContext(), "FAILED!", Toast.LENGTH_SHORT).show()
             }
         }
-        database_reference.addValueEventListener(valueEventListener )
+        database_reference.addValueEventListener(database_event_listener )
     }
 
     //remove listener on exiting, else new users added notifies listener not attached to context
     override fun onDestroy() {
-        database_reference.removeEventListener(valueEventListener)
+        database_reference.removeEventListener(database_event_listener)
+        user_reference.removeEventListener(user_event_listener)
         super.onDestroy()
     }
 
