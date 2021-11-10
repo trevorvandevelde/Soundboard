@@ -74,8 +74,12 @@ class UploadSoundByteActivity : AppCompatActivity() {
     
     private lateinit var uploaderUserName : String
 <<<<<<< HEAD
+<<<<<<< HEAD
     private lateinit var description : String
     private lateinit var tags : Array<String>
+=======
+    private lateinit  var durationSeconds : String
+>>>>>>> 6fdeef9 (added duration as soundbyte)
 =======
     private lateinit  var durationSeconds : String
 >>>>>>> 6fdeef9 (added duration as soundbyte)
@@ -429,10 +433,14 @@ class UploadSoundByteActivity : AppCompatActivity() {
         var soundByte = SoundByte()
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         soundByte.SoundByte(songName, imageUrl, songUrl, uploader, description, tags)
 =======
         soundByte.SoundByte(songName, songUrl, uploader, description, tags)
 >>>>>>> ca732aa (updated layout, added tags)
+=======
+        soundByte.SoundByte(songName, imageUrl, songUrl, uploader, description, tags, durationSeconds)
+>>>>>>> 6fdeef9 (added duration as soundbyte)
 =======
         soundByte.SoundByte(songName, imageUrl, songUrl, uploader, description, tags, durationSeconds)
 >>>>>>> 6fdeef9 (added duration as soundbyte)
