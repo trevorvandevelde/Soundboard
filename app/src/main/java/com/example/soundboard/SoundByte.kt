@@ -9,6 +9,7 @@ class SoundByte {
     private lateinit var id: String
     private lateinit var description: String
     private lateinit var tags: MutableList<String>
+    private lateinit var durationSeconds: String
 
 
     fun SoundByte(
