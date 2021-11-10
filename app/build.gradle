@@ -44,14 +44,10 @@ dependencies {
     implementation 'androidx.preference:preference-ktx:1.1.1'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'com.google.firebase:firebase-storage-ktx:20.0.0'
-<<<<<<< HEAD
     implementation 'com.google.firebase:firebase-auth-ktx:21.0.1'
     implementation 'com.google.firebase:firebase-database:20.0.2'
     implementation 'androidx.navigation:navigation-fragment-ktx:2.3.5'
     implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
-=======
-    implementation 'com.google.firebase:firebase-database:20.0.2'
->>>>>>> ca732aa (updated layout, added tags)
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
@@ -86,7 +82,6 @@ dependencies {
     // Add the dependencies for any other desired Firebase products
     // https://firebase.google.com/docs/android/setup#available-libraries
 
-<<<<<<< HEAD
     // adding chibdde audio visualizer library
     implementation 'com.chibde:audiovisualizer:2.2.0'
 
@@ -96,9 +91,5 @@ dependencies {
 
     //Image
     implementation 'com.squareup.picasso:picasso:2.71828'
-=======
-    //TagView
-    implementation 'co.lujun:androidtagview:1.1.7'
-    implementation 'androidx.appcompat:appcompat:1.0.1'
->>>>>>> ca732aa (updated layout, added tags)
+
 }
