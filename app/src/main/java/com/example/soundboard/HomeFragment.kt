@@ -101,13 +101,14 @@ class HomeFragment : Fragment() {
     }
 
     private fun retrieve_audio(){
-        val database_reference: DatabaseReference = FirebaseDatabase.getInstance().getReference("Audio")
+        val database_reference: DatabaseReference = FirebaseDatabase.getInstance().getReference()
         database_reference.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 datalist.clear()
-                for (ds in snapshot.children) {
+                for (ds in snapshot.child("Audio").children) {
                     val song:SoundByte?= ds.getValue(SoundByte::class.java)
-                    datalist.add(SoundByteEntry(song!!.getUploaderUserName(), song!!.getImageUrl(),
+                    val user : User? =  snapshot.child("Users").child(song!!.getUploaderUserName()).getValue(User::class.java)
+                    datalist.add(SoundByteEntry(user!!.getUserNickname(), song!!.getImageUrl(),
                         song!!.getSoundName(), "12s", song!!.getTags(), song!!.getSoundUrl() ))
                     /*
                     audio_namelist.add(song!!.getSoundName())
