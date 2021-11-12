@@ -127,6 +127,12 @@ class PlayActivity : AppCompatActivity(){
         }
         play_title.setText(title)
 
+        // adds back button fab
+        val backButton: View = findViewById(R.id.back_arrow)
+        backButton.setOnClickListener { view ->
+            finish()
+        }
+
 
         // tag container
         val tag_container: TagContainerLayout = findViewById(R.id.soundbyte_tagContainer)
