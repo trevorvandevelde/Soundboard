@@ -30,6 +30,7 @@ import co.lujun.androidtagview.ColorFactory
 import co.lujun.androidtagview.TagContainerLayout
 import co.lujun.androidtagview.TagView
 import co.lujun.androidtagview.TagView.OnTagClickListener
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -50,7 +51,7 @@ class PlayActivity : AppCompatActivity(){
     lateinit var elapsedtimelable: TextView
     lateinit var remainingtimelable: TextView
     lateinit var positionBar: SeekBar
-    lateinit var playbutton: Button
+    lateinit var playbutton: FloatingActionButton
     lateinit var playlist: ArrayList<Int>
     lateinit var thread:Thread
 
@@ -203,7 +204,7 @@ class PlayActivity : AppCompatActivity(){
     fun lineVisualization(view: View){
         clear()
         lineVisualizer.visibility = View.VISIBLE
-        lineVisualizer.setColor(ContextCompat.getColor(this, R.color.purple_700))
+        lineVisualizer.setColor(ContextCompat.getColor(this, R.color.colorAccent))
         lineVisualizer.setStrokeWidth(1)
         lineVisualizer.setPlayer(mediaPlayer.audioSessionId)
     }
@@ -266,19 +267,19 @@ class PlayActivity : AppCompatActivity(){
     fun playClicked(view: View){
         if(mediaPlayer.isPlaying){
             mediaPlayer.pause()
-            playbutton.setText("PLAY")
+            playbutton.setImageResource(R.drawable.ic_play_arrow)
         }
         else{
             if(init==true){
                 clear()
                 lineVisualizer.visibility = View.VISIBLE
-                lineVisualizer.setColor(ContextCompat.getColor(this, R.color.purple_700))
-                lineVisualizer.setStrokeWidth(1)
+                lineVisualizer.setColor(ContextCompat.getColor(this, R.color.colorAccent))
+                lineVisualizer.setStrokeWidth(4)
                 lineVisualizer.setPlayer(mediaPlayer.audioSessionId)
                 init = false
             }
             mediaPlayer.start()
-            playbutton.setText("PAUSE")
+            playbutton.setImageResource(R.drawable.ic_pause)
         }
     }
 
