@@ -9,10 +9,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
+                android:layout_marginTop="8dp"
                 android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
                 android:paddingVertical="@dimen/activity_vertical_margin">
 
             <SearchView
+                    android:queryBackground="@android:color/transparent"
+                    android:background="@drawable/search_background"
+                    android:padding="8dp"
                     android:id="@+id/discover_search"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

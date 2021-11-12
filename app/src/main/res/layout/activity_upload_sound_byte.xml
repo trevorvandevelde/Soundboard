@@ -34,6 +34,7 @@
 
                 <!-- UPLOAD AUDIO -->
                 <TextView
+                        android:textColor="@color/colorCharcoal"
                         android:fontFamily="@font/inter_semibold"
                         android:textSize="16dp"
                         android:layout_marginBottom="8dp"
@@ -73,9 +74,10 @@
 
                 <!-- PREVIEW -->
                 <TextView
+                        android:textColor="@color/colorCharcoal"
                         android:fontFamily="@font/inter_semibold"
                         android:textSize="16dp"
-                        android:text="Post preview*"
+                        android:text="Post preview"
                         android:layout_marginBottom="8dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
@@ -156,6 +158,7 @@
 
 
                 <TextView
+                        android:textColor="@color/colorCharcoal"
                         android:layout_marginBottom="8dp"
                         android:fontFamily="@font/inter_semibold"
                         android:textSize="16dp"
@@ -163,6 +166,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                 <EditText
+                        android:backgroundTint="#F1F1F2"
+                        android:background="@drawable/field_background"
+                        android:padding="8dp"
                         android:layout_marginBottom="24dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -173,13 +179,17 @@
                         android:id="@+id/uploaderNewFileNameEditText" />
 
                 <TextView
+                        android:textColor="@color/colorCharcoal"
                         android:layout_marginBottom="8dp"
                         android:fontFamily="@font/inter_semibold"
                         android:textSize="16dp"
-                        android:text="Description"
+                        android:text="Description*"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                 <EditText
+                        android:backgroundTint="#F1F1F2"
+                        android:background="@drawable/field_background"
+                        android:padding="8dp"
                         android:layout_marginBottom="24dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -199,7 +209,8 @@
                         android:background="?android:attr/listDivider" />
 
                 <TextView
-                        android:layout_marginBottom="8dp"
+                        android:textColor="@color/colorCharcoal"
+                        android:layout_marginBottom="0dp"
                         android:fontFamily="@font/inter_semibold"
                         android:textSize="16dp"
                         android:text="Add tags"
@@ -215,10 +226,13 @@
                         android:foregroundGravity="center">
 
                     <EditText
+                            android:backgroundTint="#F1F1F2"
+                            android:background="@drawable/field_background"
+                            android:padding="8dp"
                             android:layout_weight="2"
                             android:layout_marginBottom="24dp"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_height="50dp"
                             android:inputType="textPersonName"
                             android:fontFamily="@font/inter_medium"
                             android:hint="Ex: Electronic"
@@ -227,16 +241,18 @@
 
                     <Button
                             android:backgroundTint="@color/colorCharcoal"
+                            android:textColor="@color/white"
                             android:textAllCaps="false"
                             android:letterSpacing="0"
-                            android:fontFamily="@font/inter_bold"
                             android:elevation="0dp"
+                            android:fontFamily="@font/inter_bold"
                             android:text="Add Tag"
+                            android:padding="20dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/addTagButton"
                             android:layout_weight="1"
-                            app:cornerRadius="20dp" />
+                            app:cornerRadius="16dp" />
                 </LinearLayout>
 
                 <co.lujun.androidtagview.TagContainerLayout

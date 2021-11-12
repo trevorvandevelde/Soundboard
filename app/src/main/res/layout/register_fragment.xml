@@ -14,14 +14,16 @@
             app:layout_constraintBottom_toBottomOf="parent"
             android:orientation="vertical"
             android:gravity="center"
-            android:layout_marginVertical="@dimen/activity_vertical_margin"
             android:layout_marginHorizontal="@dimen/activity_horizontal_margin">
 
         <ImageView
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:src="@drawable/ic_home_black_24dp"
-                android:contentDescription="SoundBoard logo" />
+                android:layout_marginBottom="24dp"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_logo_with_words"
+                android:contentDescription="SoundBoard logo"
+                app:tint="@color/colorButton" />
+
 
 
 
@@ -34,6 +36,9 @@
                 >
 
             <com.google.android.material.textfield.TextInputEditText
+                    android:background="@drawable/field_background"
+                    android:backgroundTint="#F1F1F2"
+                    android:outlineProvider="none"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/prompt_email"
@@ -51,11 +56,13 @@
                 >
 
             <com.google.android.material.textfield.TextInputEditText
+                    android:background="@drawable/field_background"
+                    android:backgroundTint="#F1F1F2"
+                    android:outlineProvider="none"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/prompt_nickname"
-                    android:inputType="text"
-                    android:layout_marginTop="@dimen/activity_vertical_margin" />
+                    android:inputType="text" />
 
         </com.google.android.material.textfield.TextInputLayout>
         <com.google.android.material.textfield.TextInputLayout
@@ -63,11 +70,13 @@
                 android:layout_width="match_parent"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/activity_vertical_margin"
                 app:errorEnabled="true"
                 >
 
             <com.google.android.material.textfield.TextInputEditText
+                    android:background="@drawable/field_background"
+                    android:backgroundTint="#F1F1F2"
+                    android:outlineProvider="none"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/prompt_password"
@@ -79,27 +88,41 @@
                 android:layout_width="match_parent"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="@dimen/activity_vertical_margin"
                 app:errorEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
+                    android:background="@drawable/field_background"
+                    android:backgroundTint="#F1F1F2"
+                    android:outlineProvider="none"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/prompt_confirm_password"
                     android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
 
-
         <Button
-                android:id="@+id/registerButton"
+                android:layout_marginTop="16dp"
+                android:padding="16dp"
+                android:elevation="8dp"
+                android:outlineAmbientShadowColor="@color/colorShadow"
+                android:outlineSpotShadowColor="@color/colorShadow"
+                android:layout_gravity="center"
+                android:backgroundTint="@color/colorButton"
+                android:textSize="16dp"
+                android:text="Register"
+                android:letterSpacing="0"
+                android:fontFamily="@font/inter_bold"
+                android:textAllCaps="false"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/prompt_register" />
+                android:id="@+id/registerButton"
+                android:gravity="center_horizontal"
+                app:cornerRadius="20dp" />
 
         <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="4dp"
                 android:gravity="center"
                 android:orientation="horizontal">
 
