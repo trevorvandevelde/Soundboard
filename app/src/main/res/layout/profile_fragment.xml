@@ -67,17 +67,11 @@
                 android:id = "@+id/user_intro"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
+                android:layout_marginBottom="16dp"
                 android:text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque laoreet venenatis faucibus. Nullam tristique malesuada purus et tincidunt. " />
 
-    <View
-            android:layout_marginBottom="0dp"
-            android:id="@+id/divider"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="?android:attr/listDivider" />
-
     <Button
+            android:layout_marginBottom="16sp"
             android:layout_marginHorizontal="24dp"
             app:icon="@drawable/ic_plus"
             app:iconPadding="8dp"
@@ -96,6 +90,15 @@
             android:paddingTop="16dp"
             android:paddingBottom="16dp"
             app:cornerRadius="20dp" />
+
+    <View
+            android:layout_marginBottom="0dp"
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider" />
+
+
 
         <androidx.recyclerview.widget.RecyclerView
                 android:paddingTop="16dp"
