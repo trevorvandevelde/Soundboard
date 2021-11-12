@@ -49,11 +49,14 @@
                     android:layout_weight="4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
+                    android:orientation="vertical"
                     >
                 <EditText
+                        android:backgroundTint="#F1F1F2"
+                        android:background="@drawable/field_background"
+                        android:padding="8dp"
                         android:id="@+id/userNicknameEditText"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="3"
                         android:hint="Type your new nickname"
@@ -61,6 +64,7 @@
                 </EditText>
 
                 <Button
+                        android:layout_marginTop="8dp"
                         android:backgroundTint="@color/colorCharcoal"
                         android:textAllCaps="false"
                         android:letterSpacing="0"
@@ -92,9 +96,13 @@
                     android:orientation="vertical">
 
                 <EditText
+                        android:layout_marginBottom="8dp"
+                        android:backgroundTint="#F1F1F2"
+                        android:background="@drawable/field_background"
+                        android:padding="8dp"
                         android:id="@+id/userDescriptionEditText"
                         android:layout_width="match_parent"
-                        android:layout_height="200dp"
+                        android:layout_height="100dp"
                         android:layout_weight="2"
                         android:gravity="top"
                         android:hint="Type a description">
@@ -140,6 +148,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
 
+            <TextView
+                    android:id="@+id/user_email"
+                    android:fontFamily="@font/inter_medium"
+                    android:textSize="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:text="user@email.com"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
 
             <LinearLayout
                     android:layout_weight="4"
@@ -147,25 +164,8 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     >
-                <EditText
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="3"
-                        android:hint="name@email.com"
-                        android:text="">
-                </EditText>
 
-                <Button
-                        android:backgroundTint="@color/colorCharcoal"
-                        android:textAllCaps="false"
-                        android:letterSpacing="0"
-                        android:fontFamily="@font/inter_bold"
-                        android:elevation="0dp"
-                        android:text="Update"
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight=".2"
-                        app:cornerRadius="100dp" />
+
 
 
             </LinearLayout>
@@ -186,6 +186,10 @@
                     android:orientation="vertical"
                     >
                 <EditText
+                        android:backgroundTint="#F1F1F2"
+                        android:background="@drawable/field_background"
+                        android:padding="8dp"
+                        android:layout_marginBottom="8dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="3"
@@ -194,6 +198,10 @@
                 </EditText>
 
                 <EditText
+                        android:layout_marginBottom="8dp"
+                        android:backgroundTint="#F1F1F2"
+                        android:background="@drawable/field_background"
+                        android:padding="8dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="3"
@@ -202,6 +210,10 @@
                 </EditText>
 
                 <EditText
+                        android:layout_marginBottom="8dp"
+                        android:backgroundTint="#F1F1F2"
+                        android:background="@drawable/field_background"
+                        android:padding="8dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="3"
@@ -216,7 +228,6 @@
                         android:fontFamily="@font/inter_bold"
                         android:elevation="0dp"
                         android:text="Update"
-                        android:layout_marginTop="8dp"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_weight=".2"
@@ -235,7 +246,8 @@
                     android:id="@+id/signoutButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Sign Out"
+                    android:letterSpacing="0"
+                    android:text="Sign out"
                     android:padding="16dp"
                     app:cornerRadius="20dp" />
 
