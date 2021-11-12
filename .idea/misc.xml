@@ -7,15 +7,17 @@
         <entry key="app/src/main/res/drawable/bottom_navigation_background.xml" value="0.18229166666666666" />
         <entry key="app/src/main/res/drawable/card_background.xml" value="0.18229166666666666" />
         <entry key="app/src/main/res/drawable/cardview_selector.xml" value="0.19635416666666666" />
+        <entry key="app/src/main/res/drawable/field_background.xml" value="0.1765625" />
         <entry key="app/src/main/res/drawable/ic_gradient_bg1.xml" value="0.18229166666666666" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1765625" />
         <entry key="app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.16510416666666666" />
+        <entry key="app/src/main/res/drawable/search_background.xml" value="0.1765625" />
         <entry key="app/src/main/res/layout/activity_board.xml" value="0.13728470111448834" />
         <entry key="app/src/main/res/layout/activity_fabactivity.xml" value="0.13360507246376813" />
         <entry key="app/src/main/res/layout/activity_launch.xml" value="0.15670289855072464" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_play.xml" value="0.18020833333333333" />
-        <entry key="app/src/main/res/layout/activity_upload_sound_byte.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/activity_upload_sound_byte.xml" value="0.22" />
         <entry key="app/src/main/res/layout/board_item.xml" value="0.25" />
         <entry key="app/src/main/res/layout/content_fabactivity.xml" value="0.13360507246376813" />
         <entry key="app/src/main/res/layout/discover_fragment.xml" value="0.33" />
