@@ -2,6 +2,7 @@ package com.example.soundboard
 
 import android.app.Activity
 import android.app.ProgressDialog
+import android.content.ContentResolver
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Color
@@ -95,6 +96,8 @@ class UploadSoundByteActivity : AppCompatActivity() {
     var music_id = 1
     var init: Boolean = true
     var uploadedAudio: Boolean = false
+
+    val DEFAULT_IMAGE_ID : Int = R.drawable.soundbyte_image_placeholder
 
     var handler = object: Handler(){
 
@@ -251,22 +254,24 @@ class UploadSoundByteActivity : AppCompatActivity() {
         ActivityResultContracts.StartActivityForResult()
     )
     { result: ActivityResult ->
-        if(result.resultCode == Activity.RESULT_OK){
+        if(result.resultCode == Activity.RESULT_OK) {
             uriImage = result.data?.data!!
-            try {
-
-
-                var bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, uriImage)
-                //bitmap = rotateBitmap(bitmap, -90f)
-                selectImage.setImageBitmap(bitmap)
-                val byteArrayOutputStream = ByteArrayOutputStream()
-                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream)
-                bytes = byteArrayOutputStream.toByteArray()
-            } catch (e: IOException){
-                e.printStackTrace()
-            }
+            setByteFromUri(uriImage)
         }
+    }
 
+    fun setByteFromUri(uriImage : Uri){
+        try {
+
+            var bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, uriImage)
+            //bitmap = rotateBitmap(bitmap, -90f)
+            selectImage.setImageBitmap(bitmap)
+            val byteArrayOutputStream = ByteArrayOutputStream()
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream)
+            bytes = byteArrayOutputStream.toByteArray()
+        } catch (e: IOException){
+            e.printStackTrace()
+        }
     }
 
     fun rotateBitmap(original: Bitmap, degrees: Float): Bitmap? {
@@ -358,18 +363,36 @@ class UploadSoundByteActivity : AppCompatActivity() {
     }
 
     private fun upload() {
-        if (!this::uriAudio.isInitialized){
+        if (!this::uriAudio.isInitialized) {
             Toast.makeText(this, "Please select an audio clip", Toast.LENGTH_SHORT).show()
-        } else if (uploaderNewFileNameEditText.text.toString().isEmpty()){
+        } else if (uploaderNewFileNameEditText.text.toString().isEmpty()) {
             Toast.makeText(this, "Please add a File Name", Toast.LENGTH_SHORT).show()
-        } else if (descriptionEditText.text.toString().isEmpty()){
+        } else if (descriptionEditText.text.toString().isEmpty()) {
             Toast.makeText(this, "Please add a Description", Toast.LENGTH_SHORT).show()
         } else if (mAuth.uid == null) {
-            Toast.makeText(this, "Login Error: Please make sure you are logged in", Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                this,
+                "Login Error: Please make sure you are logged in",
+                Toast.LENGTH_SHORT
+            ).show()
+        } else if (!this::bytes.isInitialized){ //no image selected, use default image
+            var default_uri : Uri = Uri.Builder()
+                .scheme(ContentResolver.SCHEME_ANDROID_RESOURCE)
+                .authority(resources.getResourcePackageName(DEFAULT_IMAGE_ID ))
+                .appendPath(resources.getResourceTypeName(DEFAULT_IMAGE_ID ))
+                .appendPath(resources.getResourceEntryName(DEFAULT_IMAGE_ID ))
+                .build()
+            setByteFromUri(default_uri)
+            fileName = uploaderNewFileNameEditText.text.toString()
+            uploadImageToServer(bytes, fileName)
         }else {
             fileName = uploaderNewFileNameEditText.text.toString()
             uploadImageToServer(bytes, fileName)
+            /*
             uploadFileToServer(uriAudio, fileName, mAuth.uid.toString())
+            NOTE, async call. must upload file once image upload completes or imageurl doesn't exist -> crashes
+            moved inside uploadImageToServer onSuccess
+             */
         }
     }
 
@@ -383,6 +406,7 @@ class UploadSoundByteActivity : AppCompatActivity() {
             while (!task.isComplete);
             val urlsong = task.result
             imageUrl = urlsong.toString()
+            uploadFileToServer(uriAudio, fileName, mAuth.uid.toString())
             //                Log.i("image url", imageUrl);
         }.addOnFailureListener { Log.i("image url", "failed") }
     }
