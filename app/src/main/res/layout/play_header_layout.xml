@@ -10,17 +10,37 @@
         android:elevation="16dp"
         >
 
-    <TextView
-            android:id="@+id/soundbyte_title"
-            android:fontFamily="@font/inter_semibold"
-            android:textSize="20dp"
+    <LinearLayout
             android:gravity="center"
-            android:text="Soundbyte Title"
-            android:textColor="@color/colorCharcoal"
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-    </TextView>
+        <TextView
+                android:id="@+id/soundbyte_header_title"
+                android:fontFamily="@font/inter_semibold"
+                android:textSize="20dp"
+                android:textColor="@color/colorCharcoal"
+                android:gravity="center"
+                android:text="soundbyte name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+        </TextView>
+
+        <TextView
+                android:id="@+id/soundbyte_author"
+                android:fontFamily="@font/inter_medium"
+                android:textSize="16dp"
+                android:textColor="@color/colorSlate"
+                android:gravity="center"
+                android:text="author name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+        </TextView>
+
+    </LinearLayout>
 
     <androidx.appcompat.widget.LinearLayoutCompat
             android:gravity="center_vertical"
