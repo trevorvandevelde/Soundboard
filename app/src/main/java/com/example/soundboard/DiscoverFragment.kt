@@ -21,10 +21,12 @@ class DiscoverFragment : Fragment() {
     private lateinit var soundbyteAdapter: SoundbyteAdapter
     private lateinit var discover_listview: ListView
     private lateinit var discover_search: SearchView
+    // to store all of the original data from the firebase
     private var datalist = ArrayList<SoundByteEntry>()
 
     private lateinit var database_reference: DatabaseReference
     private lateinit var database_event_listener: ValueEventListener
+    private lateinit var local_snapshot:DataSnapshot
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -137,11 +139,13 @@ class DiscoverFragment : Fragment() {
         database_reference = FirebaseDatabase.getInstance().getReference()
         database_event_listener = object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
+                local_snapshot = snapshot
                 datalist.clear()
                 for (ds in snapshot.child("Audio").children) {
                     val song: SoundByte? = ds.getValue(SoundByte::class.java)
                     val user: User? = snapshot.child("Users").child(song!!.getUploaderUserName())
                         .getValue(User::class.java)
+
 
                     // for the safety
                     val username = song!!.getUploaderUserName()
