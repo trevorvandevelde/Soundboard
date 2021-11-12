@@ -7,130 +7,142 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <LinearLayout
+    <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:layout_marginVertical="@dimen/activity_vertical_margin"
-            android:layout_marginHorizontal="@dimen/activity_horizontal_margin">
+            android:layout_height="match_parent">
 
-
-        <TextView
-                android:layout_marginTop="24dp"
-                android:textColor="@color/colorCharcoal"
-                android:fontFamily="@font/quicksand_light"
-                android:textSize="50dp"
-                android:text="soundboard"
-                android:letterSpacing=".0"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-        <TextView
-                android:textColor="@color/colorAccent"
-                android:fontFamily="@font/inter_semibold"
-                android:letterSpacing=".03"
-                android:textSize="20dp"
-                android:text="share your sounds"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-        <ImageView
+        <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_opening_graphic"
-                android:contentDescription="SoundBoard logo" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_marginVertical="@dimen/activity_vertical_margin"
+                android:layout_marginHorizontal="@dimen/activity_horizontal_margin">
 
-        <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/loginEmailLayout"
-                android:layout_width="match_parent"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_height="wrap_content"
-                app:errorEnabled="true">
 
-            <com.google.android.material.textfield.TextInputEditText
-                    android:background="@drawable/field_background"
-                    android:backgroundTint="#F1F1F2"
-                    android:outlineProvider="none"
+            <TextView
+                    android:layout_marginTop="24dp"
+                    android:textColor="@color/colorCharcoal"
+                    android:fontFamily="@font/quicksand_light"
+                    android:textSize="50dp"
+                    android:text="soundboard"
+                    android:letterSpacing=".0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            <TextView
+                    android:textColor="@color/colorAccent"
+                    android:fontFamily="@font/inter_semibold"
+                    android:letterSpacing=".03"
+                    android:textSize="20dp"
+                    android:text="share your sounds"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/prompt_email"
-                    android:inputType="textEmailAddress"
-                    android:layout_marginTop="@dimen/activity_vertical_margin"
-                     />
-        </com.google.android.material.textfield.TextInputLayout>
+                    android:src="@drawable/ic_opening_graphic"
+                    android:contentDescription="SoundBoard logo" />
 
-
-        <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/loginPasswordLayout"
-                android:layout_width="match_parent"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_height="wrap_content"
-                app:errorEnabled="true"
-                app:endIconMode="password_toggle">
-
-            <com.google.android.material.textfield.TextInputEditText
-                    android:background="@drawable/field_background"
-                    android:backgroundTint="#F1F1F2"
-                    android:outlineProvider="none"
+            <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/loginEmailLayout"
                     android:layout_width="match_parent"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_height="wrap_content"
-                    android:hint="@string/prompt_password"
-                    android:inputType="textPassword" />
-        </com.google.android.material.textfield.TextInputLayout>
+                    app:errorEnabled="true">
+
+                <com.google.android.material.textfield.TextInputEditText
+                        android:background="@drawable/field_background"
+                        android:backgroundTint="#F1F1F2"
+                        android:outlineProvider="none"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/prompt_email"
+                        android:inputType="textEmailAddress"
+                        android:layout_marginTop="@dimen/activity_vertical_margin"
+                        />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/loginPasswordLayout"
+                    android:layout_width="match_parent"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_height="wrap_content"
+                    app:errorEnabled="true"
+                    app:endIconMode="password_toggle">
+
+                <com.google.android.material.textfield.TextInputEditText
+                        android:background="@drawable/field_background"
+                        android:backgroundTint="#F1F1F2"
+                        android:outlineProvider="none"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/prompt_password"
+                        android:inputType="textPassword" />
+            </com.google.android.material.textfield.TextInputLayout>
 
 
 
-       <LinearLayout
-               android:layout_marginTop="8dp"
-               android:orientation="vertical"
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content">
-           <Button
-                   android:padding="16dp"
-                   android:elevation="8dp"
-                   android:outlineAmbientShadowColor="@color/colorShadow"
-                   android:outlineSpotShadowColor="@color/colorShadow"
-                   android:layout_gravity="center"
-                   android:backgroundTint="@color/colorButton"
-                   android:textSize="16dp"
-                   android:text="Login"
-                   android:letterSpacing="0"
-                   android:fontFamily="@font/inter_bold"
-                   android:textAllCaps="false"
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content"
-                   android:id="@+id/loginButton"
-                   android:gravity="center_horizontal"
-                   app:cornerRadius="20dp" />
+            <LinearLayout
+                    android:layout_marginTop="8dp"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                <Button
+                        android:padding="16dp"
+                        android:elevation="8dp"
+                        android:outlineAmbientShadowColor="@color/colorShadow"
+                        android:outlineSpotShadowColor="@color/colorShadow"
+                        android:layout_gravity="center"
+                        android:backgroundTint="@color/colorButton"
+                        android:textSize="16dp"
+                        android:text="Login"
+                        android:letterSpacing="0"
+                        android:fontFamily="@font/inter_bold"
+                        android:textAllCaps="false"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/loginButton"
+                        android:gravity="center_horizontal"
+                        app:cornerRadius="20dp" />
 
-           <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content"
-                   android:layout_marginTop="4dp"
-                   android:gravity="center"
-                   android:orientation="horizontal">
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:gravity="center_horizontal"
+                        android:layout_gravity="center_horizontal"
+                        android:orientation="horizontal">
 
-               <TextView
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="Not registered?" />
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Not registered?" />
 
-               <TextView
-                       android:id="@+id/registerHere"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:layout_marginLeft="8dp"
-                       android:text="Register here"
-                       android:textStyle="bold"
-                       android:textColor="@color/colorAccent"/>
+                    <TextView
+                            android:id="@+id/registerHere"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="8dp"
+                            android:text="Register here"
+                            android:textStyle="bold"
+                            android:textColor="@color/colorAccent"/>
 
-           </LinearLayout>
+                </LinearLayout>
 
-       </LinearLayout>
+                <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
 
 
+    </ScrollView>
 
-    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
