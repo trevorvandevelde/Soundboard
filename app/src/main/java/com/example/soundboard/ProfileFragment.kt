@@ -65,7 +65,7 @@ class ProfileFragment : Fragment() {
                     userDescription.text = user.getUserDescription()
                     val soundboards = user.getSoundBoardList()
                     for(sb in soundboards){
-                        datalist.add(BoardEntry(R.drawable.dartmouth, sb.getSoundBoardName(), "${sb.getSoundByteIdMap().size} soundbytes", sb.getSoundByteIdMap() ))
+                        datalist.add(BoardEntry("NA", sb.getSoundBoardName(), "${sb.getSoundByteIdMap().size} soundbytes", sb.getSoundByteIdMap() ))
                     }
                 }
             }
@@ -86,7 +86,7 @@ class ProfileFragment : Fragment() {
 
     private fun initData(){
         repeat(10){
-            datalist.add(BoardEntry( R.drawable.dartmouth,"Board name", "23 soundbytes", HashMap()))
+            datalist.add(BoardEntry( "NA","Board name", "23 soundbytes", HashMap()))
         }
     }
 

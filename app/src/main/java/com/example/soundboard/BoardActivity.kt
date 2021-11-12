@@ -3,9 +3,7 @@ package com.example.soundboard
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.AdapterView
-import android.widget.ListView
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
@@ -20,11 +18,18 @@ class BoardActivity : AppCompatActivity(){
 
     private lateinit var soundbyteAdapter: SoundbyteAdapter
     private lateinit var board_listview: ListView
+    private lateinit var board_name_view: TextView
     private var datalist = ArrayList<SoundByteEntry>()
 
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_board)
+
+        board_name_view = findViewById(R.id.board_name)
+        val board_name = intent.getStringExtra("title")
+        if(board_name != null){
+            board_name_view.setText(board_name)
+        }
 
         if(datalist.size == 0) {
             //initData()
@@ -49,7 +54,12 @@ class BoardActivity : AppCompatActivity(){
     //gets soundbytes to display from audio using the soundbyte ids..
     private fun retrieve_audio(){
         val soundboardId = "0"
-        soundboard_reference = FirebaseDatabase.getInstance().getReference().child("Users").child(FirebaseAuth.getInstance().currentUser!!.uid).child("soundBoardList").child(soundboardId).child("soundByteIdMap")
+        soundboard_reference = FirebaseDatabase.getInstance().getReference()
+            .child("Users")
+            .child(FirebaseAuth.getInstance().currentUser!!.uid)
+            .child("soundBoardList")
+            .child(soundboardId)
+            .child("soundByteIdMap")
         if(soundboard_reference != null){
             print("null")
         }

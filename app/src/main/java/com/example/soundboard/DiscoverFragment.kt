@@ -26,7 +26,7 @@ class DiscoverFragment : Fragment() {
 
     private lateinit var database_reference: DatabaseReference
     private lateinit var database_event_listener: ValueEventListener
-    private lateinit var local_snapshot:DataSnapshot
+    private  var local_data: MutableList<SoundByteEntry> = mutableListOf()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -145,7 +145,7 @@ class DiscoverFragment : Fragment() {
                 val users_ref = FirebaseDatabase.getInstance().getReference().child("Users").addListenerForSingleValueEvent(
                     object : ValueEventListener {
                         override fun onDataChange(users_snapshot: DataSnapshot) {
-                            datalist.clear()
+                            local_data.clear()
                             for (ds in snapshot.children) {
                                 val song:SoundByte?= ds.getValue(SoundByte::class.java)
                                 val user : User? =  users_snapshot.child(song!!.getUploaderUserName()).getValue(User::class.java)
@@ -160,7 +160,7 @@ class DiscoverFragment : Fragment() {
                                 val songurl = song!!.getSoundUrl()
                                 if(soundbyteId !=null && username !=null && imageurl != null && soundname != null && duration != null
                                     && tags != null && songurl != null) {
-                                    datalist.add(
+                                    local_data.add(
                                         SoundByteEntry(
                                             soundbyteId, username, imageurl,
                                             soundname, duration, tags, songurl
@@ -168,7 +168,7 @@ class DiscoverFragment : Fragment() {
                                     )
                                 }
                                 else{
-                                    datalist.add(SoundByteEntry())
+                                    local_data.add(SoundByteEntry())
                                 }
 
                                 /*
@@ -179,8 +179,8 @@ class DiscoverFragment : Fragment() {
                                 audio_taglists.add(song!!.getTags())
                                  */
                             }
-                            soundbyteAdapter = SoundbyteAdapter(requireContext(), R.layout.soundbyte_item,datalist)
-                            discover_listview.adapter = soundbyteAdapter
+                            // fresh the datas to the datalist
+                            refresh_data()
                         }
 
                         override fun onCancelled(error: DatabaseError) {
@@ -195,4 +195,15 @@ class DiscoverFragment : Fragment() {
         }
         database_reference.addValueEventListener(database_event_listener )
     }
+
+    private fun refresh_data(){
+        // fresh the datas to the datalist
+        datalist.clear()
+        for (i in local_data.size-1 downTo 0 ){
+            datalist.add(local_data[i])
+        }
+        soundbyteAdapter = SoundbyteAdapter(requireContext(), R.layout.soundbyte_item,datalist)
+        discover_listview.adapter = soundbyteAdapter
+    }
+
 }
