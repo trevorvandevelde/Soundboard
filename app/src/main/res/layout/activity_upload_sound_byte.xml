@@ -108,7 +108,7 @@
                                 android:layout_width="77dp"
                                 android:layout_height="77dp"
                                 android:layout_margin="30dp"
-                                android:src="@drawable/dartmouth"
+                                android:src="@drawable/soundbyte_image_placeholder"
                                 android:foregroundGravity="center_vertical|clip_horizontal|center"
                                 android:clickable="false"
                                 android:longClickable="true" />
