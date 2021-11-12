@@ -49,18 +49,19 @@
                     android:textStyle="bold"/>
 
 
-            <TextView
-                    android:id="@+id/user_follow"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:textColor="@color/colorSlate"
-                    android:text="54 followers / 22 following" />
+<!--            <TextView-->
+<!--                    android:id="@+id/user_follow"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginTop="4dp"-->
+<!--                    android:textColor="@color/colorSlate"-->
+<!--                    android:text="54 followers / 22 following" />-->
 
             </LinearLayout>
         </LinearLayout>
 
         <TextView
+                android:textColor="#737373"
                 android:layout_marginLeft="24dp"
                 android:layout_marginRight="24dp"
                 android:id = "@+id/user_intro"

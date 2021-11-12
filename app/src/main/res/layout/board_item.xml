@@ -22,6 +22,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp" />
     <TextView
+            android:textColor="@color/colorCharcoal"
             android:id="@+id/board_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -29,7 +30,7 @@
             android:layout_marginTop="10dp"
             android:textStyle="bold"
             android:textSize="18dp"
-            android:fontFamily="@font/inter_bold"
+            android:fontFamily="@font/inter_semibold"
             android:text = "Board Name"/>
 
     <TextView
@@ -38,6 +39,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="left"
             android:fontFamily="@font/inter_medium"
-            android:text = "test texts, test texts!"/>
+            android:text = "89 soundbytes"/>
 </LinearLayout>
 </androidx.cardview.widget.CardView>
