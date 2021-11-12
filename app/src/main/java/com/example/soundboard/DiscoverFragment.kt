@@ -21,10 +21,12 @@ class DiscoverFragment : Fragment() {
     private lateinit var soundbyteAdapter: SoundbyteAdapter
     private lateinit var discover_listview: ListView
     private lateinit var discover_search: SearchView
+    // to store all of the original data from the firebase
     private var datalist = ArrayList<SoundByteEntry>()
 
     private lateinit var database_reference: DatabaseReference
     private lateinit var database_event_listener: ValueEventListener
+    private lateinit var local_snapshot:DataSnapshot
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
