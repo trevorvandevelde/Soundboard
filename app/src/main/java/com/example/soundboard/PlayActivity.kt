@@ -25,11 +25,15 @@ import android.os.Handler
 import android.os.Message
 import android.widget.*
 import androidx.core.app.ActivityCompat
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 
 import co.lujun.androidtagview.ColorFactory
 import co.lujun.androidtagview.TagContainerLayout
 import co.lujun.androidtagview.TagView
 import co.lujun.androidtagview.TagView.OnTagClickListener
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -53,6 +57,7 @@ class PlayActivity : AppCompatActivity(){
     lateinit var playbutton: Button
     lateinit var playlist: ArrayList<Int>
     lateinit var thread:Thread
+
 
     var total_time:Int = 0
     var music_id = 1
@@ -305,7 +310,43 @@ class PlayActivity : AppCompatActivity(){
             println("id null")
         }
 
+        //showSheetDialog(view)
+
         finish()
+    }
+
+    fun showSheetDialog(view: View){
+        val sheetDialog: BottomSheetDialog = BottomSheetDialog(this)
+        sheetDialog.setContentView(R.layout.save_to_board_layout)
+
+        val board_recyclerview: RecyclerView? = view.findViewById(R.id.save_recyclerview)
+        val datalist = ArrayList<BoardEntry>()
+
+        val user_reference = FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().currentUser!!.uid)
+        val user_event_listener =  object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                //for (ds in snapshot.child("Audio").children)
+                val user : User? =  snapshot.getValue(User::class.java)
+                if(user != null){
+                    datalist.clear()
+                    val soundboards = user.getSoundBoardList()
+                    for(sb in soundboards){
+                        datalist.add(BoardEntry("NA", sb.getSoundBoardName(), "${sb.getSoundByteIdMap().size} soundbytes", sb.getSoundByteIdMap() ))
+                    }
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+        }
+        user_reference.addValueEventListener(user_event_listener)
+
+
+        val adapter = SheetBoardAdapter(datalist)
+        board_recyclerview?.adapter = adapter
+
+        sheetDialog.show()
     }
 
 }

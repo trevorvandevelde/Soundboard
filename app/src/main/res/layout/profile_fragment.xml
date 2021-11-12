@@ -70,13 +70,6 @@
                 android:layout_marginBottom="24dp"
                 android:text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque laoreet venenatis faucibus. Nullam tristique malesuada purus et tincidunt. " />
 
-    <Button
-            android:id = "@+id/add_board"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:onClick="createboardClicked"
-            android:text="Create New Board"/>
 
     <View
             android:layout_marginBottom="0dp"
@@ -84,6 +77,17 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="?android:attr/listDivider" />
+
+    <Button
+            android:id = "@+id/add_board"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:onClick="createboardClicked"
+            android:text="Create New Board"
+            app:cornerRadius="20dp"
+            android:textAllCaps="false"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"/>
 
         <androidx.recyclerview.widget.RecyclerView
                 android:paddingTop="16dp"

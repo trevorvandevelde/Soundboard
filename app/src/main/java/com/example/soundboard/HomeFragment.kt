@@ -186,9 +186,6 @@ class HomeFragment : Fragment() {
                 Toast.makeText(requireContext(), "FAILED!", Toast.LENGTH_SHORT).show()
             }
         }
-
-
-
         database_reference.addValueEventListener(database_event_listener )
     }
 
