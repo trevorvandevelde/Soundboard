@@ -40,9 +40,10 @@ class ProfileFragment : Fragment() {
 
         createbutton_view = view.findViewById(R.id.add_board)
 
-        if(datalist.size == 0) {
+       /* if(datalist.size == 0) {
             initData()
         }
+        */
 
         discover_recyclerview = view.findViewById(R.id.board_recyclerview)
         val layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
