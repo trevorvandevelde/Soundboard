@@ -67,16 +67,29 @@
                 android:id = "@+id/user_intro"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
+                android:layout_marginBottom="8dp"
                 android:text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque laoreet venenatis faucibus. Nullam tristique malesuada purus et tincidunt. " />
 
     <Button
-            android:id = "@+id/add_board"
+            android:layout_marginHorizontal="24dp"
+            app:icon="@drawable/ic_plus"
+            app:iconPadding="8dp"
+            app:iconSize="16dp"
+            app:iconGravity="textStart"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+            android:textColor="@color/colorCharcoal"
+            android:textAllCaps="false"
+            android:letterSpacing="0"
+            android:fontFamily="@font/inter_bold"
+            android:elevation="0dp"
+            android:text="Create a new board"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:onClick="createboardClicked"
-            android:text="Create New Board"/>
+            android:id="@+id/add_board"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
+            android:layout_marginBottom="16dp"
+            app:cornerRadius="20dp" />
 
     <View
             android:layout_marginBottom="0dp"
