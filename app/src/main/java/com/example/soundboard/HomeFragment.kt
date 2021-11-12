@@ -173,14 +173,7 @@ class HomeFragment : Fragment() {
                                  */
                             }
                             // fresh the datas to the datalist
-                            datalist.clear()
-                            for (i in 0..5 ){
-                                local_data.shuffled().take(1).forEach{
-                                    datalist.add(it)
-                                }
-                            }
-                            soundbyteAdapter = SoundbyteAdapter(requireContext(), R.layout.soundbyte_item,datalist)
-                            main_listview.adapter = soundbyteAdapter
+                            refresh_data()
                         }
 
                         override fun onCancelled(error: DatabaseError) {
@@ -202,8 +195,10 @@ class HomeFragment : Fragment() {
     private fun refresh_data(){
         // fresh the datas to the datalist
         datalist.clear()
-        for (i in local_data.size-1 downTo 0 ){
-            datalist.add(local_data[i])
+        for (i in 1..5 ){
+            local_data.shuffled().take(1).forEach{
+                datalist.add(it)
+            }
         }
         soundbyteAdapter = SoundbyteAdapter(requireContext(), R.layout.soundbyte_item,datalist)
         main_listview.adapter = soundbyteAdapter

@@ -27,6 +27,7 @@ class DiscoverFragment : Fragment() {
     private lateinit var database_reference: DatabaseReference
     private lateinit var database_event_listener: ValueEventListener
     private  var local_data: MutableList<SoundByteEntry> = mutableListOf()
+    private var datanumber = 8
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -199,7 +200,11 @@ class DiscoverFragment : Fragment() {
     private fun refresh_data(){
         // fresh the datas to the datalist
         datalist.clear()
-        for (i in local_data.size-1 downTo 0 ){
+        var min = local_data.size-datanumber
+        if (min<0){
+            min = 0
+        }
+        for (i in local_data.size-1 downTo min ){
             datalist.add(local_data[i])
         }
         soundbyteAdapter = SoundbyteAdapter(requireContext(), R.layout.soundbyte_item,datalist)
