@@ -49,6 +49,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="100dp" />
 
+
                 <LinearLayout
                         android:background="@android:color/transparent"
                         android:layout_width="match_parent"
@@ -152,44 +153,9 @@
 
             </LinearLayout>
 
-            <com.chibde.visualizer.LineBarVisualizer
-                    android:layout_marginTop="0dp"
-                    android:id="@+id/visualizerLineBar"
-                    android:layout_width="match_parent"
-                    android:layout_height="240dp" />
-
-            <com.chibde.visualizer.BarVisualizer
-                    android:id="@+id/visualizerBar"
-                    android:layout_width="match_parent"
-                    android:layout_height="240dp" />
-
-            <com.chibde.visualizer.CircleBarVisualizer
-                    android:id = "@+id/visualizerCircleBar"
-                    android:layout_width = "match_parent"
-                    android:layout_height = "240dp"/>
-
-            <com.chibde.visualizer.CircleVisualizer
-                    android:id = "@+id/visualizerCircle"
-                    android:layout_width = "match_parent"
-                    android:layout_height = "240dp"/>
-
-            <com.chibde.visualizer.SquareBarVisualizer
-                    android:id = "@+id/visualizerSquareBar"
-                    android:layout_width = "match_parent"
-                    android:layout_height = "240dp"/>
-
 
 
         </LinearLayout>
-
     </ScrollView>
-
-
-
-
-
-
-
-
 
 </LinearLayout>
