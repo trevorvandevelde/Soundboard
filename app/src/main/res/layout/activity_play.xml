@@ -1,139 +1,148 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <LinearLayout
+    <include layout="@layout/play_header_layout"/>
+
+    <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="390dp"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
 
-        <include layout="@layout/play_header_layout"/>
-
-    <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:orientation="horizontal"
-            android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
-            android:paddingVertical="@dimen/activity_vertical_margin">
-
-        <ImageView
-                android:id = "@+id/play_image"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginLeft="40dp"
-                android:src="@drawable/dartmouth"/>
-
-        <TextView
-                android:id="@+id/play_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
-                android:layout_marginLeft="20dp"
-                android:textStyle="bold"
-                android:textSize="20dp"
-                android:text="Test Text for Test Creator" />
-
-    </LinearLayout>
-
-        <com.chibde.visualizer.LineVisualizer
-                android:id="@+id/visualizerLine"
-                android:layout_width="match_parent"
-                android:layout_height="240dp" />
-
-        <com.chibde.visualizer.BarVisualizer
-                android:id="@+id/visualizerBar"
-                android:layout_width="match_parent"
-                android:layout_height="240dp" />
-
-        <com.chibde.visualizer.CircleBarVisualizer
-                android:id = "@+id/visualizerCircleBar"
-                android:layout_width = "match_parent"
-                android:layout_height = "240dp"/>
-
-        <com.chibde.visualizer.CircleVisualizer
-                android:id = "@+id/visualizerCircle"
-                android:layout_width = "match_parent"
-                android:layout_height = "240dp"/>
-
-        <com.chibde.visualizer.SquareBarVisualizer
-                android:id = "@+id/visualizerSquareBar"
-                android:layout_width = "match_parent"
-                android:layout_height = "240dp"/>
-
-        <com.chibde.visualizer.LineBarVisualizer
-                android:id="@+id/visualizerLineBar"
-                android:layout_width="match_parent"
-                android:layout_height="240dp" />
-
-    </LinearLayout>
-
-    <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:orientation="vertical">
-
-        <SeekBar
-                android:id="@+id/positionBar"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"/>
         <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-            <TextView
-                    android:id="@+id/elapsedTimeLabel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="40dp"
-                    android:text="0:11" />
 
-            <TextView
-                    android:id="@+id/remainingTimeLabel"
-                    android:layout_width="wrap_content"
+
+            <LinearLayout
+                    android:id="@+id/play_area"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="240dp"
-                    android:text="-1:11" />
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
+                    android:paddingVertical="@dimen/activity_vertical_margin">
+
+                <ImageView
+                        android:id = "@+id/play_image"
+                        android:layout_width="match_parent"
+                        android:layout_height="250dp"
+                        android:src="@drawable/dartmouth"/>
+
+                <TextView
+                        android:layout_marginTop="16dp"
+                        android:id="@+id/play_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:textStyle="bold"
+                        android:textSize="20dp"
+                        android:text="soundbyte name" />
+
+                <com.chibde.visualizer.LineVisualizer
+                        android:id="@+id/visualizerLine"
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp" />
+
+
+                <LinearLayout
+                        android:background="@android:color/transparent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:orientation="vertical">
+
+                    <SeekBar
+                            android:background="@android:color/transparent"
+                            android:id="@+id/positionBar"
+                            android:layout_marginTop="24dp"
+                            android:layout_width="300dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal" />
+
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                        <TextView
+                                android:id="@+id/elapsedTimeLabel"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="40dp"
+                                android:text="0:11" />
+
+                        <TextView
+                                android:id="@+id/remainingTimeLabel"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="240dp"
+                                android:text="-1:11" />
+                    </LinearLayout>
+
+                    <Button
+                            android:fontFamily="@font/inter_semibold"
+                            android:backgroundTint="@color/colorAccent"
+                            android:id="@+id/playbutton"
+                            android:layout_width="153dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:onClick="playClicked"
+                            android:text="PLAY"
+                            app:cornerRadius="100dp" />
+
+                    <co.lujun.androidtagview.TagContainerLayout
+                            android:id="@+id/soundbyte_tagContainer"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="15dp"
+                            android:layout_marginBottom="10dp"
+                            app:tag_text_size="15dp"
+                            app:tag_corner_radius="10dp"
+                            app:container_enable_drag="false"
+                            app:horizontal_interval="10dp"
+                            app:vertical_interval="5dp"
+                            app:tag_clickable="true"
+                            app:tag_selectable="true"
+                            app:tag_enable_cross="false"
+                            app:tag_background_color="#F6F5FC"
+                            app:tag_border_color="@color/colorAccent"
+                            app:tag_text_color="@color/colorCharcoal"
+                            app:container_border_color="@color/white"
+                            app:container_background_color="#F6F5FC"
+                            app:tag_theme="none" />
+
+                    <Button
+                            android:layout_marginBottom="16dp"
+                            android:onClick="savetoboardClicked"
+                            android:layout_marginHorizontal="24dp"
+                            android:padding="16dp"
+                            android:elevation="8dp"
+                            android:outlineAmbientShadowColor="@color/colorShadow"
+                            android:outlineSpotShadowColor="@color/colorShadow"
+                            android:layout_gravity="center_horizontal"
+                            android:backgroundTint="@color/colorButton"
+                            android:textSize="16dp"
+                            android:text="Save to Board"
+                            android:letterSpacing="0"
+                            android:fontFamily="@font/inter_bold"
+                            android:textAllCaps="false"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/save_to_board"
+                            android:gravity="center_horizontal"
+                            app:cornerRadius="20dp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+
         </LinearLayout>
-        <Button
-                android:id="@+id/playbutton"
-                android:layout_width="153dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:onClick="playClicked"
-                android:text="PLAY"/>
+    </ScrollView>
 
-        <co.lujun.androidtagview.TagContainerLayout
-                android:id="@+id/soundbyte_tagContainer"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="15dp"
-                android:layout_marginBottom="10dp"
-                app:tag_text_size="15dp"
-                app:tag_corner_radius="10dp"
-                app:container_enable_drag="false"
-                app:horizontal_interval="10dp"
-                app:vertical_interval="5dp"
-                app:tag_clickable="true"
-                app:tag_selectable="true"
-                app:tag_enable_cross="false"
-                app:tag_theme="none"/>
-
-        <Button
-                android:id="@+id/save_to_board"
-                android:layout_marginTop="100dp"
-                android:layout_marginBottom="50dp"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:onClick="savetoboardClicked"
-                android:text="Save to Board"/>
-
-    </LinearLayout>
-
-
-</RelativeLayout>
+</LinearLayout>

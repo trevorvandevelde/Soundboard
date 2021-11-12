@@ -99,6 +99,8 @@ class HomeFragment : Fragment() {
             intent.putExtra("title", soundbyte.title)
             intent.putExtra("audio", soundbyte.audioUrl)
             intent.putExtra("soundByteId", soundbyte.id )
+            intent.putExtra("author", soundbyte.author)
+
             var tags:ArrayList<String> = ArrayList<String>()
             for(item in soundbyte.tag_list){
                 tags.add(item)
