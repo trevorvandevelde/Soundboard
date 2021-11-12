@@ -9,6 +9,8 @@
             android:layout_height="390dp"
             android:orientation="vertical">
 
+        <include layout="@layout/play_header_layout"/>
+
     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="150dp"
