@@ -6,15 +6,18 @@ class User {
     //FirebaseDatabase.getInstance().getReference() -> snapshot.child("Users").child(<userId>).getValue(User::class.java)
     private lateinit var userNickname : String
     private lateinit var userDescription : String
-    private lateinit var soundBoardsList : MutableList<SoundBoard>
-    private lateinit var userSounds : MutableList<SoundByte>
+    private lateinit var soundBoardList : MutableList<SoundBoard>
+    //private lateinit var userSounds : MutableList<Strings>
 
 
     fun User(userNickname : String) {
         this.userNickname = userNickname
         userDescription = "Welcome! You can change your description in settings."
-        soundBoardsList = arrayListOf()
-        userSounds = arrayListOf()
+        soundBoardList = arrayListOf()
+        val sb : SoundBoard =  SoundBoard()
+        sb.SoundBoard("My sounds")
+        addSoundBoard(sb)
+        //userSounds = arrayListOf()
     }
 
 
@@ -36,18 +39,22 @@ class User {
 
 
     fun addSoundBoard(newSoundBoard : SoundBoard) {
-        soundBoardsList.add(newSoundBoard)
+        soundBoardList.add(newSoundBoard)
     }
 
-    fun getSoundBoards() : MutableList<SoundBoard>{
-        return soundBoardsList
+    fun setSoundBoardList(soundboards: MutableList<SoundBoard>){
+        soundBoardList = soundboards
+    }
+
+    fun getSoundBoardList() : MutableList<SoundBoard>{
+        return soundBoardList
     }
 
     fun deleteSoundBoard(soundBoardToDelete : SoundBoard) {
-        soundBoardsList.remove(soundBoardToDelete)
+        soundBoardList.remove(soundBoardToDelete)
     }
 
-
+/*
     fun addSoundByteToUser(newSoundByte : SoundByte) {
         userSounds.add(newSoundByte)
     }
@@ -59,6 +66,6 @@ class User {
     fun deleteSoundByte(soundByteToDelete : SoundByte) {
         userSounds.remove(soundByteToDelete)
     }
-
+*/
 
 }

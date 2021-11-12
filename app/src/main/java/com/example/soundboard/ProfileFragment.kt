@@ -1,11 +1,13 @@
 package com.example.soundboard
 
+import android.app.ProgressDialog.show
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -28,6 +30,7 @@ class ProfileFragment : Fragment() {
 
     private lateinit var user_reference: DatabaseReference
     private lateinit var user_event_listener:  ValueEventListener
+    private lateinit var createbutton_view: Button
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,9 +38,13 @@ class ProfileFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.profile_fragment, container, false)
 
-        if(datalist.size == 0) {
+        createbutton_view = view.findViewById(R.id.add_board)
+
+       /* if(datalist.size == 0) {
             initData()
         }
+        */
+
         discover_recyclerview = view.findViewById(R.id.board_recyclerview)
         val layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         discover_recyclerview.layoutManager = layoutManager
@@ -53,8 +60,13 @@ class ProfileFragment : Fragment() {
                 //for (ds in snapshot.child("Audio").children)
                 val user : User? =  snapshot.getValue(User::class.java)
                 if(user != null){
+                    datalist.clear()
                     userNickname.text = user.getUserNickname()
                     userDescription.text = user.getUserDescription()
+                    val soundboards = user.getSoundBoardList()
+                    for(sb in soundboards){
+                        datalist.add(BoardEntry(R.drawable.dartmouth, sb.getSoundBoardName(), "${sb.getSoundByteIdMap().size} soundbytes", sb.getSoundByteIdMap() ))
+                    }
                 }
             }
 
@@ -74,13 +86,23 @@ class ProfileFragment : Fragment() {
 
     private fun initData(){
         repeat(10){
-            datalist.add(BoardEntry( R.drawable.dartmouth,"Board name", "23 soundbytes"))
+            datalist.add(BoardEntry( R.drawable.dartmouth,"Board name", "23 soundbytes", HashMap()))
         }
     }
 
     override fun onDestroy() {
         user_reference.removeEventListener(user_event_listener)
         super.onDestroy()
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        createbutton_view.setOnClickListener(object: View.OnClickListener{
+            override fun onClick(p0: View?) {
+                Add_Board_Dialog().show(childFragmentManager, "add_board_dialog")
+                true
+            }
+        })
     }
 
 }

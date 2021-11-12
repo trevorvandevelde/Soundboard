@@ -21,10 +21,12 @@ class DiscoverFragment : Fragment() {
     private lateinit var soundbyteAdapter: SoundbyteAdapter
     private lateinit var discover_listview: ListView
     private lateinit var discover_search: SearchView
+    // to store all of the original data from the firebase
     private var datalist = ArrayList<SoundByteEntry>()
 
     private lateinit var database_reference: DatabaseReference
     private lateinit var database_event_listener: ValueEventListener
+    private lateinit var local_snapshot:DataSnapshot
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,6 +50,7 @@ class DiscoverFragment : Fragment() {
             intent.putExtra("image", soundbyte.imageUrl)
             intent.putExtra("title", soundbyte.title)
             intent.putExtra("audio", soundbyte.audioUrl)
+            intent.putExtra("soundByteId", soundbyte.id )
             var tags:ArrayList<String> = ArrayList<String>()
             for(item in soundbyte.tag_list){
                 tags.add(item)
@@ -128,7 +131,7 @@ class DiscoverFragment : Fragment() {
         val tag_list:MutableList<String> = mutableListOf("DIY","SHIBUYA","AKIHABARA","GINZA")
         var time = 1
         repeat(10){
-            datalist.add(SoundByteEntry("@ username", "NA",time.toString(), "12s",tag_list))
+            datalist.add(SoundByteEntry("NA","@ username", "NA",time.toString(), "12s",tag_list))
             time++
         }
     }
@@ -148,18 +151,18 @@ class DiscoverFragment : Fragment() {
                                 val user : User? =  users_snapshot.child(song!!.getUploaderUserName()).getValue(User::class.java)
 
                                 // for the safety
+                                val soundbyteId = ds.key
                                 val username = user!!.getUserNickname()
-                                val formatted_username = "@$username"
                                 val imageurl = song!!.getImageUrl()
                                 val soundname = song!!.getSoundName()
                                 val duration = song!!.getDuration() + "s"
                                 val tags = song!!.getTags()
                                 val songurl = song!!.getSoundUrl()
-                                if(username !=null && imageurl != null && soundname != null && duration != null
+                                if(soundbyteId !=null && username !=null && imageurl != null && soundname != null && duration != null
                                     && tags != null && songurl != null) {
                                     datalist.add(
                                         SoundByteEntry(
-                                            formatted_username, imageurl,
+                                            soundbyteId, username, imageurl,
                                             soundname, duration, tags, songurl
                                         )
                                     )
