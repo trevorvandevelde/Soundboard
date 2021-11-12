@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:background="@color/white"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+    <include layout="@layout/settings_header_layout"/>
+
     <ScrollView
+            android:clipToPadding="false"
+            android:paddingTop="24dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -12,61 +18,230 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
-                android:paddingVertical="@dimen/activity_vertical_margin">
+                android:layout_marginHorizontal="@dimen/activity_horizontal_margin">
 
             <TextView
+                    android:fontFamily="@font/inter_semibold"
+                    android:textColor="@color/colorCharcoal"
+                    android:textSize="20dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="Profile Settings"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Settings"
+                    android:layout_height="wrap_content"/>
+            <TextView
+                    android:fontFamily="@font/inter_medium"
+                    android:textSize="14dp"
+                    android:layout_marginBottom="24dp"
+                    android:text="These details are public and can be seen by other users on Soundboard,"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
 
-                    android:textSize="24dp"
-                    android:fontFamily="@font/quicksand_bold"/>
+            <TextView
+                    android:fontFamily="@font/inter_semibold"
+                    android:textSize="16dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="Nickname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+
             <LinearLayout
+                    android:layout_weight="4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_marginVertical="@dimen/activity_vertical_margin">
+                    >
                 <EditText
                         android:id="@+id/userNicknameEditText"
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:hint="New nickname"
+                        android:layout_weight="3"
+                        android:hint="Type your new nickname"
                         android:text="">
                 </EditText>
+
                 <Button
-                        android:id="@+id/userNicknameButton"
-                        android:layout_width="0dp"
+                        android:backgroundTint="@color/colorCharcoal"
+                        android:textAllCaps="false"
+                        android:letterSpacing="0"
+                        android:fontFamily="@font/inter_bold"
+                        android:elevation="0dp"
+                        android:text="Update"
+                        android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Change Nickname"/>
+                        android:id="@+id/userNicknameButton"
+                        android:layout_weight=".2"
+                        app:cornerRadius="100dp" />
+
+
             </LinearLayout>
+
+
+            <TextView
+                    android:fontFamily="@font/inter_semibold"
+                    android:textSize="16dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="Description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
             <LinearLayout
+                    android:layout_gravity=""
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                    android:layout_marginVertical="@dimen/activity_vertical_margin">
+                    android:orientation="vertical">
 
                 <EditText
                         android:id="@+id/userDescriptionEditText"
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="200dp"
                         android:layout_weight="2"
-                        android:hint="Description">
+                        android:gravity="top"
+                        android:hint="Type a description">
                 </EditText>
+
                 <Button
-                        android:id="@+id/userDescriptionButton"
-                        android:layout_width="0dp"
+                        android:backgroundTint="@color/colorCharcoal"
+                        android:textAllCaps="false"
+                        android:letterSpacing="0"
+                        android:fontFamily="@font/inter_bold"
+                        android:elevation="0dp"
+                        android:text="Update"
+                        android:layout_width="100dp"
                         android:layout_height="wrap_content"
+                        android:id="@+id/userDescriptionButton"
                         android:layout_weight="1"
-                        android:text="Change Description"/>
+                        app:cornerRadius="100dp" />
             </LinearLayout>
+
+
+            <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginBottom="24dp"
+                    android:layout_marginTop="24dp"
+                    android:background="?android:attr/listDivider" />
+
+
+            <TextView
+                    android:fontFamily="@font/inter_semibold"
+                    android:textColor="@color/colorCharcoal"
+                    android:textSize="20dp"
+                    android:layout_marginBottom="24dp"
+                    android:text="Login Credentials"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            <TextView
+                    android:fontFamily="@font/inter_semibold"
+                    android:textSize="16dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="Email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+
+            <LinearLayout
+                    android:layout_weight="4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    >
+                <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:hint="name@email.com"
+                        android:text="">
+                </EditText>
+
+                <Button
+                        android:backgroundTint="@color/colorCharcoal"
+                        android:textAllCaps="false"
+                        android:letterSpacing="0"
+                        android:fontFamily="@font/inter_bold"
+                        android:elevation="0dp"
+                        android:text="Update"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".2"
+                        app:cornerRadius="100dp" />
+
+
+            </LinearLayout>
+
+            <TextView
+                    android:fontFamily="@font/inter_semibold"
+                    android:textSize="16dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="Password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
+                <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:hint="type old password"
+                        android:text="">
+                </EditText>
+
+                <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:hint="type new password"
+                        android:text="">
+                </EditText>
+
+                <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:hint="re-type new password"
+                        android:text="">
+                </EditText>
+
+                <Button
+                        android:backgroundTint="@color/colorCharcoal"
+                        android:textAllCaps="false"
+                        android:letterSpacing="0"
+                        android:fontFamily="@font/inter_bold"
+                        android:elevation="0dp"
+                        android:text="Update"
+                        android:layout_marginTop="8dp"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".2"
+                        app:cornerRadius="100dp" />
+
+
+            </LinearLayout>
+
+
             <Button
+                    app:strokeColor="@android:color/holo_red_light"
+                    android:textColor="@android:color/holo_red_light"
+                    android:textAllCaps="false"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+                    android:layout_marginTop="24dp"
                     android:id="@+id/signoutButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Sign Out"/>
+                    android:text="Sign Out"
+                    android:padding="16dp"
+                    app:cornerRadius="20dp" />
+
+            <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="200dp"/>
 
 
         </LinearLayout>
