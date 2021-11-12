@@ -149,6 +149,7 @@ class DiscoverFragment : Fragment() {
 
                                 // for the safety
                                 val username = user!!.getUserNickname()
+                                val formatted_username = "@$username"
                                 val imageurl = song!!.getImageUrl()
                                 val soundname = song!!.getSoundName()
                                 val duration = song!!.getDuration() + "s"
@@ -158,7 +159,7 @@ class DiscoverFragment : Fragment() {
                                     && tags != null && songurl != null) {
                                     datalist.add(
                                         SoundByteEntry(
-                                            username, imageurl,
+                                            formatted_username, imageurl,
                                             soundname, duration, tags, songurl
                                         )
                                     )

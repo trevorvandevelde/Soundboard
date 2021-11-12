@@ -61,6 +61,7 @@
         </LinearLayout>
 
         <TextView
+                android:textColor="#737373"
                 android:layout_marginLeft="24dp"
                 android:layout_marginRight="24dp"
                 android:id = "@+id/user_intro"
