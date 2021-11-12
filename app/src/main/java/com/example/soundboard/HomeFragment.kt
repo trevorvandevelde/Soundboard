@@ -48,6 +48,8 @@ class HomeFragment : Fragment() {
 
     private lateinit var user_reference: DatabaseReference
     private lateinit var user_event_listener:  ValueEventListener
+    private var local_data: MutableList<SoundByteEntry> = mutableListOf()
+    private var datanumber = 5
 
     override fun onCreateView( inflater: LayoutInflater, container: ViewGroup?,
                                savedInstanceState: Bundle?): View? {
@@ -104,6 +106,7 @@ class HomeFragment : Fragment() {
             intent.putStringArrayListExtra("tags", tags)
             startActivity(intent)
         }
+        refresh_data()
         return view
     }
 
@@ -134,7 +137,8 @@ class HomeFragment : Fragment() {
                 val users_ref = FirebaseDatabase.getInstance().getReference().child("Users").addListenerForSingleValueEvent(
                     object : ValueEventListener {
                         override fun onDataChange(users_snapshot: DataSnapshot) {
-                            datalist.clear()
+                            local_data.clear()
+                            // store the data locally
                             for (ds in snapshot.children) {
                                 val song:SoundByte?= ds.getValue(SoundByte::class.java)
                                 val user : User? =  users_snapshot.child(song!!.getUploaderUserName()).getValue(User::class.java)
@@ -149,7 +153,7 @@ class HomeFragment : Fragment() {
                                 val songurl = song!!.getSoundUrl()
                                 if(soundbyteId !=null && username !=null && imageurl != null && soundname != null && duration != null
                                     && tags != null && songurl != null) {
-                                    datalist.add(
+                                    local_data.add(
                                         SoundByteEntry(
                                             soundbyteId, username, imageurl,
                                             soundname, duration, tags, songurl
@@ -157,7 +161,7 @@ class HomeFragment : Fragment() {
                                     )
                                 }
                                 else{
-                                    datalist.add(SoundByteEntry())
+                                    local_data.add(SoundByteEntry())
                                 }
 
                                 /*
@@ -168,8 +172,8 @@ class HomeFragment : Fragment() {
                                 audio_taglists.add(song!!.getTags())
                                  */
                             }
-                            soundbyteAdapter = SoundbyteAdapter(requireContext(), R.layout.soundbyte_item,datalist)
-                            main_listview.adapter = soundbyteAdapter
+                            // fresh the datas to the datalist
+                            refresh_data()
                         }
 
                         override fun onCancelled(error: DatabaseError) {
@@ -182,7 +186,22 @@ class HomeFragment : Fragment() {
                 Toast.makeText(requireContext(), "FAILED!", Toast.LENGTH_SHORT).show()
             }
         }
+
+
+
         database_reference.addValueEventListener(database_event_listener )
+    }
+
+    private fun refresh_data(){
+        // fresh the datas to the datalist
+        datalist.clear()
+        for (i in 1..5 ){
+            local_data.shuffled().take(1).forEach{
+                datalist.add(it)
+            }
+        }
+        soundbyteAdapter = SoundbyteAdapter(requireContext(), R.layout.soundbyte_item,datalist)
+        main_listview.adapter = soundbyteAdapter
     }
 
     //remove listener on exiting, else new users added notifies listener not attached to context

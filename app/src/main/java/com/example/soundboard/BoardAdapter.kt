@@ -11,6 +11,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 
 class BoardAdapter(var data: List<BoardEntry>)
     : RecyclerView.Adapter<BoardAdapter.ViewHolder>() {
@@ -31,7 +32,7 @@ class BoardAdapter(var data: List<BoardEntry>)
             val board = data[position]
 
             val intent = Intent(view.getContext(), BoardActivity::class.java)
-            intent.putExtra("image", board.imageID)
+            intent.putExtra("image", board.imageUrl)
             intent.putExtra("title", board.title)
             view.getContext().startActivity(intent)
         }
@@ -41,7 +42,9 @@ class BoardAdapter(var data: List<BoardEntry>)
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val board = data[position]
-        holder.image.setImageResource(board.imageID)
+        if(board.imageUrl != "NA") {
+            Picasso.get().load(board.imageUrl).into(holder.image)
+        }
         holder.title.text = board.title
         holder.intro.text = board.intro
     }
