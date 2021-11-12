@@ -27,7 +27,7 @@ class DiscoverFragment : Fragment() {
     private lateinit var database_reference: DatabaseReference
     private lateinit var database_event_listener: ValueEventListener
     private  var local_data: MutableList<SoundByteEntry> = mutableListOf()
-    private var datanumber = 8
+    private var datanumber = 10
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -65,7 +65,7 @@ class DiscoverFragment : Fragment() {
                 //soundbyteAdapter.filter.filter(query)
                 var querylist = ArrayList<SoundByteEntry>()
                 var found:Boolean = false
-                for(item in datalist) {
+                for(item in local_data) {
                     if (item.title.contains(query, ignoreCase = true)) {
                         querylist.add(item)
                         found = true
@@ -95,7 +95,7 @@ class DiscoverFragment : Fragment() {
                 }
                 var querylist = ArrayList<SoundByteEntry>()
                 var found:Boolean = false
-                for(item in datalist) {
+                for(item in local_data) {
                     if (item.title.contains(query!!, ignoreCase = true)) {
                         querylist.add(item)
                         found = true
