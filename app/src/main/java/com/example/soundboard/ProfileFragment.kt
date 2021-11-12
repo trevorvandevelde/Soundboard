@@ -1,11 +1,13 @@
 package com.example.soundboard
 
+import android.app.ProgressDialog.show
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -28,12 +30,15 @@ class ProfileFragment : Fragment() {
 
     private lateinit var user_reference: DatabaseReference
     private lateinit var user_event_listener:  ValueEventListener
+    private lateinit var createbutton_view: Button
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.profile_fragment, container, false)
+
+        createbutton_view = view.findViewById(R.id.add_board)
 
         if(datalist.size == 0) {
             initData()
@@ -81,6 +86,16 @@ class ProfileFragment : Fragment() {
     override fun onDestroy() {
         user_reference.removeEventListener(user_event_listener)
         super.onDestroy()
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        createbutton_view.setOnClickListener(object: View.OnClickListener{
+            override fun onClick(p0: View?) {
+                Add_Board_Dialog().show(childFragmentManager, "add_board_dialog")
+                true
+            }
+        })
     }
 
 }

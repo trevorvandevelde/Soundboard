@@ -139,33 +139,6 @@ class DiscoverFragment : Fragment() {
         database_reference = FirebaseDatabase.getInstance().getReference().child("Audio")
         database_event_listener =  object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                local_snapshot = snapshot
-                datalist.clear()
-                for (ds in snapshot.child("Audio").children) {
-                    val song: SoundByte? = ds.getValue(SoundByte::class.java)
-                    val user: User? = snapshot.child("Users").child(song!!.getUploaderUserName())
-                        .getValue(User::class.java)
-
-
-                    // for the safety
-                    val username = song!!.getUploaderUserName()
-                    val imageurl = song!!.getImageUrl()
-                    val soundname = song!!.getSoundName()
-                    val duration = song!!.getDuration() + "s"
-                    val tags = song!!.getTags()
-                    val songurl = song!!.getSoundUrl()
-                    if (username != null && imageurl != null && soundname != null && duration != null
-                        && tags != null && songurl != null
-                    ) {
-                        datalist.add(
-                            SoundByteEntry(
-                                username, imageurl,
-                                soundname, duration, tags, songurl
-                            )
-                        )
-                    } else {
-                        datalist.add(SoundByteEntry())
-                    }
 
                 //gets list of users only once, for names. so doesn't fetch data on every nickname change
                 val users_ref = FirebaseDatabase.getInstance().getReference().child("Users").addListenerForSingleValueEvent(
