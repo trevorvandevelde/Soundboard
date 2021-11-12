@@ -43,6 +43,7 @@ class ProfileFragment : Fragment() {
         if(datalist.size == 0) {
             initData()
         }
+
         discover_recyclerview = view.findViewById(R.id.board_recyclerview)
         val layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         discover_recyclerview.layoutManager = layoutManager
@@ -58,8 +59,13 @@ class ProfileFragment : Fragment() {
                 //for (ds in snapshot.child("Audio").children)
                 val user : User? =  snapshot.getValue(User::class.java)
                 if(user != null){
+                    datalist.clear()
                     userNickname.text = user.getUserNickname()
                     userDescription.text = user.getUserDescription()
+                    val soundboards = user.getSoundBoardList()
+                    for(sb in soundboards){
+                        datalist.add(BoardEntry(R.drawable.dartmouth, sb.getSoundBoardName(), "${sb.getSoundByteIdMap().size} soundbytes", sb.getSoundByteIdMap() ))
+                    }
                 }
             }
 
@@ -79,7 +85,7 @@ class ProfileFragment : Fragment() {
 
     private fun initData(){
         repeat(10){
-            datalist.add(BoardEntry( R.drawable.dartmouth,"Board name", "23 soundbytes"))
+            datalist.add(BoardEntry( R.drawable.dartmouth,"Board name", "23 soundbytes", HashMap()))
         }
     }
 

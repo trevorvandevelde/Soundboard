@@ -1,6 +1,7 @@
 package com.example.soundboard;
 
 class SoundByteEntry(
+        val id: String = "NA",
         val author: String = "@ username",
         //val imageID: Int = 0,
         val imageUrl: String = "NA",
