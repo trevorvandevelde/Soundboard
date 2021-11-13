@@ -30,10 +30,10 @@ class BoardAdapter(var data: List<BoardEntry>)
         viewholder.itemView.setOnClickListener {
             val position = viewholder.adapterPosition
             val board = data[position]
-
             val intent = Intent(view.getContext(), BoardActivity::class.java)
             intent.putExtra("image", board.imageUrl)
             intent.putExtra("title", board.title)
+            intent.putExtra("position", position.toString())
             view.getContext().startActivity(intent)
         }
 
