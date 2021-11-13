@@ -150,6 +150,8 @@
                             app:cornerRadius="20dp" />
 
                 </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
               
     </ScrollView>
 
