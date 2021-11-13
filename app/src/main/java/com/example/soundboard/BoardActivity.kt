@@ -20,6 +20,7 @@ class BoardActivity : AppCompatActivity(){
     private lateinit var board_listview: ListView
     private lateinit var board_name_view: TextView
     private var datalist = ArrayList<SoundByteEntry>()
+    private lateinit var board_position : String
 
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
@@ -27,8 +28,16 @@ class BoardActivity : AppCompatActivity(){
 
         board_name_view = findViewById(R.id.board_name)
         val board_name = intent.getStringExtra("title")
+        board_position = intent.getStringExtra("position").toString()
         if(board_name != null){
             board_name_view.setText(board_name)
+        }
+
+
+        // adds back button fab
+        val backButton: View = findViewById(R.id.back_arrow)
+        backButton.setOnClickListener { view ->
+            finish()
         }
 
         if(datalist.size == 0) {
@@ -53,7 +62,7 @@ class BoardActivity : AppCompatActivity(){
     //observes changes to selected soundboard's hashmap of soundbyteids, gets all audio once
     //gets soundbytes to display from audio using the soundbyte ids..
     private fun retrieve_audio(){
-        val soundboardId = "0"
+        val soundboardId = board_position //must change to match soundboard
         soundboard_reference = FirebaseDatabase.getInstance().getReference()
             .child("Users")
             .child(FirebaseAuth.getInstance().currentUser!!.uid)
