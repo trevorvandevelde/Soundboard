@@ -4,6 +4,9 @@
         android:layout_height="match_parent">
 
     <EditText
+            android:backgroundTint="#F1F1F2"
+            android:background="@drawable/field_background"
+            android:padding="8dp"
             android:id="@+id/add_board_dialog"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

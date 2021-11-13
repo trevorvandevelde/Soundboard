@@ -99,6 +99,8 @@ class HomeFragment : Fragment() {
             intent.putExtra("title", soundbyte.title)
             intent.putExtra("audio", soundbyte.audioUrl)
             intent.putExtra("soundByteId", soundbyte.id )
+            intent.putExtra("author", soundbyte.author)
+
             var tags:ArrayList<String> = ArrayList<String>()
             for(item in soundbyte.tag_list){
                 tags.add(item)
@@ -186,9 +188,6 @@ class HomeFragment : Fragment() {
                 Toast.makeText(requireContext(), "FAILED!", Toast.LENGTH_SHORT).show()
             }
         }
-
-
-
         database_reference.addValueEventListener(database_event_listener )
     }
 

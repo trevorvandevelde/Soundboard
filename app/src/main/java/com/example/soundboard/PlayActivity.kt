@@ -26,11 +26,16 @@ import android.os.Handler
 import android.os.Message
 import android.widget.*
 import androidx.core.app.ActivityCompat
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 
 import co.lujun.androidtagview.ColorFactory
 import co.lujun.androidtagview.TagContainerLayout
 import co.lujun.androidtagview.TagView
 import co.lujun.androidtagview.TagView.OnTagClickListener
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -42,18 +47,16 @@ class PlayActivity : AppCompatActivity(){
 
     lateinit var mediaPlayer: MediaPlayer
 
-    lateinit var lineBarVisualizer:LineBarVisualizer
+
     lateinit var lineVisualizer:LineVisualizer
-    lateinit var barVisualizer: BarVisualizer
-    lateinit var circleBarVisualizer: CircleBarVisualizer
-    lateinit var circleVisualizer:CircleVisualizer
-    lateinit var squareBarVisualizer: SquareBarVisualizer
+
     lateinit var elapsedtimelable: TextView
     lateinit var remainingtimelable: TextView
     lateinit var positionBar: SeekBar
-    lateinit var playbutton: Button
+    lateinit var playbutton: FloatingActionButton
     lateinit var playlist: ArrayList<Int>
     lateinit var thread:Thread
+
 
     var total_time:Int = 0
     var music_id = 1
@@ -77,11 +80,6 @@ class PlayActivity : AppCompatActivity(){
         mediaPlayer.isLooping = true
 
         lineVisualizer = findViewById(R.id.visualizerLine)
-        barVisualizer = findViewById(R.id.visualizerBar)
-        circleBarVisualizer = findViewById(R.id.visualizerCircleBar)
-        lineBarVisualizer = findViewById(R.id.visualizerLineBar)
-        circleVisualizer = findViewById(R.id.visualizerCircle)
-        squareBarVisualizer = findViewById(R.id.visualizerSquareBar)
         playbutton = findViewById(R.id.playbutton)
         positionBar = findViewById(R.id.positionBar)
         elapsedtimelable = findViewById(R.id.elapsedTimeLabel)
@@ -126,12 +124,20 @@ class PlayActivity : AppCompatActivity(){
 
         val play_image: ImageView = findViewById(R.id.play_image)
         val play_title: TextView = findViewById(R.id.play_title)
+        val play_header: TextView = findViewById(R.id.soundbyte_header_title)
+        val play_author: TextView = findViewById(R.id.soundbyte_author)
+
+
         val coverUrl = intent.getStringExtra("image")
         val title = intent.getStringExtra("title")
+        val author = intent.getStringExtra("author")
+
         if(coverUrl != "NA"){
           Picasso.get().load(coverUrl).into(play_image)
         }
         play_title.setText(title)
+        play_header.setText(title)
+        play_author.setText(author)
 
         // adds back button fab
         val backButton: View = findViewById(R.id.back_arrow)
@@ -196,82 +202,32 @@ class PlayActivity : AppCompatActivity(){
     fun lineVisualization(view: View){
         clear()
         lineVisualizer.visibility = View.VISIBLE
-        lineVisualizer.setColor(ContextCompat.getColor(this, R.color.purple_700))
+        lineVisualizer.setColor(ContextCompat.getColor(this, R.color.colorAccent))
         lineVisualizer.setStrokeWidth(1)
         lineVisualizer.setPlayer(mediaPlayer.audioSessionId)
     }
 
-    fun barVisualization(view: View?) {
-        clear()
-        barVisualizer.visibility = View.VISIBLE
-        barVisualizer.setColor(ContextCompat.getColor(this, R.color.black))
-        // define a custom number of bars we want in the visualizer it is between (10 - 256).
-        barVisualizer.setDensity(80f)
-        barVisualizer.setPlayer(mediaPlayer.audioSessionId)
-    }
-
-    fun circleBarVisualization(view: View?) {
-        clear()
-        circleBarVisualizer.visibility = View.VISIBLE
-        circleBarVisualizer.setColor(ContextCompat.getColor(this, R.color.teal_200))
-        circleBarVisualizer.setPlayer(mediaPlayer.audioSessionId)
-    }
-
-    fun circleVisualization(view: View?) {
-        clear()
-        circleVisualizer.visibility = View.VISIBLE
-        circleVisualizer.setColor(ContextCompat.getColor(this, R.color.purple_500))
-        // Customize the size of the circle. by default, the multipliers are 1.
-        circleVisualizer.setRadiusMultiplier(2.2f)
-        circleVisualizer.setStrokeWidth(2)
-        circleVisualizer.setPlayer(mediaPlayer.audioSessionId)
-    }
-
-    fun squareBarVisualization(view: View?) {
-        clear()
-        squareBarVisualizer.visibility = View.VISIBLE
-        squareBarVisualizer.setColor(ContextCompat.getColor(this, R.color.purple_200))
-        // define a custom number of bars you want in the visualizer between (10 - 256).
-        squareBarVisualizer.setDensity(65f)
-        // Set Spacing
-        squareBarVisualizer.setGap(5)
-        squareBarVisualizer.setPlayer(mediaPlayer.audioSessionId)
-    }
-
-    fun lineBarVisualization(view: View?) {
-        clear()
-        lineBarVisualizer.visibility = View.VISIBLE
-        lineBarVisualizer.setColor(ContextCompat.getColor(this, R.color.teal_200))
-        // define the custom number of bars we want in the visualizer between (10 - 256).
-        lineBarVisualizer.setDensity(50f)
-        lineBarVisualizer.setPlayer(mediaPlayer.audioSessionId)
-    }
 
     fun clear(){
         lineVisualizer.visibility = View.INVISIBLE
-        barVisualizer.visibility = View.INVISIBLE
-        circleBarVisualizer.visibility = View.INVISIBLE
-        squareBarVisualizer.visibility = View.INVISIBLE
-        lineBarVisualizer.visibility = View.INVISIBLE
-        circleVisualizer.visibility = View.INVISIBLE
     }
 
     fun playClicked(view: View){
         if(mediaPlayer.isPlaying){
             mediaPlayer.pause()
-            playbutton.setText("PLAY")
+            playbutton.setImageResource(R.drawable.ic_play_arrow)
         }
         else{
             if(init==true){
                 clear()
                 lineVisualizer.visibility = View.VISIBLE
-                lineVisualizer.setColor(ContextCompat.getColor(this, R.color.purple_700))
-                lineVisualizer.setStrokeWidth(1)
+                lineVisualizer.setColor(ContextCompat.getColor(this, R.color.colorAccent))
+                lineVisualizer.setStrokeWidth(4)
                 lineVisualizer.setPlayer(mediaPlayer.audioSessionId)
                 init = false
             }
             mediaPlayer.start()
-            playbutton.setText("PAUSE")
+            playbutton.setImageResource(R.drawable.ic_pause)
         }
     }
 
@@ -312,7 +268,43 @@ class PlayActivity : AppCompatActivity(){
             println("id null")
         }
 
+        //showSheetDialog(view)
+
         finish()
+    }
+
+    fun showSheetDialog(view: View){
+        val sheetDialog: BottomSheetDialog = BottomSheetDialog(this)
+        sheetDialog.setContentView(R.layout.save_to_board_layout)
+
+        val board_recyclerview: RecyclerView? = view.findViewById(R.id.save_recyclerview)
+        val datalist = ArrayList<BoardEntry>()
+
+        val user_reference = FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().currentUser!!.uid)
+        val user_event_listener =  object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                //for (ds in snapshot.child("Audio").children)
+                val user : User? =  snapshot.getValue(User::class.java)
+                if(user != null){
+                    datalist.clear()
+                    val soundboards = user.getSoundBoardList()
+                    for(sb in soundboards){
+                        datalist.add(BoardEntry("NA", sb.getSoundBoardName(), "${sb.getSoundByteIdMap().size} soundbytes", sb.getSoundByteIdMap() ))
+                    }
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+        }
+        user_reference.addValueEventListener(user_event_listener)
+
+
+        val adapter = SheetBoardAdapter(datalist)
+        board_recyclerview?.adapter = adapter
+
+        sheetDialog.show()
     }
 
 }
