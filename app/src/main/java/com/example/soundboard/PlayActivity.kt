@@ -2,6 +2,7 @@ package com.example.soundboard
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
@@ -228,6 +229,12 @@ class PlayActivity : AppCompatActivity(){
             mediaPlayer.start()
             playbutton.setImageResource(R.drawable.ic_pause)
         }
+    }
+
+    fun chooseBoard(view:View){
+        val newIntent = Intent(this, ChooseBoardActivity::class.java)
+        newIntent.putExtra("soundByteId", intent.getStringExtra("soundByteId") )
+        startActivity(newIntent)
     }
 
     fun savetoboardClicked(view:View){

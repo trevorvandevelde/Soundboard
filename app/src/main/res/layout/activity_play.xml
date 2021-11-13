@@ -131,7 +131,7 @@
 
                     <Button
                             android:layout_marginBottom="16dp"
-                            android:onClick="savetoboardClicked"
+                            android:onClick="chooseBoard"
                             android:padding="16dp"
                             android:elevation="8dp"
                             android:outlineAmbientShadowColor="@color/colorShadow"
@@ -150,12 +150,7 @@
                             app:cornerRadius="20dp" />
 
                 </LinearLayout>
-
-            </LinearLayout>
-
-
-
-        </LinearLayout>
+              
     </ScrollView>
 
 </LinearLayout>

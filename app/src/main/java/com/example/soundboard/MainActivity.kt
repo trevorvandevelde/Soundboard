@@ -37,6 +37,7 @@ class MainActivity : AppCompatActivity() {
         check_permission()
         navView = findViewById(R.id.nav_view)
 
+
         // hide the navigation bar
 //        getWindow().getDecorView().setSystemUiVisibility(SYSTEM_UI_FLAG_HIDE_NAVIGATION);
 //        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -108,6 +109,11 @@ class MainActivity : AppCompatActivity() {
 //            setWindowFlag(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, false)
 //            window.statusBarColor = Color.TRANSPARENT
 //        }
+
+        val fragmentString = intent.extras?.getString("fragmentStart")
+        if (fragmentString == "ProfileFragment") {
+            setCurrentFragment(2)
+        }
 
     }
 
