@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
@@ -35,6 +36,11 @@ class BoardAdapter(var data: List<BoardEntry>)
             intent.putExtra("title", board.title)
             intent.putExtra("position", position.toString())
             view.getContext().startActivity(intent)
+        }
+
+        viewholder.itemView.setOnLongClickListener{
+            Delete_Board_Dialog().show((view.context as AppCompatActivity).getSupportFragmentManager(),"Delete_Board_Dialog")
+            true
         }
 
         return viewholder
