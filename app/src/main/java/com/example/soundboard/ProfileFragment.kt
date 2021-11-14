@@ -85,7 +85,6 @@ class ProfileFragment : Fragment() {
     }
 
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navView = requireActivity().findViewById(R.id.nav_view)

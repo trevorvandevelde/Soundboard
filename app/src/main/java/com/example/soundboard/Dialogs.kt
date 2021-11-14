@@ -53,17 +53,54 @@ class Add_Board_Dialog: DialogFragment() {
 
                 user_reference.addListenerForSingleValueEvent(user_event_listener)
 
-
-
-
-
-
                 dismiss()
             }
             .setNegativeButton("CANCEL"){ _, _ ->
                 dismiss()
             }
 
+        return builder.create()
+    }
+}
+
+class Delete_Board_Dialog: DialogFragment(){
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        val view = requireActivity().layoutInflater.inflate(
+            R.layout.text_dialog_layout, null
+        )
+        val textview = view.findViewById<TextView>(R.id.dialog_info)
+        textview.setText("Are you sure you want to delete this board? ")
+
+        val builder = AlertDialog.Builder(requireContext())
+            .setTitle("Delete Board")
+            .setView(view)
+            .setPositiveButton("Yes") { _, _ ->
+                dismiss()
+            }
+            .setNegativeButton("No") { _, _ ->
+                dismiss()
+            }
+        return builder.create()
+    }
+}
+
+class Delete_Soundbyte_Dialog: DialogFragment(){
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        val view = requireActivity().layoutInflater.inflate(
+            R.layout.text_dialog_layout, null
+        )
+        val textview = view.findViewById<TextView>(R.id.dialog_info)
+        textview.setText("Are you sure you want to delete this soundbyte from this board? ")
+
+        val builder = AlertDialog.Builder(requireContext())
+            .setTitle("Delete Soundbyte")
+            .setView(view)
+            .setPositiveButton("Yes") { _, _ ->
+                dismiss()
+            }
+            .setNegativeButton("No") { _, _ ->
+                dismiss()
+            }
         return builder.create()
     }
 }

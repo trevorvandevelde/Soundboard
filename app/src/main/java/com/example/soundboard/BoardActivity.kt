@@ -1,5 +1,6 @@
 package com.example.soundboard
 
+import android.app.ProgressDialog.show
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -7,6 +8,8 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import androidx.fragment.app.DialogFragment
+
 
 class BoardActivity : AppCompatActivity(){
 
@@ -48,6 +51,7 @@ class BoardActivity : AppCompatActivity(){
         board_listview = findViewById(R.id.board_listview)
         soundbyteAdapter = SoundbyteAdapter(this, R.layout.soundbyte_item, datalist)
         board_listview.adapter = soundbyteAdapter
+
         board_listview.setOnItemClickListener{ parent: AdapterView<*>, view: View, position: Int, id: Long ->
             val soundbyte = datalist[position]
             val intent = Intent(this, PlayActivity::class.java)
@@ -57,6 +61,12 @@ class BoardActivity : AppCompatActivity(){
             intent.putExtra("soundByteId", soundbyte.id )
             startActivity(intent)
         }
+
+        board_listview.setOnItemLongClickListener{ parent: AdapterView<*>, view: View, position: Int, id: Long ->
+            Delete_Soundbyte_Dialog().show(getSupportFragmentManager(), "Delete_Soundbyte_Dialog")
+            true
+        }
+
     }
 
     //observes changes to selected soundboard's hashmap of soundbyteids, gets all audio once

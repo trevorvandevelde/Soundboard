@@ -385,9 +385,17 @@ class UploadSoundByteActivity : AppCompatActivity() {
             setByteFromUri(default_uri)
             fileName = uploaderNewFileNameEditText.text.toString()
             uploadImageToServer(bytes, fileName)
+            // try to add the audio to the default board but idk how to get its id on firebase
+           // val ref = FirebaseDatabase.getInstance().getReference("Users")
+           //     .child(FirebaseAuth.getInstance().currentUser!!.uid).child("soundBoardList").child("0")
+           //    .child("soundByteIdMap").child(fileName).setValue(true)
+
         }else {
             fileName = uploaderNewFileNameEditText.text.toString()
             uploadImageToServer(bytes, fileName)
+           // val ref = FirebaseDatabase.getInstance().getReference("Users")
+           //     .child(FirebaseAuth.getInstance().currentUser!!.uid).child("soundBoardList").child("0")
+           //     .child("soundByteIdMap").child(fileName).setValue(true)
             /*
             uploadFileToServer(uriAudio, fileName, mAuth.uid.toString())
             NOTE, async call. must upload file once image upload completes or imageurl doesn't exist -> crashes
