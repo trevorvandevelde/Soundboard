@@ -80,21 +80,10 @@ class UploadSoundByteActivity : AppCompatActivity() {
     lateinit var mediaPlayer: MediaPlayer
 
     lateinit var lineBarVisualizer: LineBarVisualizer
-    lateinit var lineVisualizer: LineVisualizer
-    lateinit var barVisualizer: BarVisualizer
-    lateinit var circleBarVisualizer: CircleBarVisualizer
-    lateinit var circleVisualizer: CircleVisualizer
-    lateinit var squareBarVisualizer: SquareBarVisualizer
-    lateinit var elapsedtimelable: TextView
-    lateinit var remainingtimelable: TextView
     lateinit var positionBar: SeekBar
-    lateinit var playbutton: Button
-    lateinit var playlist: ArrayList<Int>
-    lateinit var thread:Thread
+
 
     var total_time:Int = 0
-    var music_id = 1
-    var init: Boolean = true
     var uploadedAudio: Boolean = false
 
     val DEFAULT_IMAGE_ID : Int = R.drawable.soundbyte_image_placeholder
@@ -211,10 +200,12 @@ class UploadSoundByteActivity : AppCompatActivity() {
         if(result.resultCode == Activity.RESULT_OK) {
             uriAudio = result.data?.data!!
             fileName = getFileName(uriAudio)!!
-
-
-            mediaPlayer = MediaPlayer.create(this, uriAudio)
+            
+            mediaPlayer.stop()
+            mediaPlayer.reset()
+            mediaPlayer.setDataSource(this, uriAudio)
             mediaPlayer.isLooping = true
+            mediaPlayer.prepare()
 
             total_time = mediaPlayer.duration
             durationSeconds = (mediaPlayer.duration/1000).toString()
@@ -240,8 +231,6 @@ class UploadSoundByteActivity : AppCompatActivity() {
                     }
                 }
             }).start()
-
-
 
             // audioFileNameEditText.text = fileName
 
@@ -423,7 +412,7 @@ class UploadSoundByteActivity : AppCompatActivity() {
         super.onDestroy()
         mediaPlayer.stop()
         mediaPlayer.reset()
-        // mediaPlayer.release()
+        //mediaPlayer.release()
     }
 
     fun onCancel(view: View){
