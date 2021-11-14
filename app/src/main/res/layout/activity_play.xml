@@ -16,6 +16,14 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
+            <ImageView
+                    android:layout_gravity="center"
+                    android:id = "@+id/play_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="410dp"
+                    android:background="@color/colorCharcoal"
+                    android:src="@drawable/dartmouth"/>
+
 
 
             <LinearLayout
@@ -26,28 +34,14 @@
                     android:gravity="center"
                     android:layout_gravity="center"
                     android:layout_marginHorizontal="24dp"
-                    android:paddingVertical="@dimen/activity_vertical_margin">
+                    >
 
-                <ImageView
-                        android:layout_gravity="center"
-                        android:id = "@+id/play_image"
-                        android:layout_width="match_parent"
-                        android:layout_height="250dp"
-                        android:src="@drawable/dartmouth"/>
 
-                <TextView
-                        android:layout_marginTop="16dp"
-                        android:id="@+id/play_title"
-                        android:layout_width="wrap_content"
-                        android:layout_height="30dp"
-                        android:textStyle="bold"
-                        android:textSize="20dp"
-                        android:text="soundbyte name" />
 
                 <com.chibde.visualizer.LineVisualizer
                         android:id="@+id/visualizerLine"
                         android:layout_width="match_parent"
-                        android:layout_height="100dp" />
+                        android:layout_height="50dp" />
 
 
                 <LinearLayout
@@ -60,7 +54,6 @@
                     <SeekBar
                             android:background="@android:color/transparent"
                             android:id="@+id/positionBar"
-                            android:layout_marginTop="24dp"
                             android:layout_width="300dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal" />
