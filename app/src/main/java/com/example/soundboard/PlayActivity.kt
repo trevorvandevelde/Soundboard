@@ -123,7 +123,6 @@ class PlayActivity : AppCompatActivity(){
         }).start()
 
         val play_image: ImageView = findViewById(R.id.play_image)
-        val play_title: TextView = findViewById(R.id.play_title)
         val play_header: TextView = findViewById(R.id.soundbyte_header_title)
         val play_author: TextView = findViewById(R.id.soundbyte_author)
 
@@ -135,7 +134,6 @@ class PlayActivity : AppCompatActivity(){
         if(coverUrl != "NA"){
           Picasso.get().load(coverUrl).into(play_image)
         }
-        play_title.setText(title)
         play_header.setText(title)
         play_author.setText(author)
 

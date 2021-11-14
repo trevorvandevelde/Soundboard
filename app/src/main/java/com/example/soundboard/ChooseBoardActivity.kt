@@ -27,6 +27,10 @@ class ChooseBoardActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_choose_board)
 
+
+        val page_tite : TextView = findViewById(R.id.header_name)
+        page_tite.setText("Choose a Board")
+
         soundByteId = intent.getStringExtra("soundByteId")!!
 
         board_choose_recyclerview = findViewById(R.id.board_choose_recyclerview)
