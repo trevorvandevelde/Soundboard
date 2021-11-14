@@ -48,7 +48,12 @@ class PlayActivity : AppCompatActivity(){
     lateinit var mediaPlayer: MediaPlayer
 
 
+    lateinit var lineBarVisualizer:LineBarVisualizer
     lateinit var lineVisualizer:LineVisualizer
+    lateinit var barVisualizer: BarVisualizer
+    lateinit var circleBarVisualizer: CircleBarVisualizer
+    lateinit var circleVisualizer:CircleVisualizer
+    lateinit var squareBarVisualizer: SquareBarVisualizer
 
     lateinit var elapsedtimelable: TextView
     lateinit var remainingtimelable: TextView
@@ -59,7 +64,7 @@ class PlayActivity : AppCompatActivity(){
 
 
     var total_time:Int = 0
-    var music_id = 1
+    var visualizer_id = 1
     var init: Boolean = true
 
 
@@ -80,6 +85,13 @@ class PlayActivity : AppCompatActivity(){
         mediaPlayer.isLooping = true
 
         lineVisualizer = findViewById(R.id.visualizerLine)
+        barVisualizer = findViewById(R.id.visualizerBar)
+        circleBarVisualizer = findViewById(R.id.visualizerCircleBar)
+        lineBarVisualizer = findViewById(R.id.visualizerLineBar)
+        circleVisualizer = findViewById(R.id.visualizerCircle)
+        squareBarVisualizer = findViewById(R.id.visualizerSquareBar)
+        clear()
+
         playbutton = findViewById(R.id.playbutton)
         positionBar = findViewById(R.id.positionBar)
         elapsedtimelable = findViewById(R.id.elapsedTimeLabel)
@@ -200,14 +212,64 @@ class PlayActivity : AppCompatActivity(){
     fun lineVisualization(view: View){
         clear()
         lineVisualizer.visibility = View.VISIBLE
-        lineVisualizer.setColor(ContextCompat.getColor(this, R.color.colorAccent))
+        lineVisualizer.setColor(ContextCompat.getColor(this, R.color.purple_700))
         lineVisualizer.setStrokeWidth(1)
         lineVisualizer.setPlayer(mediaPlayer.audioSessionId)
     }
 
+    fun barVisualization(view: View?) {
+        clear()
+        barVisualizer.visibility = View.VISIBLE
+        barVisualizer.setColor(ContextCompat.getColor(this, R.color.black))
+        // define a custom number of bars we want in the visualizer it is between (10 - 256).
+        barVisualizer.setDensity(80f)
+        barVisualizer.setPlayer(mediaPlayer.audioSessionId)
+    }
+
+    fun circleBarVisualization(view: View?) {
+        clear()
+        circleBarVisualizer.visibility = View.VISIBLE
+        circleBarVisualizer.setColor(ContextCompat.getColor(this, R.color.teal_200))
+        circleBarVisualizer.setPlayer(mediaPlayer.audioSessionId)
+    }
+
+    fun circleVisualization(view: View?) {
+        clear()
+        circleVisualizer.visibility = View.VISIBLE
+        circleVisualizer.setColor(ContextCompat.getColor(this, R.color.purple_500))
+        // Customize the size of the circle. by default, the multipliers are 1.
+        circleVisualizer.setRadiusMultiplier(2.2f)
+        circleVisualizer.setStrokeWidth(2)
+        circleVisualizer.setPlayer(mediaPlayer.audioSessionId)
+    }
+
+    fun squareBarVisualization(view: View?) {
+        clear()
+        squareBarVisualizer.visibility = View.VISIBLE
+        squareBarVisualizer.setColor(ContextCompat.getColor(this, R.color.purple_200))
+        // define a custom number of bars you want in the visualizer between (10 - 256).
+        squareBarVisualizer.setDensity(65f)
+        // Set Spacing
+        squareBarVisualizer.setGap(5)
+        squareBarVisualizer.setPlayer(mediaPlayer.audioSessionId)
+    }
+
+    fun lineBarVisualization(view: View?) {
+        clear()
+        lineBarVisualizer.visibility = View.VISIBLE
+        lineBarVisualizer.setColor(ContextCompat.getColor(this, R.color.teal_200))
+        // define the custom number of bars we want in the visualizer between (10 - 256).
+        lineBarVisualizer.setDensity(50f)
+        lineBarVisualizer.setPlayer(mediaPlayer.audioSessionId)
+    }
 
     fun clear(){
         lineVisualizer.visibility = View.INVISIBLE
+        barVisualizer.visibility = View.INVISIBLE
+        circleBarVisualizer.visibility = View.INVISIBLE
+        squareBarVisualizer.visibility = View.INVISIBLE
+        lineBarVisualizer.visibility = View.INVISIBLE
+        circleVisualizer.visibility = View.INVISIBLE
     }
 
     fun playClicked(view: View){
@@ -235,6 +297,18 @@ class PlayActivity : AppCompatActivity(){
         startActivity(newIntent)
     }
 
+    fun visualizer_clicked(view: View){
+        visualizer_id +=1
+        if(visualizer_id > 4){
+            visualizer_id = 1
+        }
+        when(visualizer_id){
+            1 -> lineVisualization(view)
+            2 -> barVisualization(view)
+            3 -> squareBarVisualization(view)
+            4 -> lineBarVisualization(view)
+        }
+    }
 
     fun showSheetDialog(view: View){
         val sheetDialog: BottomSheetDialog = BottomSheetDialog(this)
