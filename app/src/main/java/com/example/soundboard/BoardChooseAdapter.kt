@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat.startActivity
@@ -32,28 +33,28 @@ class BoardChooseAdapter(var data: List<BoardEntry>, var soundByteId: String) : 
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.board_item, parent, false)
         val viewholder = ViewHolder(view)
+
         viewholder.itemView.setOnClickListener {
             val position = viewholder.adapterPosition
             //val board = data[position]
-
 
             if(soundByteId != null) {
                 val soundBoardId : String = position.toString()  //TODO: change to id of whatever soundboard you pick later
                 val ref = FirebaseDatabase.getInstance().getReference("Users")
                     .child(FirebaseAuth.getInstance().currentUser!!.uid).child("soundBoardList").child(soundBoardId)
                     .child("soundByteIdMap").child(soundByteId).setValue(true)
-
+                Toast.makeText(view.context, "Successfully Saved to ${data[position].title}!", Toast.LENGTH_SHORT)
+                    .show()
                 // idk about this structure, but it's recommended i guessss
                 // https://firebase.google.com/docs/database/android/structure-data#fanout
             }else{
                 println("id null")
             }
 
-
-            val intent  = Intent(parent.context, MainActivity::class.java)
+            //val intent  = Intent(parent.context, MainActivity::class.java)
             //idk how to choose a specific fragment
-            intent.putExtra("fragmentStart", "ProfileFragment")
-            parent.context.startActivity(intent)
+            //intent.putExtra("fragmentStart", "ProfileFragment")
+            //parent.context.startActivity(intent)
 
             // add to thing
         }

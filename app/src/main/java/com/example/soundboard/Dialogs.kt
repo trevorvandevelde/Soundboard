@@ -41,7 +41,8 @@ class Add_Board_Dialog: DialogFragment() {
                             sb.SoundBoard(text)
                             user.addSoundBoard(sb)
                             user_reference.child("soundBoardList").setValue(user.getSoundBoardList())
-
+                            Toast.makeText(requireContext(), "Successfully Created!", Toast.LENGTH_SHORT)
+                                .show()
                         }
                         }
 
