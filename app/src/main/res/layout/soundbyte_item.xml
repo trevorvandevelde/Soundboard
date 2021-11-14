@@ -10,6 +10,7 @@
         android:orientation="vertical">
 
     <TextView
+            android:textColor="@color/colorTextLight"
             android:id="@+id/soundbyte_author"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -32,6 +33,7 @@
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:backgroundTint="@color/colorCardDark"
                 android:background="@drawable/bottom_navigation_background">
             <ImageView
                     android:id = "@+id/soundbyte_image"
@@ -48,7 +50,7 @@
                     android:gravity="center_vertical"
                     android:layout_gravity="center_vertical">
                 <TextView
-                        android:textColor="@color/colorCharcoal"
+                        android:textColor="@color/colorTextLight"
                         android:id = "@+id/soundbyte_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -56,6 +58,7 @@
                         android:textSize="18dp"
                         android:text = "Soundbyte Title"/>
                 <TextView
+                        android:textColor="@color/colorTextLightGrey"
                         android:id = "@+id/soundbyte_time"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

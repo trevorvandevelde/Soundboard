@@ -7,9 +7,12 @@
         android:layout_height="wrap_content"
         app:cardCornerRadius="8dp"
         android:layout_margin="8dp"
-        android:elevation="16dp">
+        android:outlineSpotShadowColor="@color/colorShadow"
+        android:outlineAmbientShadowColor="@color/colorShadow"
+        android:elevation="20dp">
 
 <LinearLayout
+
         android:orientation="vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

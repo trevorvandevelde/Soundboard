@@ -5,10 +5,18 @@
     <color name="colorAccent">#A397DA</color>
 
     <color name="colorButton">#BE84BA</color>
+    <color name="colorBgColorLight">#F7FBFF</color>
+
+    <color name="colorBgDark">#151515</color>
+    <color name="colorCardDark">#242424</color>
+    <color name="colorShadowDark">#050505</color>
+    <color name="colorTextLight">#F2F3F6</color>
+    <color name="colorTextLightGrey">#CACACA</color>
+
 
     <color name="colorCharcoal">#464646</color>
     <color name="colorSlate">#A6A6A6</color>
-    <color name="colorShadow">#90A8C3</color>
+    <color name="colorShadow">#6F90B5</color>
 
     <color name="clr_pressed">#D3D3D3</color>
     <color name="clr_normal">#FFFFFF</color>
