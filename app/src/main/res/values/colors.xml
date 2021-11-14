@@ -10,6 +10,12 @@
     <color name="colorSlate">#A6A6A6</color>
     <color name="colorShadow">#90A8C3</color>
 
+    <color name="colorTransparent">#00ffffff</color>
+    <color name="colorGradientStart">#FFB8DD</color>
+    <color name="colorGradientCenter">#C7BDE0</color>
+    <color name="colorGradientEnd">#70C6E3</color>
+
+
     <color name="clr_pressed">#D3D3D3</color>
     <color name="clr_normal">#FFFFFF</color>
     <color name="purple_200">#FFBB86FC</color>

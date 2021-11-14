@@ -8,6 +8,10 @@
         <entry key="app/src/main/res/drawable/card_background.xml" value="0.18229166666666666" />
         <entry key="app/src/main/res/drawable/cardview_selector.xml" value="0.19635416666666666" />
         <entry key="app/src/main/res/drawable/field_background.xml" value="0.1765625" />
+        <entry key="app/src/main/res/drawable/gradient_animation.xml" value="0.13802083333333334" />
+        <entry key="app/src/main/res/drawable/gradient_center.xml" value="0.13802083333333334" />
+        <entry key="app/src/main/res/drawable/gradient_end.xml" value="0.13802083333333334" />
+        <entry key="app/src/main/res/drawable/gradient_start.xml" value="0.13802083333333334" />
         <entry key="app/src/main/res/drawable/ic_back_arrow.xml" value="0.16510416666666666" />
         <entry key="app/src/main/res/drawable/ic_gradient_bg1.xml" value="0.18229166666666666" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1765625" />

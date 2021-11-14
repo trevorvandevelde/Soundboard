@@ -6,6 +6,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.graphics.Color
+import android.graphics.drawable.AnimationDrawable
 import android.os.Build
 import android.os.Bundle
 import android.view.View
@@ -13,6 +14,8 @@ import android.view.View.*
 import android.view.WindowManager
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.WindowCompat
@@ -30,12 +33,19 @@ class MainActivity : AppCompatActivity() {
     private lateinit var fragments : ArrayList<Fragment>
     private var lastFragmentIndex : Int = 0
     private lateinit var navView: BottomNavigationView
+    private lateinit var layout : CoordinatorLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         check_permission()
         navView = findViewById(R.id.nav_view)
+
+        layout = findViewById(R.id.container)
+        val animDrawable = layout.background as AnimationDrawable
+        animDrawable.setEnterFadeDuration(10)
+        animDrawable.setExitFadeDuration(5000)
+        animDrawable.start()
 
 
         // hide the navigation bar
