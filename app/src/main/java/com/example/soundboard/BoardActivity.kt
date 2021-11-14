@@ -26,7 +26,7 @@ class BoardActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_board)
 
-        board_name_view = findViewById(R.id.board_name)
+        board_name_view = findViewById(R.id.header_name)
         val board_name = intent.getStringExtra("title")
         board_position = intent.getStringExtra("position").toString()
         if(board_name != null){
