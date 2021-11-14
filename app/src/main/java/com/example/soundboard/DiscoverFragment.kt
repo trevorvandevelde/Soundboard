@@ -103,6 +103,10 @@ class DiscoverFragment : Fragment() {
                         querylist.add(item)
                         found = true
                     }
+                    else if (item.author.contains(query!!, ignoreCase = true)){
+                        querylist.add(item)
+                        found = true
+                    }
                     else{
                         for(tag in item.tag_list){
                             if(tag.contains(query, ignoreCase = true)||

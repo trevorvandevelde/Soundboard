@@ -200,7 +200,7 @@ class UploadSoundByteActivity : AppCompatActivity() {
         if(result.resultCode == Activity.RESULT_OK) {
             uriAudio = result.data?.data!!
             fileName = getFileName(uriAudio)!!
-            
+
             mediaPlayer.stop()
             mediaPlayer.reset()
             mediaPlayer.setDataSource(this, uriAudio)
