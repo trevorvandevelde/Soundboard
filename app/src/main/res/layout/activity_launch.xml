@@ -7,7 +7,7 @@
         android:windowTranslucentStatus="false"
         android:fitsSystemWindows="true"
         android:layout_width="match_parent"
-        android:background="@drawable/ic_gradient_bg2"
+        android:background="@drawable/gradient_animation"
         android:layout_height="match_parent"
         android:paddingTop="0dp"
         tools:context=".MainActivity">

@@ -23,7 +23,6 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
-import com.example.soundboard.databinding.ActivityBoardBinding.inflate
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.snackbar.Snackbar
 
@@ -41,6 +40,7 @@ class MainActivity : AppCompatActivity() {
         check_permission()
         navView = findViewById(R.id.nav_view)
 
+        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
         layout = findViewById(R.id.container)
         val animDrawable = layout.background as AnimationDrawable
         animDrawable.setEnterFadeDuration(10)

@@ -1,8 +1,11 @@
 package com.example.soundboard
 
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.AnimationDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 
@@ -13,6 +16,7 @@ import com.google.firebase.auth.FirebaseUser
 class LaunchActivity : AppCompatActivity() {
 
     private lateinit var mAuth : FirebaseAuth
+    private lateinit var layout : CoordinatorLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,6 +28,15 @@ class LaunchActivity : AppCompatActivity() {
             addToBackStack(null)
             commit()
         }
+
+        window.statusBarColor = Color.TRANSPARENT
+        layout = findViewById(R.id.container)
+        val animDrawable = layout.background as AnimationDrawable
+        animDrawable.setEnterFadeDuration(10)
+        animDrawable.setExitFadeDuration(5000)
+        animDrawable.start()
+
+
 
         mAuth = FirebaseAuth.getInstance()
         val user : FirebaseUser? = mAuth.currentUser
