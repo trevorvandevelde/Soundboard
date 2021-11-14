@@ -64,10 +64,6 @@ class ChooseBoardActivity : AppCompatActivity() {
 
         user_reference.addValueEventListener(user_event_listener)
 
-
-
-
-
     }
 
 }

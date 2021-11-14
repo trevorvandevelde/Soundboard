@@ -237,41 +237,6 @@ class PlayActivity : AppCompatActivity(){
         startActivity(newIntent)
     }
 
-    fun savetoboardClicked(view:View){
-        /*
-        val user_reference = FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().currentUser!!.uid)
-        val user_event_listener =  object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                //for (ds in snapshot.child("Audio").children)
-                val user : User? =  snapshot.getValue(User::class.java)
-                if(user != null){
-                   user.getSoundBoards()
-                }
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
-            }
-        }
-        user_reference.addListenerForSingleValueEvent(user_event_listener)
-*/
-        val soundByteId = intent.getStringExtra("soundByteId")
-        if(soundByteId != null) {
-            val soundBoardId : String = "0"     //TODO: change to id of whatever soundboard you pick later
-            val ref = FirebaseDatabase.getInstance().getReference("Users")
-                .child(FirebaseAuth.getInstance().currentUser!!.uid).child("soundBoardList").child(soundBoardId)
-                .child("soundByteIdMap").child(soundByteId).setValue(true)
-
-            // idk about this structure, but it's recommended i guessss
-            // https://firebase.google.com/docs/database/android/structure-data#fanout
-        }else{
-            println("id null")
-        }
-
-        //showSheetDialog(view)
-
-        finish()
-    }
 
     fun showSheetDialog(view: View){
         val sheetDialog: BottomSheetDialog = BottomSheetDialog(this)

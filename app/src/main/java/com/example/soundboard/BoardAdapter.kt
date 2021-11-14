@@ -49,5 +49,6 @@ class BoardAdapter(var data: List<BoardEntry>)
         holder.intro.text = board.intro
     }
 
+
     override fun getItemCount() = data.size
 }
