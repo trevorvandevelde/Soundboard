@@ -20,10 +20,28 @@
             android:paddingVertical="@dimen/activity_vertical_margin">
 
 
-        <androidx.recyclerview.widget.RecyclerView
+        <Button
+                android:layout_marginBottom="16sp"
+                app:icon="@drawable/ic_plus"
+                app:iconPadding="8dp"
+                app:iconSize="16dp"
+                app:iconGravity="textStart"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+                android:textColor="@color/colorCharcoal"
+                android:textAllCaps="false"
+                android:letterSpacing="0"
+                android:fontFamily="@font/inter_bold"
+                android:elevation="0dp"
+                android:text="Create a new board"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/add_board"
                 android:paddingTop="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
+                android:paddingBottom="16dp"
+                app:cornerRadius="20dp" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/board_choose_recyclerview"
                 android:paddingBottom="100dp"
                 android:clipToPadding="false"

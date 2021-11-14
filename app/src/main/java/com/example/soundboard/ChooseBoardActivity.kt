@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
+import android.widget.Button
 import android.widget.ListView
 import android.widget.TextView
 import androidx.core.view.size
@@ -19,6 +20,7 @@ class ChooseBoardActivity : AppCompatActivity() {
     private val datalist = ArrayList<BoardEntry>()
     private lateinit var user_reference: DatabaseReference
     private lateinit var user_event_listener:  ValueEventListener
+    private lateinit var createbutton_view: Button
 
     private lateinit var soundByteId : String
 
@@ -30,6 +32,14 @@ class ChooseBoardActivity : AppCompatActivity() {
 
         val page_tite : TextView = findViewById(R.id.header_name)
         page_tite.setText("Choose a Board")
+
+        createbutton_view = findViewById(R.id.add_board)
+        createbutton_view.setOnClickListener(object: View.OnClickListener{
+            override fun onClick(p0: View?) {
+                Add_Board_Dialog().show(supportFragmentManager, "add_board_dialog")
+                true
+            }
+        })
 
         soundByteId = intent.getStringExtra("soundByteId")!!
 
