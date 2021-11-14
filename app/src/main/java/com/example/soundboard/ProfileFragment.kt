@@ -53,6 +53,7 @@ class ProfileFragment : Fragment() {
         val adapter = BoardAdapter(datalist)
         discover_recyclerview.adapter = adapter
 
+
         userNickname = view.findViewById(R.id.user_name)
         userDescription = view.findViewById(R.id.user_intro)
 
@@ -69,6 +70,8 @@ class ProfileFragment : Fragment() {
                     for(sb in soundboards){
                         datalist.add(BoardEntry("NA", sb.getSoundBoardName(), "${sb.getSoundByteIdMap().size} soundbytes", sb.getSoundByteIdMap() ))
                     }
+                    // refresh our data
+                    adapter.notifyDataSetChanged()
                 }
             }
 
@@ -80,6 +83,8 @@ class ProfileFragment : Fragment() {
 
         return view
     }
+
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

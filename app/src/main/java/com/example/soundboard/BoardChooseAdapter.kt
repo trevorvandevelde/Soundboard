@@ -55,11 +55,6 @@ class BoardChooseAdapter(var data: List<BoardEntry>, var soundByteId: String) : 
             intent.putExtra("fragmentStart", "ProfileFragment")
             parent.context.startActivity(intent)
 
-
-
-
-
-
             // add to thing
         }
 

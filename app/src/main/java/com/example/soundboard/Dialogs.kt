@@ -29,7 +29,6 @@ class Add_Board_Dialog: DialogFragment() {
             .setPositiveButton("OK"){ _, _ ->
                 val text = view.findViewById<EditText>(R.id.add_board_dialog).text.toString()
 
-
                 val user_reference : (DatabaseReference) = FirebaseDatabase.getInstance().getReference("Users").child(
                     FirebaseAuth.getInstance().currentUser!!.uid)
 
