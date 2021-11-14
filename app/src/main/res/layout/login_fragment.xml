@@ -3,7 +3,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:background="@color/white"
+        android:fitsSystemWindows="true"
+        android:background="@color/colorTransparent"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -12,17 +13,19 @@
             android:layout_height="match_parent">
 
         <LinearLayout
+                android:layout_marginTop="50dp"
+                android:background="@drawable/card_background"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:orientation="vertical"
                 android:gravity="center"
-                android:layout_marginVertical="@dimen/activity_vertical_margin"
-                android:layout_marginHorizontal="@dimen/activity_horizontal_margin">
+                android:layout_marginVertical="@dimen/activity_vertical_margin">
 
 
             <TextView
+
                     android:layout_marginTop="24dp"
                     android:textColor="@color/colorCharcoal"
                     android:fontFamily="@font/quicksand_light"
@@ -47,6 +50,7 @@
                     android:contentDescription="SoundBoard logo" />
 
             <com.google.android.material.textfield.TextInputLayout
+                    android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
                     android:id="@+id/loginEmailLayout"
                     android:layout_width="match_parent"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -67,6 +71,7 @@
 
 
             <com.google.android.material.textfield.TextInputLayout
+                    android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
                     android:id="@+id/loginPasswordLayout"
                     android:layout_width="match_parent"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -87,6 +92,7 @@
 
 
             <LinearLayout
+                    android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
                     android:layout_marginTop="8dp"
                     android:orientation="vertical"
                     android:layout_width="match_parent"
