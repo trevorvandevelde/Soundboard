@@ -11,6 +11,7 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import org.w3c.dom.Text
@@ -31,6 +32,7 @@ class ProfileFragment : Fragment() {
     private lateinit var user_reference: DatabaseReference
     private lateinit var user_event_listener:  ValueEventListener
     private lateinit var createbutton_view: Button
+    private lateinit var navView: BottomNavigationView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -81,6 +83,9 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        navView = requireActivity().findViewById(R.id.nav_view)
+        navView.selectedItemId = R.id.navigation_profile
+
         viewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
     }
 

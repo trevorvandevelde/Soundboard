@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.database.*
 
 
@@ -28,6 +29,7 @@ class DiscoverFragment : Fragment() {
     private lateinit var database_event_listener: ValueEventListener
     private  var local_data: MutableList<SoundByteEntry> = mutableListOf()
     private var datanumber = 10
+    private lateinit var navView: BottomNavigationView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -124,6 +126,9 @@ class DiscoverFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        navView = requireActivity().findViewById(R.id.nav_view)
+        navView.selectedItemId = R.id.navigation_discover
+
         viewModel = ViewModelProvider(this).get(DiscoverViewModel::class.java)
     }
 
