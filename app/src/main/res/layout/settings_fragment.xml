@@ -32,7 +32,7 @@
                     android:fontFamily="@font/inter_medium"
                     android:textSize="14dp"
                     android:layout_marginBottom="24dp"
-                    android:text="These details are public and can be seen by other users on Soundboard,"
+                    android:text="These details are public and can be seen by other users on Soundboard."
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
 

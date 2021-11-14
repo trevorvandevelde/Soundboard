@@ -12,8 +12,8 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.*
 
 class SettingsFragment : Fragment() {
 
@@ -31,7 +31,11 @@ class SettingsFragment : Fragment() {
     private lateinit var changeNicknameButton: Button
     private lateinit var changeDescriptionButton : Button
 
+    private lateinit var userEmail : TextView
 
+    private lateinit var user_reference: DatabaseReference
+    private lateinit var user_event_listener:  ValueEventListener
+    private val datalist = ArrayList<BoardEntry>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -56,6 +60,26 @@ class SettingsFragment : Fragment() {
 
         nicknameEditText = view.findViewById(R.id.userNicknameEditText)
         descriptionEditText = view.findViewById(R.id.userDescriptionEditText)
+        userEmail = view.findViewById(R.id.user_email)
+
+        user_reference = FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().currentUser!!.uid)
+        user_event_listener =  object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                //for (ds in snapshot.child("Audio").children)
+                val user: User? = snapshot.getValue(User::class.java)
+                val user_fb: FirebaseUser = mAuth.currentUser!!
+                if (user != null) {
+                    datalist.clear()
+                    nicknameEditText.setText(user.getUserNickname())
+                    descriptionEditText.setText(user.getUserDescription())
+                    userEmail.setText(user_fb.email)
+                }
+            }
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+        }
+        user_reference.addValueEventListener(user_event_listener)
 
         changeNicknameButton = view.findViewById(R.id.userNicknameButton)
         changeDescriptionButton = view.findViewById(R.id.userDescriptionButton)
