@@ -83,15 +83,17 @@ class HomeFragment : Fragment() {
         user_reference.addValueEventListener(user_event_listener)
 
         main_listview = view.findViewById(R.id.home_listview)
+        retrieve_audio()
+        /*
         if(datalist.size == 0) {
-          //  initData()
-            retrieve_audio()
+            //  initData()
         }
+
         else{
             soundbyteAdapter = SoundbyteAdapter(requireContext(), R.layout.soundbyte_item,datalist)
             main_listview.adapter = soundbyteAdapter
         }
-
+*/
         main_listview.setOnItemClickListener{ parent: AdapterView<*>, view: View, position: Int, id: Long ->
             val soundbyte = datalist[position]
             val intent = Intent(requireActivity(), PlayActivity::class.java)
@@ -108,7 +110,7 @@ class HomeFragment : Fragment() {
             intent.putStringArrayListExtra("tags", tags)
             startActivity(intent)
         }
-        refresh_data()
+
         return view
     }
 
