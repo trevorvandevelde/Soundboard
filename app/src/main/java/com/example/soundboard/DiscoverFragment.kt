@@ -31,6 +31,8 @@ class DiscoverFragment : Fragment() {
     private  var local_data: MutableList<SoundByteEntry> = mutableListOf()
     private var datanumber = 10
     private var is_query: Boolean = false
+    private var first_and_search:Boolean = false
+    private var querylocal:String? = ""
     private lateinit var navView: BottomNavigationView
 
     override fun onCreateView(
@@ -79,7 +81,7 @@ class DiscoverFragment : Fragment() {
                     else{
                         for(tag in item.tag_list){
                             if(tag.contains(query, ignoreCase = true)||
-                                    query.contains(tag, ignoreCase = true)){
+                                query.contains(tag, ignoreCase = true)){
                                 querylist.add(item)
                                 found = true
                                 break
@@ -94,6 +96,11 @@ class DiscoverFragment : Fragment() {
 
             override fun onQueryTextChange(query: String?): Boolean {
                 //soundbyteAdapter.filter.filter(p0)
+                // first time we open this discover fragment but there are texts in searchbar
+                if(is_query == false){
+                    first_and_search = true
+                    querylocal = query
+                }
                 is_query=true
                 if(query == ""){
                     refresh_data()
@@ -122,13 +129,16 @@ class DiscoverFragment : Fragment() {
                 }
                 soundbyteAdapter = SoundbyteAdapter(requireContext(), R.layout.soundbyte_item, querylist)
                 discover_listview.adapter = soundbyteAdapter
+
                 return found
             }
 
-    })
+        })
+
 
         return view
     }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -193,9 +203,41 @@ class DiscoverFragment : Fragment() {
                                  */
                             }
                             // fresh the datas to the datalist
-                            if(is_query==false) {
+
+                            // first time we switch to this fragment and we have texts in searchbar, do the search again
+                            // after refreshing the data from firebase
+                            if(first_and_search == true){
+                                is_query=true
+                                first_and_search = false
+                                if(querylocal == ""){
+                                    refresh_data()
+                                    return
+                                }
+                                querylist.clear()
+                                for(item in local_data) {
+                                    if (item.title.contains(querylocal!!, ignoreCase = true)) {
+                                        querylist.add(item)
+                                    }
+                                    else if (item.author.contains(querylocal!!, ignoreCase = true)){
+                                        querylist.add(item)
+                                    }
+                                    else{
+                                        for(tag in item.tag_list){
+                                            if(tag.contains(querylocal!!, ignoreCase = true)){
+                                                querylist.add(item)
+                                                break
+                                            }
+                                        }
+                                    }
+                                }
+                                soundbyteAdapter = SoundbyteAdapter(requireContext(), R.layout.soundbyte_item, querylist)
+                                discover_listview.adapter = soundbyteAdapter
+
+                            }
+                            else if(is_query==false) {
                                 refresh_data()
                             }
+
                         }
 
                         override fun onCancelled(error: DatabaseError) {
@@ -211,6 +253,13 @@ class DiscoverFragment : Fragment() {
         database_reference.addValueEventListener(database_event_listener )
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        is_query = false
+        first_and_search = false
+    }
+
+    //set the querylist as the original list
     private fun refresh_data(){
         // fresh the datas to the datalist
         querylist.clear()
