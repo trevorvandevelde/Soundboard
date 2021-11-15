@@ -75,6 +75,7 @@ class Delete_Board_Dialog: DialogFragment(){
             .setTitle("Delete Board")
             .setView(view)
             .setPositiveButton("Yes") { _, _ ->
+
                 val user_reference : (DatabaseReference) = FirebaseDatabase.getInstance().getReference("Users").child(
                     FirebaseAuth.getInstance().currentUser!!.uid)
 
@@ -95,9 +96,9 @@ class Delete_Board_Dialog: DialogFragment(){
                             } else {
                                 Toast.makeText(requireContext(), "Cannot remove My Sounds Board", Toast.LENGTH_SHORT)
                                     .show()
-                                dismiss()
                             }
                         }
+                        dismiss()
                     }
 
                     override fun onCancelled(error: DatabaseError) {
