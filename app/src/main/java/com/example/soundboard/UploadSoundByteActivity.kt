@@ -28,7 +28,6 @@ import co.lujun.androidtagview.TagView
 import co.lujun.androidtagview.TagView.OnTagClickListener
 import com.chibde.visualizer.*
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import java.io.ByteArrayOutputStream
@@ -36,6 +35,7 @@ import java.io.IOException
 import android.util.Log
 
 import androidx.annotation.NonNull
+import androidx.core.content.ContentProviderCompat.requireContext
 
 import com.google.android.gms.tasks.OnFailureListener
 
@@ -44,6 +44,7 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.storage.UploadTask
 
 import com.google.android.gms.tasks.OnSuccessListener
+import com.google.firebase.database.*
 
 class UploadSoundByteActivity : AppCompatActivity() {
 
@@ -339,7 +340,9 @@ class UploadSoundByteActivity : AppCompatActivity() {
     private fun uploadDetailsToDatabase(songName : String, imageUrl: String, songUrl : String, uploader : String, description : String, tags: MutableList<String>){
         var soundByte = SoundByte()
         soundByte.SoundByte(songName, imageUrl, songUrl, uploader, description, tags, durationSeconds)
-        FirebaseDatabase.getInstance().getReference("Audio").push().setValue(soundByte)
+        val fireBaseRef = FirebaseDatabase.getInstance().getReference("Audio").push()
+        val key = fireBaseRef.key
+        fireBaseRef.setValue(soundByte)
             .addOnCompleteListener{
                 Toast.makeText(this, "Added File Info to Database", Toast.LENGTH_SHORT).show()
                 progressDialog.dismiss()
@@ -348,6 +351,28 @@ class UploadSoundByteActivity : AppCompatActivity() {
             }.addOnFailureListener{
                 Toast.makeText(this, "Failed to Add to Database", Toast.LENGTH_SHORT).show()
             }
+        val user_reference : (DatabaseReference) = FirebaseDatabase.getInstance().getReference("Users").child(
+            FirebaseAuth.getInstance().currentUser!!.uid)
+
+        val user_event_listener =  object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                //for (ds in snapshot.child("Audio").children)
+                val user : User? =  snapshot.getValue(User::class.java)
+                if(user != null){
+                    val soundBoardList = user.getSoundBoardList()
+                    val soundBoardToEdit = soundBoardList[0]
+                    soundBoardToEdit.addSoundToBoard(key.toString())
+                    soundBoardList[0] = soundBoardToEdit
+                    user_reference.child("soundBoardList").setValue(soundBoardList)
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+        }
+
+        user_reference.addListenerForSingleValueEvent(user_event_listener)
 
     }
 
