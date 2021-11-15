@@ -1,6 +1,8 @@
 package com.example.soundboard
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,7 +24,10 @@ class ProfileImageAdapter(var data: ArrayList<Int>)
 
         viewholder.itemView.setOnClickListener {
             val position = viewholder.adapterPosition
-            
+            val pref : SharedPreferences =it.context.getSharedPreferences("saved_profile_image",
+                Context.MODE_PRIVATE)
+            pref.edit().putInt("profile image", data[position]).apply()
+
             Toast.makeText(view.context, "Successfully choose image ${position}!", Toast.LENGTH_SHORT)
                 .show()
         }

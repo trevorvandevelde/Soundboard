@@ -1,7 +1,9 @@
 package com.example.soundboard
 
 import android.app.ProgressDialog.show
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -62,6 +64,10 @@ class ProfileFragment : Fragment(){
         userDescription = view.findViewById(R.id.user_intro)
         userImage = view.findViewById(R.id.user_image)
 
+        val pref : SharedPreferences =requireActivity().getSharedPreferences("saved_profile_image",
+            Context.MODE_PRIVATE)
+        userImage.setImageResource(pref.getInt("profile image", R.drawable.profile_icon_5))
+
         user_reference = FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().currentUser!!.uid)
         user_event_listener =  object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -87,6 +93,13 @@ class ProfileFragment : Fragment(){
         user_reference.addValueEventListener(user_event_listener)
 
         return view
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val pref : SharedPreferences =requireActivity().getSharedPreferences("saved_profile_image",
+            Context.MODE_PRIVATE)
+        userImage.setImageResource(pref.getInt("profile image", R.drawable.profile_icon_5))
     }
 
 
