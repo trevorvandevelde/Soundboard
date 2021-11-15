@@ -100,6 +100,8 @@ class DiscoverFragment : Fragment() {
                 if(is_query == false){
                     first_and_search = true
                     querylocal = query
+                    is_query=true
+                    return false
                 }
                 is_query=true
                 if(query == ""){
