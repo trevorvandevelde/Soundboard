@@ -51,17 +51,27 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     >
-                <EditText
-                        android:backgroundTint="#F1F1F2"
-                        android:background="@drawable/field_background"
-                        android:padding="8dp"
-                        android:id="@+id/userNicknameEditText"
+                <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/userNicknameLayout"
                         android:layout_width="match_parent"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_height="wrap_content"
-                        android:layout_weight="3"
-                        android:hint="Type your new nickname"
-                        android:text="">
-                </EditText>
+                        app:errorEnabled="true"
+                        app:hintEnabled="false"
+                        >
+
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:backgroundTint="#F1F1F2"
+                            android:background="@drawable/field_background"
+                            android:padding="8dp"
+                            android:id="@+id/userNicknameEditText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="3"
+                            android:hint="Type your new nickname"
+                            android:text="">
+                    </com.google.android.material.textfield.TextInputEditText>
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <Button
                         android:layout_marginTop="8dp"
@@ -95,18 +105,28 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                <EditText
-                        android:layout_marginBottom="8dp"
-                        android:backgroundTint="#F1F1F2"
-                        android:background="@drawable/field_background"
-                        android:padding="8dp"
-                        android:id="@+id/userDescriptionEditText"
+                <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/userDescriptionLayout"
                         android:layout_width="match_parent"
-                        android:layout_height="100dp"
-                        android:layout_weight="2"
-                        android:gravity="top"
-                        android:hint="Type a description">
-                </EditText>
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_height="wrap_content"
+                        app:errorEnabled="true"
+                        app:hintEnabled="false"
+                        >
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:layout_marginBottom="8dp"
+                            android:backgroundTint="#F1F1F2"
+                            android:background="@drawable/field_background"
+                            android:padding="8dp"
+                            android:id="@+id/userDescriptionEditText"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:layout_weight="2"
+                            android:gravity="top"
+                            android:hint="Type a description">
+                    </com.google.android.material.textfield.TextInputEditText>
+
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <Button
                         android:backgroundTint="@color/colorCharcoal"
@@ -185,43 +205,74 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     >
-                <EditText
-                        android:backgroundTint="#F1F1F2"
-                        android:background="@drawable/field_background"
-                        android:padding="8dp"
-                        android:layout_marginBottom="8dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="3"
-                        android:hint="type old password"
-                        android:text="">
-                </EditText>
 
-                <EditText
-                        android:layout_marginBottom="8dp"
-                        android:backgroundTint="#F1F1F2"
-                        android:background="@drawable/field_background"
-                        android:padding="8dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="3"
-                        android:hint="type new password"
-                        android:text="">
-                </EditText>
 
-                <EditText
-                        android:layout_marginBottom="8dp"
-                        android:backgroundTint="#F1F1F2"
-                        android:background="@drawable/field_background"
-                        android:padding="8dp"
+                <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/userNewPasswordLayout"
                         android:layout_width="match_parent"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_height="wrap_content"
-                        android:layout_weight="3"
-                        android:hint="re-type new password"
-                        android:text="">
-                </EditText>
+                        app:errorEnabled="true"
+                        app:hintEnabled="false"
+                        >
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:layout_marginBottom="8dp"
+                            android:backgroundTint="#F1F1F2"
+                            android:background="@drawable/field_background"
+                            android:padding="8dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="3"
+                            android:hint="Enter new password"
+                            android:text="">
+                    </com.google.android.material.textfield.TextInputEditText>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/userConfirmNewPasswordLayout"
+                        android:layout_width="match_parent"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_height="wrap_content"
+                        app:errorEnabled="true"
+                        app:hintEnabled="false"
+                        >
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:layout_marginBottom="8dp"
+                            android:backgroundTint="#F1F1F2"
+                            android:background="@drawable/field_background"
+                            android:padding="8dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="3"
+                            android:hint="Confirm new password"
+                            android:text="">
+                    </com.google.android.material.textfield.TextInputEditText>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/userOldPasswordLayout"
+                        android:layout_width="match_parent"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_height="wrap_content"
+                        app:errorEnabled="true"
+                        app:hintEnabled="false"
+                        >
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/userOldPasswordEditText"
+                            android:backgroundTint="#F1F1F2"
+                            android:background="@drawable/field_background"
+                            android:padding="8dp"
+                            android:layout_marginBottom="8dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="3"
+                            android:hint="Enter old password"
+                            android:text="">
+                    </com.google.android.material.textfield.TextInputEditText>
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <Button
+                        android:id="@+id/userPasswordButton"
                         android:backgroundTint="@color/colorCharcoal"
                         android:textAllCaps="false"
                         android:letterSpacing="0"

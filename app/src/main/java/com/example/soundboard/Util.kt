@@ -12,6 +12,7 @@ import android.widget.Toast
 object Util {
 
     public val NICKNAME_MAX_LENGTH : Int = 24
+    public val USER_DESCRIPTION_MAX_LENGTH : Int = 300
 
     //if email contains an @
     public fun isEmailValid(email :String) : Boolean{
@@ -42,6 +43,12 @@ object Util {
             return false
         }
 
+    }
+
+    //description can be anything right now
+    //here if we want to implement check for certain words, etc, in future
+    public fun isUserDescriptionValid(userDescription: String): Boolean{
+        return userDescription.length < USER_DESCRIPTION_MAX_LENGTH
     }
 
     public fun showToast(context: Context, message :String){

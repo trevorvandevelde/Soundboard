@@ -113,11 +113,10 @@ class RegisterFragment : Fragment() {
                 emailLayout.error = "Invalid email"
             }
             if (!Util.isNicknameValid(nickname)) {
-                val length = Util.NICKNAME_MAX_LENGTH
-                nicknameLayout.error = "Nickname max length: {$length} characters"
+                nicknameLayout.error = "Nickname max length: ${Util.NICKNAME_MAX_LENGTH} characters"
             }
             if (!Util.isPasswordValid(password)) {
-                passwordLayout.error = "Invalid password: minimum 8 characters and 1 digit"
+                passwordLayout.error = resources.getString(R.string.invalid_password_prompt)
             }
             if(!confirmPassword.equals(password)){
                 confirmPasswordLayout.error = "Passwords do not match"
