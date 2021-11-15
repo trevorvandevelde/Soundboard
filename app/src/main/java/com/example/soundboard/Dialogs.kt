@@ -98,7 +98,6 @@ class Delete_Board_Dialog: DialogFragment(){
                                     .show()
                             }
                         }
-                        dismiss()
                     }
 
                     override fun onCancelled(error: DatabaseError) {
@@ -107,6 +106,7 @@ class Delete_Board_Dialog: DialogFragment(){
                 }
 
                 user_reference.addListenerForSingleValueEvent(user_event_listener)
+                dismiss()
             }
             .setNegativeButton("No") { _, _ ->
                 dismiss()

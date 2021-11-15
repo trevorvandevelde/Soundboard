@@ -1,6 +1,9 @@
 package com.example.soundboard
 
 import android.app.ProgressDialog.show
+import android.content.Context
+import android.content.Intent
+import android.content.SharedPreferences
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,6 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -16,7 +20,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import org.w3c.dom.Text
 
-class ProfileFragment : Fragment() {
+class ProfileFragment : Fragment(){
 
     companion object {
         fun newInstance() = ProfileFragment()
@@ -28,9 +32,11 @@ class ProfileFragment : Fragment() {
 
     private lateinit var userDescription : TextView
     private lateinit var userNickname : TextView
+    private lateinit var userImage: ImageView
 
     private lateinit var user_reference: DatabaseReference
     private lateinit var user_event_listener:  ValueEventListener
+
     private lateinit var createbutton_view: Button
     private lateinit var navView: BottomNavigationView
 
@@ -56,6 +62,11 @@ class ProfileFragment : Fragment() {
 
         userNickname = view.findViewById(R.id.user_name)
         userDescription = view.findViewById(R.id.user_intro)
+        userImage = view.findViewById(R.id.user_image)
+
+        val pref : SharedPreferences =requireActivity().getSharedPreferences("saved_profile_image",
+            Context.MODE_PRIVATE)
+        userImage.setImageResource(pref.getInt("profile image", R.drawable.profile_icon_5))
 
         user_reference = FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().currentUser!!.uid)
         user_event_listener =  object : ValueEventListener {
@@ -82,6 +93,13 @@ class ProfileFragment : Fragment() {
         user_reference.addValueEventListener(user_event_listener)
 
         return view
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val pref : SharedPreferences =requireActivity().getSharedPreferences("saved_profile_image",
+            Context.MODE_PRIVATE)
+        userImage.setImageResource(pref.getInt("profile image", R.drawable.profile_icon_5))
     }
 
 
@@ -112,6 +130,17 @@ class ProfileFragment : Fragment() {
                 true
             }
         })
+        userImage.setOnClickListener(object: View.OnClickListener{
+            override fun onClick(p0: View) {
+                change_profile_image(p0)
+                true
+            }
+            fun change_profile_image(view: View){
+                val intent = Intent(requireActivity(), ProfileImageActivity::class.java)
+                startActivity(intent)
+            }
+        })
     }
+
 
 }
