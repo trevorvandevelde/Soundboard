@@ -59,6 +59,11 @@ class BoardActivity : AppCompatActivity(){
             intent.putExtra("title", soundbyte.title)
             intent.putExtra("audio", soundbyte.audioUrl)
             intent.putExtra("soundByteId", soundbyte.id )
+            var tags:ArrayList<String> = ArrayList<String>()
+            for(item in soundbyte.tag_list){
+                tags.add(item)
+            }
+            intent.putStringArrayListExtra("tags", tags)
             startActivity(intent)
         }
 
