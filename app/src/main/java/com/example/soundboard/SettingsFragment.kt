@@ -17,6 +17,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
 import android.view.View.OnFocusChangeListener
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
 /**
@@ -52,6 +53,7 @@ class SettingsFragment : Fragment() {
     private lateinit var changePasswordButton : Button
 
     private lateinit var userEmail : TextView
+    private lateinit var navView: BottomNavigationView
 
     private lateinit var user_reference: DatabaseReference
     private lateinit var user_event_listener:  ValueEventListener
@@ -213,6 +215,8 @@ class SettingsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        navView = requireActivity().findViewById(R.id.nav_view)
+        navView.selectedItemId = R.id.navigation_settings
         viewModel = ViewModelProvider(this).get(SettingsViewModel::class.java)
     }
 

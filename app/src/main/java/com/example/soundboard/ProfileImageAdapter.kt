@@ -9,6 +9,10 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.GridLayoutManager
+
+
+
 
 class ProfileImageAdapter(var data: ArrayList<Int>)
     : RecyclerView.Adapter<ProfileImageAdapter.ViewHolder>() {
@@ -20,6 +24,7 @@ class ProfileImageAdapter(var data: ArrayList<Int>)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.sheet_board_item, parent, false)
+
         val viewholder =  ViewHolder(view)
 
         viewholder.itemView.setOnClickListener {

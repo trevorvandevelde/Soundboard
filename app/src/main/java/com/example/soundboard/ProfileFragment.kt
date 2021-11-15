@@ -13,6 +13,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -64,9 +65,19 @@ class ProfileFragment : Fragment(){
         userDescription = view.findViewById(R.id.user_intro)
         userImage = view.findViewById(R.id.user_image)
 
+        val settingsFragment: Fragment = SettingsFragment()
+        val transaction: FragmentTransaction = parentFragmentManager.beginTransaction()
+
+        userDescription.setOnClickListener { view ->
+            transaction.replace(R.id.fragmentContainer, settingsFragment).commit()
+        }
+        userNickname.setOnClickListener { view ->
+            transaction.replace(R.id.fragmentContainer, settingsFragment).commit()
+        }
+
         val pref : SharedPreferences =requireActivity().getSharedPreferences("saved_profile_image",
             Context.MODE_PRIVATE)
-        userImage.setImageResource(pref.getInt("profile image", R.drawable.profile_icon_5))
+        userImage.setImageResource(pref.getInt("profile image", R.drawable.profile_icon_1))
 
         user_reference = FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().currentUser!!.uid)
         user_event_listener =  object : ValueEventListener {
@@ -99,7 +110,7 @@ class ProfileFragment : Fragment(){
         super.onResume()
         val pref : SharedPreferences =requireActivity().getSharedPreferences("saved_profile_image",
             Context.MODE_PRIVATE)
-        userImage.setImageResource(pref.getInt("profile image", R.drawable.profile_icon_5))
+        userImage.setImageResource(pref.getInt("profile image", R.drawable.profile_icon_1))
     }
 
 

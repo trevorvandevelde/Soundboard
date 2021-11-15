@@ -12,7 +12,7 @@ class User {
 
     fun User(userNickname : String) {
         this.userNickname = userNickname
-        userDescription = "Welcome! You can change your description in settings."
+        userDescription = "Welcome! Tap your profile image, nickname, or description to edit them."
         soundBoardList = arrayListOf()
         val sb : SoundBoard =  SoundBoard()
         sb.SoundBoard("My sounds")

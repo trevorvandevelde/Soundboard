@@ -21,6 +21,12 @@ class ProfileImageActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.profile_image_layout)
 
+        // adds back button fab
+        val backButton: View = findViewById(R.id.back_arrow)
+        backButton.setOnClickListener { view ->
+            finish()
+        }
+
         val headername: TextView = findViewById(R.id.header_name)
         headername.setText("Choose a Profile Image")
 
@@ -28,7 +34,8 @@ class ProfileImageActivity: AppCompatActivity() {
             R.drawable.profile_icon_2, R.drawable.profile_icon_3,
             R.drawable.profile_icon_4, R.drawable.profile_icon_5,
             R.drawable.profile_icon_6, R.drawable.profile_icon_7,
-            R.drawable.profile_icon_8, R.drawable.profile_icon_9)
+            R.drawable.profile_icon_8, R.drawable.profile_icon_9,
+            R.drawable.profile_icon_10)
 
         datalist.addAll(local_images)
 

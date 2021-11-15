@@ -7,19 +7,14 @@
 
     <include layout="@layout/header_layout"/>
 
-    <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Please choose your profile image:"
-            android:textSize="15dp"
-            android:layout_margin="25dp"/>
-
     <androidx.recyclerview.widget.RecyclerView
+            android:layout_gravity="center"
             android:id="@+id/image_recyclerview"
             android:paddingTop="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:clipToPadding="false"
+            android:elevation="0dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
