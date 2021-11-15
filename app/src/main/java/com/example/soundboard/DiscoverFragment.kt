@@ -24,11 +24,13 @@ class DiscoverFragment : Fragment() {
     private lateinit var discover_search: SearchView
     // to store all of the original data from the firebase
     private var datalist = ArrayList<SoundByteEntry>()
+    private var querylist = ArrayList<SoundByteEntry>()
 
     private lateinit var database_reference: DatabaseReference
     private lateinit var database_event_listener: ValueEventListener
     private  var local_data: MutableList<SoundByteEntry> = mutableListOf()
     private var datanumber = 10
+    private var is_query: Boolean = false
     private lateinit var navView: BottomNavigationView
 
     override fun onCreateView(
@@ -48,7 +50,7 @@ class DiscoverFragment : Fragment() {
         //soundbyteAdapter = SoundbyteAdapter(requireContext(), R.layout.soundbyte_item, datalist)
         //discover_listview.adapter = soundbyteAdapter
         discover_listview.setOnItemClickListener{ parent: AdapterView<*>, view: View, position: Int, id: Long ->
-            val soundbyte = datalist[position]
+            val soundbyte = querylist[position]
             val intent = Intent(requireActivity(), PlayActivity::class.java)
             intent.putExtra("image", soundbyte.imageUrl)
             intent.putExtra("title", soundbyte.title)
@@ -66,7 +68,8 @@ class DiscoverFragment : Fragment() {
         discover_search.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query : String): Boolean{
                 //soundbyteAdapter.filter.filter(query)
-                var querylist = ArrayList<SoundByteEntry>()
+                is_query=true
+                querylist.clear()
                 var found:Boolean = false
                 for(item in local_data) {
                     if (item.title.contains(query, ignoreCase = true)) {
@@ -91,12 +94,12 @@ class DiscoverFragment : Fragment() {
 
             override fun onQueryTextChange(query: String?): Boolean {
                 //soundbyteAdapter.filter.filter(p0)
+                is_query=true
                 if(query == ""){
-                    soundbyteAdapter = SoundbyteAdapter(requireContext(), R.layout.soundbyte_item, datalist)
-                    discover_listview.adapter = soundbyteAdapter
+                    refresh_data()
                     return false
                 }
-                var querylist = ArrayList<SoundByteEntry>()
+                querylist.clear()
                 var found:Boolean = false
                 for(item in local_data) {
                     if (item.title.contains(query!!, ignoreCase = true)) {
@@ -109,8 +112,7 @@ class DiscoverFragment : Fragment() {
                     }
                     else{
                         for(tag in item.tag_list){
-                            if(tag.contains(query, ignoreCase = true)||
-                                query.contains(tag, ignoreCase = true)){
+                            if(tag.contains(query, ignoreCase = true)){
                                 querylist.add(item)
                                 found = true
                                 break
@@ -191,7 +193,9 @@ class DiscoverFragment : Fragment() {
                                  */
                             }
                             // fresh the datas to the datalist
-                            refresh_data()
+                            if(is_query==false) {
+                                refresh_data()
+                            }
                         }
 
                         override fun onCancelled(error: DatabaseError) {
@@ -209,15 +213,15 @@ class DiscoverFragment : Fragment() {
 
     private fun refresh_data(){
         // fresh the datas to the datalist
-        datalist.clear()
+        querylist.clear()
         var min = local_data.size-datanumber
         if (min<0){
             min = 0
         }
         for (i in local_data.size-1 downTo min ){
-            datalist.add(local_data[i])
+            querylist.add(local_data[i])
         }
-        soundbyteAdapter = SoundbyteAdapter(requireContext(), R.layout.soundbyte_item,datalist)
+        soundbyteAdapter = SoundbyteAdapter(requireContext(), R.layout.soundbyte_item,querylist)
         discover_listview.adapter = soundbyteAdapter
     }
 
