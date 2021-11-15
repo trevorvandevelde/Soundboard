@@ -42,6 +42,8 @@ class ChooseBoardActivity : AppCompatActivity() {
 
         board_choose_recyclerview = findViewById(R.id.board_choose_recyclerview)
 
+        val headername: TextView = findViewById(R.id.header_name)
+        headername.setText("Choose a Board")
 
         val backButton: View = findViewById(R.id.back_arrow)
         backButton.setOnClickListener { view ->

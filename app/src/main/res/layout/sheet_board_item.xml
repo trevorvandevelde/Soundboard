@@ -3,7 +3,7 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/cardview"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:cardCornerRadius="8dp"
         android:layout_margin="8dp"
@@ -11,30 +11,17 @@
 
     <LinearLayout
             android:orientation="horizontal"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="16dp"
             android:background="@drawable/cardview_selector">
         <ImageView
-                android:id="@+id/board_image"
-                android:layout_width="180dp"
+                android:id="@+id/profile_image"
+                android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dp"
                 android:src="@drawable/dartmouth"/>
-
-        <TextView
-                android:textColor="@color/colorCharcoal"
-                android:id="@+id/board_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:layout_marginLeft="10dp"
-                android:textStyle="bold"
-                android:textSize="18dp"
-                android:fontFamily="@font/inter_semibold"
-                android:text = "Board Name"/>
-
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>

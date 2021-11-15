@@ -27,7 +27,9 @@
                         android:id = "@+id/user_image"
                         android:layout_width="55dp"
                         android:layout_height="55dp"
-                        android:src="@drawable/dartmouth"/>
+                        android:src="@drawable/dartmouth"
+                        android:clickable="true"
+                        android:onClick="change_profile_image"/>
 
             </androidx.cardview.widget.CardView>
 

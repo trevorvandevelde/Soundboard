@@ -50,6 +50,11 @@
                 android:name=".BoardActivity"
                 android:label="@string/app_name"
                 android:screenOrientation="portrait" />
+        <activity
+                android:name=".ProfileImageActivity"
+                android:label="@string/app_name"
+                android:screenOrientation="portrait" />
+
     </application>
 
 </manifest>
