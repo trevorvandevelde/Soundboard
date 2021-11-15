@@ -12,17 +12,18 @@ import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import android.content.Intent
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
+import com.google.firebase.auth.FirebaseAuthInvalidUserException
 
-
-
-
+/*
+* Fragment to handle login form display and validation
+* */
 class LoginFragment : Fragment() {
 
     private lateinit var emailLayout: TextInputLayout
     private lateinit var passwordLayout: TextInputLayout
     private lateinit var loginButton: Button
     private lateinit var registerRedirect: TextView
-
     private lateinit var mAuth : FirebaseAuth
 
 
@@ -38,21 +39,12 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         mAuth = FirebaseAuth.getInstance()
 
-        /*
-        //test
-        val user : FirebaseUser? = mAuth.currentUser
-        if(user == null){
-            println("not logged in")
-        }else{
-            println("Logged in " + user.uid + user.email)
-        }
-        */
-
         emailLayout = view.findViewById(R.id.loginEmailLayout)
         passwordLayout = view.findViewById(R.id.loginPasswordLayout)
         loginButton = view.findViewById(R.id.loginButton)
         registerRedirect = view.findViewById(R.id.registerHere)
 
+        //button setup
         loginButton.setOnClickListener {
             emailLayout.error = null
             passwordLayout.error = null
@@ -64,7 +56,6 @@ class LoginFragment : Fragment() {
         }
 
         registerRedirect.setOnClickListener{
-            //Fragment fragment = fm.findFragmentByTag("TagName")
             parentFragmentManager.beginTransaction().apply {
                 replace(R.id.fragmentContainer, RegisterFragment() )
                 addToBackStack(null)
@@ -75,34 +66,31 @@ class LoginFragment : Fragment() {
     }
 
 
-    /* logs in user
-     * once logged in, can get user data with mAuth.currentUser anywhere
-     * do not need to store, will hold when app closes
-     * only cleared on mAuth.signOut()
+    /*
+     * Logs in user
+     * Once logged in, can get user data with mAuth.currentUser anywhere, user data will hold when app closes
+     * Only cleared on mAuth.signOut()
      */
     private fun loginUser(email : String, password : String){
         emailLayout.error = null
         passwordLayout.error = null
 
-        if(email.isNotBlank() && password.isNotBlank()) {
+        if(email.isNotBlank() && Util.isEmailValid(email) && password.isNotBlank()) {
             mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
                 if (it.isSuccessful) {
                     val user: FirebaseUser = mAuth.currentUser!!
-                    val userId = user.uid
-                    val userEmail = user.email
-                    Toast.makeText(requireContext(), "successfully logged in", Toast.LENGTH_SHORT)
-                        .show()
+                    Util.showToast(requireContext(), "Successfully logged in")
                     val intent = Intent(requireActivity(), MainActivity::class.java)
                     startActivity(intent)
                 } else {
-                    //TODO: better login exception display, use errors?
-                    Toast.makeText(requireContext(), it.exception.toString(), Toast.LENGTH_SHORT)
-                        .show()
+                    Util.showToast(requireContext(), "${it.exception?.message}")
                 }
             }
         }else{
             if(email.isBlank()){
                 emailLayout.error = "Email cannot be blank"
+            }else if(!Util.isEmailValid(email)){
+                emailLayout.error = "Not a valid email address"
             }
             if(password.isBlank()){
                 passwordLayout.error = "Password cannot be blank"

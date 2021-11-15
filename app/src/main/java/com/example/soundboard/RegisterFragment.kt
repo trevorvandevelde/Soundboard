@@ -1,5 +1,6 @@
 package com.example.soundboard
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Patterns
 import androidx.fragment.app.Fragment
@@ -14,6 +15,9 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.FirebaseDatabase
 
+/**
+ * Fragment to handle register form display and validation
+ */
 class RegisterFragment : Fragment() {
 
     private lateinit var emailLayout: TextInputLayout
@@ -25,7 +29,7 @@ class RegisterFragment : Fragment() {
     private val SAVED_REGISTER_EMAIL = "register_email_key"
     private val SAVED_REGISTER_PASSWORD = "register_password_key"
     private lateinit var mAuth : FirebaseAuth
-    private val nicknameMaxLength : Int = 24
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,6 +52,7 @@ class RegisterFragment : Fragment() {
         registerButton = view.findViewById(R.id.registerButton)
         loginRedirect = view.findViewById(R.id.loginHere)
 
+        //button setup
         registerButton.setOnClickListener {
             val email = emailLayout.editText?.text.toString()
             val nickname = nicknameLayout.editText?.text.toString()
@@ -57,9 +62,7 @@ class RegisterFragment : Fragment() {
             registerUser(email, nickname, password, confirmPassword)
         }
 
-
         loginRedirect.setOnClickListener{
-            //Fragment fragment = fm.findFragmentByTag("TagName")
             parentFragmentManager.beginTransaction().apply {
                 replace(R.id.fragmentContainer, LoginFragment() )
                 addToBackStack(null)
@@ -70,42 +73,50 @@ class RegisterFragment : Fragment() {
     }
 
 
-    //checks if user can register, handles errors, and calls firebase to register if valid
+    //checks if user can register, displays validation errors, and calls firebase to register/login if valid
     private fun registerUser(email : String, nickname: String, password : String, confirmPassword : String){
         emailLayout.error = null
         nicknameLayout.error = null
         passwordLayout.error = null
         confirmPasswordLayout.error = null
 
-        if(isEmailValid(email) && isNicknameValid(nickname) && isPasswordValid(password) && confirmPassword.equals(password)){
+        if(Util.isEmailValid(email) && Util.isNicknameValid(nickname) && Util.isPasswordValid(password) && confirmPassword.equals(password)){
             mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener {
                 if (it.isSuccessful) {
                     val user: FirebaseUser = it.result!!.user!!
                     val newUserData = User()
                     newUserData.User(nickname)
 
-                    //sets key as uid
+                    //sets firebase key as uid
                     FirebaseDatabase.getInstance().getReference().child("Users").child(user.uid).setValue(newUserData)
                         .addOnCompleteListener{
-                            Toast.makeText(requireContext(), "Added User to Database", Toast.LENGTH_SHORT).show()
+                            mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
+                                if (it.isSuccessful) {
+                                    Util.showToast(requireContext(), "User registered")
+                                    val intent = Intent(requireActivity(), MainActivity::class.java)
+                                    startActivity(intent)
+                                }else{
+                                    Util.showToast(requireContext(), "User registered, but failed to sign in")
+                                }
+                            }
                         }.addOnFailureListener{
-                            Toast.makeText(requireContext(), "Failed to add user to Database", Toast.LENGTH_SHORT).show()
+                            Util.showToast(requireContext(), "Failed to register user: ${it.message}")
                         }
-                    Toast.makeText(requireContext(), "User registered", Toast.LENGTH_SHORT ).show()
-                    //stored user info somewhere
+
+
                 } else {
-                    Toast.makeText(requireContext(), it.exception.toString(), Toast.LENGTH_SHORT ).show()
-                    //TODO: nicer register exception prompts
+                    Util.showToast(requireContext(), "${it.exception?.message}")
                 }
             }
         }else{
-            if (!isEmailValid(email)) {
+            if (!Util.isEmailValid(email)) {
                 emailLayout.error = "Invalid email"
             }
-            if (!isNicknameValid(nickname)) {
-                nicknameLayout.error = "Nickname max length: {$nicknameMaxLength} characters"
+            if (!Util.isNicknameValid(nickname)) {
+                val length = Util.NICKNAME_MAX_LENGTH
+                nicknameLayout.error = "Nickname max length: {$length} characters"
             }
-            if (!isPasswordValid(password)) {
+            if (!Util.isPasswordValid(password)) {
                 passwordLayout.error = "Invalid password: minimum 8 characters and 1 digit"
             }
             if(!confirmPassword.equals(password)){
@@ -115,35 +126,6 @@ class RegisterFragment : Fragment() {
     }
 
 
-    public fun isEmailValid(email :String) : Boolean{
-        return if (email.contains('@')) {
-            Patterns.EMAIL_ADDRESS.matcher(email).matches()
-        } else {
-            false
-        }
-    }
-
-    //at least 8 characters with 1 special char and one digit
-    public fun isPasswordValid(password : String): Boolean{
-        if(password.isNotBlank()) {
-            val pattern = "^(?=.*[0-9])(?=.*[a-z])(?=\\S+$).{4,}$"
-            val matcher = Regex(pattern)
-            return matcher.find(password) != null
-        }else{
-            return false
-        }
-
-    }
-
-    //nickname is less than certain number characters
-    public fun isNicknameValid(nickname : String): Boolean{
-        if(nickname.isNotBlank()) {
-            return nickname.length < nicknameMaxLength
-        }else{
-            return false
-        }
-
-    }
 
     //saves text on orientation change. some issues
     //activity onSaveInstanceState will mess with this, avoid calling view stuff in here
@@ -151,19 +133,14 @@ class RegisterFragment : Fragment() {
         if(this::emailLayout.isInitialized) {
             outState.putString(SAVED_REGISTER_EMAIL, emailLayout.editText?.text.toString())
             outState.putString(SAVED_REGISTER_PASSWORD, passwordLayout.editText?.text.toString())
-            println("email: " + emailLayout.editText?.text.toString())
         }
         super.onSaveInstanceState(outState)
     }
 
-    //FIXME: should set text, but settext not working even when instancestate not null
     override fun onViewStateRestored(savedInstanceState: Bundle?) {
         super.onViewStateRestored(savedInstanceState)
-
-        //emailLayout.text = "test"
         if(savedInstanceState != null) {
             emailLayout.editText?.setText( savedInstanceState.getString(SAVED_REGISTER_EMAIL) )
-            println("save: "+ savedInstanceState.getString(SAVED_REGISTER_EMAIL))
         }
     }
 
