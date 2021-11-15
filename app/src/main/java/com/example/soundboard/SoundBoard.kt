@@ -25,4 +25,8 @@ class SoundBoard {
     fun getSoundByteIdMap() : HashMap<String, Boolean> {
         return soundByteIdMap
     }
+
+    fun removeSoundByteIdMap(idToRemove : String) {
+        soundByteIdMap.remove(idToRemove)
+    }
 }
