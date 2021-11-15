@@ -7,8 +7,7 @@
         android:outlineAmbientShadowColor="@color/colorShadow"
         android:outlineSpotShadowColor="@color/colorShadow"
         android:background="@color/white"
-        android:elevation="16dp"
-        >
+        android:elevation="16dp">
 
     <LinearLayout
             android:gravity="center"
