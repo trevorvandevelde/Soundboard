@@ -63,7 +63,18 @@ class BoardActivity : AppCompatActivity(){
         }
 
         board_listview.setOnItemLongClickListener{ parent: AdapterView<*>, view: View, position: Int, id: Long ->
-            Delete_Soundbyte_Dialog().show(getSupportFragmentManager(), "Delete_Soundbyte_Dialog")
+            val soundbyte = datalist[position]
+            //println(soundbyte.id)
+            //println(board_position)
+            //println(board_name)
+            val soundByteDialogDelete = Delete_Soundbyte_Dialog()
+            //println(id.toString())
+            val bundleId = Bundle()
+            bundleId.putString("soundByteId", soundbyte.id)
+            bundleId.putString("board_position", board_position)
+            bundleId.putString("board_name", board_name)
+            soundByteDialogDelete.arguments = bundleId
+            soundByteDialogDelete.show(getSupportFragmentManager(), "Delete_Soundbyte_Dialog")
             true
         }
 

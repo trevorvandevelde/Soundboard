@@ -75,7 +75,37 @@ class Delete_Board_Dialog: DialogFragment(){
             .setTitle("Delete Board")
             .setView(view)
             .setPositiveButton("Yes") { _, _ ->
-                dismiss()
+                val user_reference : (DatabaseReference) = FirebaseDatabase.getInstance().getReference("Users").child(
+                    FirebaseAuth.getInstance().currentUser!!.uid)
+
+                val soundBoardPosition = arguments?.getString("board_position")
+
+                val user_event_listener =  object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        //for (ds in snapshot.child("Audio").children)
+                        val user : User? =  snapshot.getValue(User::class.java)
+                        if(user != null){
+                            val soundBoardList = user.getSoundBoardList()
+                            val soundBoardToDelete = soundBoardList[soundBoardPosition!!.toInt()]
+                            if (soundBoardPosition.toInt() != 0 && soundBoardToDelete.getSoundBoardName() != "My sounds") {
+                                soundBoardList.remove(soundBoardToDelete)
+                                user_reference.child("soundBoardList").setValue(soundBoardList)
+                                Toast.makeText(requireContext(), "Removed SoundBoard", Toast.LENGTH_SHORT)
+                                    .show()
+                            } else {
+                                Toast.makeText(requireContext(), "Cannot remove My Sounds Board", Toast.LENGTH_SHORT)
+                                    .show()
+                                dismiss()
+                            }
+                        }
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+                        TODO("Not yet implemented")
+                    }
+                }
+
+                user_reference.addListenerForSingleValueEvent(user_event_listener)
             }
             .setNegativeButton("No") { _, _ ->
                 dismiss()
@@ -96,7 +126,34 @@ class Delete_Soundbyte_Dialog: DialogFragment(){
             .setTitle("Delete Soundbyte")
             .setView(view)
             .setPositiveButton("Yes") { _, _ ->
-                dismiss()
+
+                val user_reference : (DatabaseReference) = FirebaseDatabase.getInstance().getReference("Users").child(
+                    FirebaseAuth.getInstance().currentUser!!.uid)
+                val soundbyteId = arguments?.getString("soundByteId")
+                val soundBoardName = arguments?.getString("board_name")
+                val soundBoardPosition = arguments?.getString("board_position")
+
+                val user_event_listener =  object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        //for (ds in snapshot.child("Audio").children)
+                        val user : User? =  snapshot.getValue(User::class.java)
+                        if(user != null){
+                            val soundBoardList = user.getSoundBoardList()
+                            val soundBoardToEdit = soundBoardList[soundBoardPosition!!.toInt()]
+                            soundBoardToEdit.removeSoundByteIdMap(soundbyteId.toString())
+                            soundBoardList[soundBoardPosition!!.toInt()] = soundBoardToEdit
+                            user_reference.child("soundBoardList").setValue(soundBoardList)
+                            Toast.makeText(requireContext(), "Removed SoundByte", Toast.LENGTH_SHORT)
+                                .show()
+                        }
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+                        TODO("Not yet implemented")
+                    }
+                }
+
+                user_reference.addListenerForSingleValueEvent(user_event_listener)
             }
             .setNegativeButton("No") { _, _ ->
                 dismiss()
