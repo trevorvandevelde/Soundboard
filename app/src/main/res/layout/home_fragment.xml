@@ -43,14 +43,14 @@
                     <LinearLayout
                             android:layout_weight="1"
                             android:orientation="vertical"
-                            android:layout_width="200dp"
+                            android:layout_width="240dp"
                             android:layout_height="wrap_content">
                         <TextView
 
                                 android:layout_gravity="center"
                                 android:gravity="center"
                                 android:id="@+id/welcomeUserTv"
-                                android:layout_width="200dp"
+                                android:layout_width="240dp"
                                 android:layout_height="wrap_content"
                                 android:textSize="30dp"
                                 android:fontFamily="@font/quicksand_semibold"

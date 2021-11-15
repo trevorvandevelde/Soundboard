@@ -212,15 +212,15 @@ class PlayActivity : AppCompatActivity(){
     fun lineVisualization(view: View){
         clear()
         lineVisualizer.visibility = View.VISIBLE
-        lineVisualizer.setColor(ContextCompat.getColor(this, R.color.purple_700))
-        lineVisualizer.setStrokeWidth(1)
+        lineVisualizer.setColor(ContextCompat.getColor(this, R.color.colorAccent))
+        lineVisualizer.setStrokeWidth(4)
         lineVisualizer.setPlayer(mediaPlayer.audioSessionId)
     }
 
     fun barVisualization(view: View?) {
         clear()
         barVisualizer.visibility = View.VISIBLE
-        barVisualizer.setColor(ContextCompat.getColor(this, R.color.black))
+        barVisualizer.setColor(ContextCompat.getColor(this, R.color.colorButton))
         // define a custom number of bars we want in the visualizer it is between (10 - 256).
         barVisualizer.setDensity(80f)
         barVisualizer.setPlayer(mediaPlayer.audioSessionId)
@@ -246,7 +246,7 @@ class PlayActivity : AppCompatActivity(){
     fun squareBarVisualization(view: View?) {
         clear()
         squareBarVisualizer.visibility = View.VISIBLE
-        squareBarVisualizer.setColor(ContextCompat.getColor(this, R.color.purple_200))
+        squareBarVisualizer.setColor(ContextCompat.getColor(this, R.color.colorAccent))
         // define a custom number of bars you want in the visualizer between (10 - 256).
         squareBarVisualizer.setDensity(65f)
         // Set Spacing
@@ -257,7 +257,7 @@ class PlayActivity : AppCompatActivity(){
     fun lineBarVisualization(view: View?) {
         clear()
         lineBarVisualizer.visibility = View.VISIBLE
-        lineBarVisualizer.setColor(ContextCompat.getColor(this, R.color.teal_200))
+        lineBarVisualizer.setColor(ContextCompat.getColor(this, R.color.colorButton))
         // define the custom number of bars we want in the visualizer between (10 - 256).
         lineBarVisualizer.setDensity(50f)
         lineBarVisualizer.setPlayer(mediaPlayer.audioSessionId)
