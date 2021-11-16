@@ -66,6 +66,8 @@ class BoardChooseAdapter(var data: List<BoardEntry>, var soundByteId: String) : 
         val board = data[position]
         if(board.imageUrl != "NA") {
             Picasso.get().load(board.imageUrl).into(holder.image)
+        } else if (board.imageUrl == "NA"){
+            Picasso.get().load(getRandomImgUrl(position)).into(holder.image)
         }
         holder.title.text = board.title
         holder.intro.text = board.intro
@@ -74,6 +76,41 @@ class BoardChooseAdapter(var data: List<BoardEntry>, var soundByteId: String) : 
     override fun getItemCount(): Int {
         return data.size
     }
+
+    fun getRandomImgUrl(position: Int) : String{
+        val indexRandom = position%8
+        if (indexRandom == 0 ){
+            return color1Url
+        } else if (indexRandom == 1) {
+            return color2Url
+        } else if (indexRandom == 2) {
+            return color3Url
+        } else if (indexRandom == 3) {
+            return color4Url
+        } else if (indexRandom == 4) {
+            return color5Url
+        } else if (indexRandom == 5) {
+            return color6Url
+        } else if (indexRandom == 6) {
+            return color7Url
+        } else if (indexRandom == 7) {
+            return color8Url
+        } else {
+            return color9Url
+        }
+
+    }
+
+    private var color1Url : String = "https://firebasestorage.googleapis.com/v0/b/soundboard2-1d1a2.appspot.com/o/Colors%2Fcolor_1.png?alt=media&token=088e874a-2e93-4778-b220-a6177e10ba49"
+    private var color2Url : String = "https://firebasestorage.googleapis.com/v0/b/soundboard2-1d1a2.appspot.com/o/Colors%2Fcolor_2.png?alt=media&token=a0f046dd-b033-4409-b007-9df0df998cbe"
+    private var color3Url : String = "https://firebasestorage.googleapis.com/v0/b/soundboard2-1d1a2.appspot.com/o/Colors%2Fcolor_3.png?alt=media&token=6ecf442b-c5dc-4b0b-9315-e9e1a36ccdd7"
+    private var color4Url : String = "https://firebasestorage.googleapis.com/v0/b/soundboard2-1d1a2.appspot.com/o/Colors%2Fcolor_4.png?alt=media&token=c3933174-fe85-4147-8a43-bdec213d91fb"
+    private var color5Url : String = "https://firebasestorage.googleapis.com/v0/b/soundboard2-1d1a2.appspot.com/o/Colors%2Fcolor_5.png?alt=media&token=c88f739f-0752-4e1b-9e2f-8692bf823198"
+    private var color6Url : String = "https://firebasestorage.googleapis.com/v0/b/soundboard2-1d1a2.appspot.com/o/Colors%2Fcolor_6.png?alt=media&token=d12de9a4-da03-47b0-8f4a-9eed47925d5e"
+    private var color7Url : String = "https://firebasestorage.googleapis.com/v0/b/soundboard2-1d1a2.appspot.com/o/Colors%2Fcolor_7.png?alt=media&token=bbaf10e2-e72c-4fab-8bb5-2b84272d1eda"
+    private var color8Url : String = "https://firebasestorage.googleapis.com/v0/b/soundboard2-1d1a2.appspot.com/o/Colors%2Fcolor_8.png?alt=media&token=1cc9f6b7-2f44-443f-808c-28a844b1c1cc"
+    private var color9Url : String = "https://firebasestorage.googleapis.com/v0/b/soundboard2-1d1a2.appspot.com/o/Colors%2Fcolor_9.png?alt=media&token=18c7a54b-ae4a-4ac4-a0da-ec5512ba4fdb"
+
 
 
 
