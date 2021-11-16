@@ -20,8 +20,7 @@ import com.google.firebase.database.*
 // import androidx.test.core.app.ApplicationProvider.getApplicationContext
 
 
-
-
+// the page used to recommend audios from the firebase
 class HomeFragment : Fragment() {
 
     companion object {
@@ -63,6 +62,7 @@ class HomeFragment : Fragment() {
             transaction.replace(R.id.fragmentContainer, discoverFragment).commit()
         }
 
+        // set the title part
         welcomeUserTv = view.findViewById(R.id.welcomeUserTv)
         user_reference = FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().currentUser!!.uid)
         user_event_listener =  object : ValueEventListener {
@@ -85,6 +85,7 @@ class HomeFragment : Fragment() {
         main_listview = view.findViewById(R.id.home_listview)
         retrieve_audio()
         /*
+        // used to test locally
         if(datalist.size == 0) {
             //  initData()
         }
@@ -94,6 +95,8 @@ class HomeFragment : Fragment() {
             main_listview.adapter = soundbyteAdapter
         }
 */
+
+        // jump to the play page once click
         main_listview.setOnItemClickListener{ parent: AdapterView<*>, view: View, position: Int, id: Long ->
             val soundbyte = datalist[position]
             val intent = Intent(requireActivity(), PlayActivity::class.java)
@@ -114,15 +117,13 @@ class HomeFragment : Fragment() {
         return view
     }
 
-    override fun onResume() {
-        super.onResume()
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
     }
 
+    // used to test locally
     private fun initData() {
         val tag_list: MutableList<String> = mutableListOf("DIY", "SHIBUYA", "AKIHABARA", "GINZA")
         var time = 1
@@ -132,6 +133,7 @@ class HomeFragment : Fragment() {
         }
     }
 
+    // downstream data from the firebase
     private fun retrieve_audio(){
         database_reference = FirebaseDatabase.getInstance().getReference().child("Audio")
         database_event_listener =  object : ValueEventListener {
@@ -168,13 +170,6 @@ class HomeFragment : Fragment() {
                                     local_data.add(SoundByteEntry())
                                 }
 
-                                /*
-                                audio_namelist.add(song!!.getSoundName())
-                                audio_urllist.add(song!!.getSoundUrl())
-                                audio_artisitlist.add(song!!.getUploaderUserName())
-                                audio_coverlist.add(song!!.getImageUrl())
-                                audio_taglists.add(song!!.getTags())
-                                 */
                             }
                             // fresh the datas to the datalist
                             refresh_data()
@@ -193,9 +188,11 @@ class HomeFragment : Fragment() {
         database_reference.addValueEventListener(database_event_listener )
     }
 
+
     private fun refresh_data(){
         // fresh the datas to the datalist
         datalist.clear()
+        // we recommend 5 audios randomly from the firebase
         for (i in 1..5 ){
             local_data.shuffled().take(1).forEach{
                 datalist.add(it)

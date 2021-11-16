@@ -13,6 +13,8 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 
+// used to implement the sheetboard in the play page at first, however, meet some difficulties
+// wont use in the release edition
 class SheetBoardAdapter(var data: List<BoardEntry>)
     : RecyclerView.Adapter<SheetBoardAdapter.ViewHolder>() {
 

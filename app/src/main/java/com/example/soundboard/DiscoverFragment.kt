@@ -11,7 +11,7 @@ import android.widget.*
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.database.*
 
-
+// the page used to search for specific audio from the firebase
 class DiscoverFragment : Fragment() {
 
     companion object {
@@ -22,6 +22,7 @@ class DiscoverFragment : Fragment() {
     private lateinit var soundbyteAdapter: SoundbyteAdapter
     private lateinit var discover_listview: ListView
     private lateinit var discover_search: SearchView
+
     // to store all of the original data from the firebase
     private var datalist = ArrayList<SoundByteEntry>()
     private var querylist = ArrayList<SoundByteEntry>()
@@ -29,9 +30,14 @@ class DiscoverFragment : Fragment() {
     private lateinit var database_reference: DatabaseReference
     private lateinit var database_event_listener: ValueEventListener
     private  var local_data: MutableList<SoundByteEntry> = mutableListOf()
+
+    // how many newest audios at most we downstream from the firebase defaultly
     private var datanumber = 10
+
+    // is_query is used to juedge if we need to initialize the discover page
     private var is_query: Boolean = false
     private var first_and_search:Boolean = false
+    // to store the remaining query texts at first
     private var querylocal:String? = ""
     private lateinit var navView: BottomNavigationView
 
@@ -39,19 +45,23 @@ class DiscoverFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        // set the layout(view) of the fragment
         val view = inflater.inflate(R.layout.discover_fragment, container, false)
         /*
+        // to test locally without firebase, wont use in release edition
         if(datalist.size == 0) {
             initData()
         }
          */
+        // get data from the firebase
         retrieve_audio()
+
         discover_search = view.findViewById(R.id.discover_search)
         discover_listview = view.findViewById(R.id.discover_listview)
-        //discover_listview.setTextFilterEnabled(true)
-        //soundbyteAdapter = SoundbyteAdapter(requireContext(), R.layout.soundbyte_item, datalist)
-        //discover_listview.adapter = soundbyteAdapter
+
+        // once the user clicks the soundbyte, jump to its play page
         discover_listview.setOnItemClickListener{ parent: AdapterView<*>, view: View, position: Int, id: Long ->
+
             val soundbyte = querylist[position]
             val intent = Intent(requireActivity(), PlayActivity::class.java)
             intent.putExtra("image", soundbyte.imageUrl)
@@ -64,12 +74,14 @@ class DiscoverFragment : Fragment() {
                 tags.add(item)
             }
             intent.putStringArrayListExtra("tags", tags)
+
             startActivity(intent)
         }
 
+        // set listener to the searchview to implent the search feature
+        // note that the searchview listeners will be called before the firebase listener
         discover_search.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query : String): Boolean{
-                //soundbyteAdapter.filter.filter(query)
                 is_query=true
                 querylist.clear()
                 var found:Boolean = false
@@ -89,11 +101,15 @@ class DiscoverFragment : Fragment() {
                         }
                     }
                 }
+                // put the new data into the adapter
                 soundbyteAdapter = SoundbyteAdapter(requireContext(), R.layout.soundbyte_item, querylist)
                 discover_listview.adapter = soundbyteAdapter
+
                 return found
             }
 
+            // set listener to the searchview to implent the search feature
+            // will be called once there is a change in searchview
             override fun onQueryTextChange(query: String?): Boolean {
                 //soundbyteAdapter.filter.filter(p0)
                 // first time we open this discover fragment but there are texts in searchbar
@@ -103,6 +119,7 @@ class DiscoverFragment : Fragment() {
                     is_query=true
                     return false
                 }
+                // do the search part
                 is_query=true
                 if(query == ""){
                     refresh_data()
@@ -129,6 +146,7 @@ class DiscoverFragment : Fragment() {
                         }
                     }
                 }
+
                 soundbyteAdapter = SoundbyteAdapter(requireContext(), R.layout.soundbyte_item, querylist)
                 discover_listview.adapter = soundbyteAdapter
 
@@ -136,7 +154,6 @@ class DiscoverFragment : Fragment() {
             }
 
         })
-
 
         return view
     }
@@ -151,7 +168,7 @@ class DiscoverFragment : Fragment() {
     }
 
 
-    // used to test
+    // used to test, wont use in our release edition
     private fun initData(){
         val tag_list:MutableList<String> = mutableListOf("DIY","SHIBUYA","AKIHABARA","GINZA")
         var time = 1
@@ -161,7 +178,9 @@ class DiscoverFragment : Fragment() {
         }
     }
 
+    // downstream data from the firebase
     private fun retrieve_audio(){
+
         database_reference = FirebaseDatabase.getInstance().getReference().child("Audio")
         database_event_listener =  object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -195,20 +214,13 @@ class DiscoverFragment : Fragment() {
                                 else{
                                     local_data.add(SoundByteEntry())
                                 }
-
-                                /*
-                                audio_namelist.add(song!!.getSoundName())
-                                audio_urllist.add(song!!.getSoundUrl())
-                                audio_artisitlist.add(song!!.getUploaderUserName())
-                                audio_coverlist.add(song!!.getImageUrl())
-                                audio_taglists.add(song!!.getTags())
-                                 */
                             }
                             // fresh the datas to the datalist
 
                             // first time we switch to this fragment and we have texts in searchbar, do the search again
                             // after refreshing the data from firebase
                             if(first_and_search == true){
+                                // do the things in the onQueryTextChange again since we just updated the data from firebase
                                 is_query=true
                                 first_and_search = false
                                 if(querylocal == ""){
@@ -255,6 +267,7 @@ class DiscoverFragment : Fragment() {
         database_reference.addValueEventListener(database_event_listener )
     }
 
+    // set some values to the inital status once we leave the discover fragment
     override fun onDestroyView() {
         super.onDestroyView()
         is_query = false
@@ -269,6 +282,7 @@ class DiscoverFragment : Fragment() {
         if (min<0){
             min = 0
         }
+        // get the newest audios
         for (i in local_data.size-1 downTo min ){
             querylist.add(local_data[i])
         }

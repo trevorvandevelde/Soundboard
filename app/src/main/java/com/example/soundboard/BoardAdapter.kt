@@ -18,9 +18,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import java.util.*
 
+// board adapter used to store datas
 class BoardAdapter(var data: List<BoardEntry>)
     : RecyclerView.Adapter<BoardAdapter.ViewHolder>(){
 
+    // to set the view of the recycler view
     inner class ViewHolder(view: View):RecyclerView.ViewHolder(view){
         val image:ImageView = view.findViewById(R.id.board_image)
         val title:TextView = view.findViewById(R.id.board_name)
@@ -28,6 +30,7 @@ class BoardAdapter(var data: List<BoardEntry>)
         val cardview: CardView = view.findViewById(R.id.cardview)
     }
 
+    // set the viewholder
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.board_item, parent, false)
@@ -42,6 +45,7 @@ class BoardAdapter(var data: List<BoardEntry>)
             view.getContext().startActivity(intent)
         }
 
+        // will allow to delete the board once long click it
         viewholder.itemView.setOnLongClickListener{
             val position = viewholder.adapterPosition
             val board = data[position]
@@ -59,6 +63,7 @@ class BoardAdapter(var data: List<BoardEntry>)
         return viewholder
     }
 
+    //set the datas in viewholder
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val board = data[position]
         if(board.imageUrl != "NA") {
@@ -73,6 +78,7 @@ class BoardAdapter(var data: List<BoardEntry>)
 
     override fun getItemCount() = data.size
 
+    // set the color image of the board when rendering
     private var color1Url : String = "https://firebasestorage.googleapis.com/v0/b/soundboard2-1d1a2.appspot.com/o/Colors%2Fcolor_1.png?alt=media&token=088e874a-2e93-4778-b220-a6177e10ba49"
     private var color2Url : String = "https://firebasestorage.googleapis.com/v0/b/soundboard2-1d1a2.appspot.com/o/Colors%2Fcolor_2.png?alt=media&token=a0f046dd-b033-4409-b007-9df0df998cbe"
     private var color3Url : String = "https://firebasestorage.googleapis.com/v0/b/soundboard2-1d1a2.appspot.com/o/Colors%2Fcolor_3.png?alt=media&token=6ecf442b-c5dc-4b0b-9315-e9e1a36ccdd7"

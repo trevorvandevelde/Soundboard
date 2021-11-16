@@ -1,5 +1,6 @@
 package com.example.soundboard
 
+// interface of the soundboard
 class SoundBoard {
 
     private var soundBoardName : String = "New Board"

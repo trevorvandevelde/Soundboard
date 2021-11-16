@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 
+// allow the user to choose board to save the audio, similar as part of the profile page
 class ChooseBoardActivity : AppCompatActivity() {
 
     private lateinit var board_choose_recyclerview: RecyclerView
@@ -26,10 +27,6 @@ class ChooseBoardActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_choose_board)
 
-
-        val page_tite : TextView = findViewById(R.id.header_name)
-        page_tite.setText("Choose a Board")
-
         createbutton_view = findViewById(R.id.add_board)
         createbutton_view.setOnClickListener(object: View.OnClickListener{
             override fun onClick(p0: View?) {
@@ -42,6 +39,7 @@ class ChooseBoardActivity : AppCompatActivity() {
 
         board_choose_recyclerview = findViewById(R.id.board_choose_recyclerview)
 
+        // set the title of the header
         val headername: TextView = findViewById(R.id.header_name)
         headername.setText("Choose a Board")
 

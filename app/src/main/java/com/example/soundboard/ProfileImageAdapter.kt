@@ -12,8 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.GridLayoutManager
 
 
-
-
+// adapter used for profile image recyclerview
 class ProfileImageAdapter(var data: ArrayList<Int>)
     : RecyclerView.Adapter<ProfileImageAdapter.ViewHolder>() {
 
@@ -27,6 +26,7 @@ class ProfileImageAdapter(var data: ArrayList<Int>)
 
         val viewholder =  ViewHolder(view)
 
+        // if the user clicked a specific image, save it to the sharedpreference locally to save the setting change
         viewholder.itemView.setOnClickListener {
             val position = viewholder.adapterPosition
             val pref : SharedPreferences =it.context.getSharedPreferences("saved_profile_image",

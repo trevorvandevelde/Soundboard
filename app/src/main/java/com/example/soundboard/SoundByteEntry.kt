@@ -1,5 +1,6 @@
 package com.example.soundboard;
 
+// interfact of the soundbyte in soundbyte adapter
 class SoundByteEntry(
         val id: String = "NA",
         val author: String = "@ username",
