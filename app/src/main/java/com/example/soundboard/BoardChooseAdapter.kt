@@ -19,7 +19,10 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.squareup.picasso.Picasso
 
+// the adapter we use when user choose the board to save the audio
 class BoardChooseAdapter(var data: List<BoardEntry>, var soundByteId: String) : RecyclerView.Adapter<BoardChooseAdapter.ViewHolder>() {
+
+    // everything is almost the same as the boardapater
 
     inner class ViewHolder(view: View):RecyclerView.ViewHolder(view){
         val image: ImageView = view.findViewById(R.id.board_image)

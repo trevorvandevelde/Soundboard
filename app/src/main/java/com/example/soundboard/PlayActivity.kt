@@ -43,6 +43,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.squareup.picasso.Picasso
 
+// used to play the specific audio and show its visualizer
 class PlayActivity : AppCompatActivity(){
 
     lateinit var mediaPlayer: MediaPlayer
@@ -74,11 +75,13 @@ class PlayActivity : AppCompatActivity(){
 
         val audioUrl =  intent.getStringExtra("audio")
 
+        // downstream the audio from the internet using uri and set it in the mediaplayer
         if(audioUrl != "NA" && audioUrl != null) {
             val uri = Uri.parse(audioUrl)
             // mediaPlayer = MediaPlayer.create(this, R.raw.tokyo)
             mediaPlayer = MediaPlayer.create(this, uri)
         }
+        // used for local test
         else{
             mediaPlayer = MediaPlayer.create(this, R.raw.tokyo)
         }
@@ -102,6 +105,7 @@ class PlayActivity : AppCompatActivity(){
 
         total_time = mediaPlayer.duration
         positionBar.max = total_time
+        // used to change the position of the playing bar according to the audio
         positionBar.setOnSeekBarChangeListener(
             object : SeekBar.OnSeekBarChangeListener {
                 override fun onProgressChanged(
@@ -122,6 +126,8 @@ class PlayActivity : AppCompatActivity(){
             }
         )
 
+        // open a thread to get the play time right now
+        // notice that it will not be killed even if this acitvity is killed. idk how to kill it.
         Thread(Runnable {
             while (mediaPlayer != null) {
                 try {
@@ -138,7 +144,7 @@ class PlayActivity : AppCompatActivity(){
         val play_header: TextView = findViewById(R.id.soundbyte_header_title)
         val play_author: TextView = findViewById(R.id.soundbyte_author)
 
-
+        // get the audio's related information
         val coverUrl = intent.getStringExtra("image")
         val title = intent.getStringExtra("title")
         val author = intent.getStringExtra("author")
@@ -177,7 +183,7 @@ class PlayActivity : AppCompatActivity(){
 
     }
 
-
+    // to calculate the remaining time of the playing audio
     var handler = object: Handler(){
         override fun handleMessage(msg: Message){
             super.handleMessage(msg)
@@ -190,6 +196,7 @@ class PlayActivity : AppCompatActivity(){
         }
     }
 
+    // time calculating helper function
     fun createTimeLable(time: Int):String{
         var timelable = ""
         var min = time/1000/60
@@ -202,6 +209,8 @@ class PlayActivity : AppCompatActivity(){
         return timelable
     }
 
+    // when this activity being destroyed, rest the mediaplayer, but not release it,
+    // or the thread opened before will cause a crush. not a decent way to be honest.
     override fun onDestroy() {
         super.onDestroy()
         mediaPlayer.stop()
@@ -209,6 +218,7 @@ class PlayActivity : AppCompatActivity(){
         // mediaPlayer.release()
     }
 
+    // followings are settings of different visualizers
     fun lineVisualization(view: View){
         clear()
         lineVisualizer.visibility = View.VISIBLE
@@ -263,6 +273,7 @@ class PlayActivity : AppCompatActivity(){
         lineBarVisualizer.setPlayer(mediaPlayer.audioSessionId)
     }
 
+    // to set all of the visualizers into invisible
     fun clear(){
         lineVisualizer.visibility = View.INVISIBLE
         barVisualizer.visibility = View.INVISIBLE
@@ -272,12 +283,14 @@ class PlayActivity : AppCompatActivity(){
         circleVisualizer.visibility = View.INVISIBLE
     }
 
+    // play and pause the audio
     fun playClicked(view: View){
         if(mediaPlayer.isPlaying){
             mediaPlayer.pause()
             playbutton.setImageResource(R.drawable.ic_play_arrow)
         }
         else{
+            // if it is the first time to play, set the visualizer
             if(init==true){
                 clear()
                 lineVisualizer.visibility = View.VISIBLE
@@ -291,12 +304,14 @@ class PlayActivity : AppCompatActivity(){
         }
     }
 
+    // start a new activity to choose the board to save this audio
     fun chooseBoard(view:View){
         val newIntent = Intent(this, ChooseBoardActivity::class.java)
         newIntent.putExtra("soundByteId", intent.getStringExtra("soundByteId") )
         startActivity(newIntent)
     }
 
+    // switch the visualizer once it has been clicked
     fun visualizer_clicked(view: View){
         visualizer_id +=1
         if(visualizer_id > 4){
@@ -310,10 +325,13 @@ class PlayActivity : AppCompatActivity(){
         }
     }
 
+    // tried to use a sheetdialog rather than open a new activity to select the board to save but failed
+    // wont use in our release edition
     fun showSheetDialog(view: View){
         val sheetDialog: BottomSheetDialog = BottomSheetDialog(this)
         sheetDialog.setContentView(R.layout.save_to_board_layout)
 
+        // wont get the recyclerview here since it is in a dialog, idk how to get the recyclerview here
         val board_recyclerview: RecyclerView? = view.findViewById(R.id.save_recyclerview)
         val datalist = ArrayList<BoardEntry>()
 

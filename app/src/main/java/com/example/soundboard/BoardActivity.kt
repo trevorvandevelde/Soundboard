@@ -10,7 +10,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import androidx.fragment.app.DialogFragment
 
-
+// activity to choose the audio in a specific board
 class BoardActivity : AppCompatActivity(){
 
     private lateinit var soundboard_event_listener: ValueEventListener
@@ -52,6 +52,7 @@ class BoardActivity : AppCompatActivity(){
         soundbyteAdapter = SoundbyteAdapter(this, R.layout.soundbyte_item, datalist)
         board_listview.adapter = soundbyteAdapter
 
+        // to register click event for the recyclerview
         board_listview.setOnItemClickListener{ parent: AdapterView<*>, view: View, position: Int, id: Long ->
             val soundbyte = datalist[position]
             val intent = Intent(this, PlayActivity::class.java)
@@ -67,13 +68,11 @@ class BoardActivity : AppCompatActivity(){
             startActivity(intent)
         }
 
+        // if you long click the song, you should be able to delete the audio from the board
         board_listview.setOnItemLongClickListener{ parent: AdapterView<*>, view: View, position: Int, id: Long ->
             val soundbyte = datalist[position]
-            //println(soundbyte.id)
-            //println(board_position)
-            //println(board_name)
+            // pop out the dialog to ask if the user confirm to delete
             val soundByteDialogDelete = Delete_Soundbyte_Dialog()
-            //println(id.toString())
             val bundleId = Bundle()
             bundleId.putString("soundByteId", soundbyte.id)
             bundleId.putString("board_position", board_position)
@@ -99,16 +98,18 @@ class BoardActivity : AppCompatActivity(){
             print("null")
         }
 
+        //the way we read data from the firebase (to get the audios in a specific board
         soundboard_event_listener =  object : ValueEventListener {
+            // will be called once the database updates, get the snapshot!
             override fun onDataChange(soundboardIds: DataSnapshot) {
-
+                 // get the audio
                 val audio_ref = FirebaseDatabase.getInstance().getReference().child("Audio").addListenerForSingleValueEvent(
                     object : ValueEventListener {
-
                         override fun onDataChange(audio_snapshot: DataSnapshot) {
+                         // get the user
                         val users_ref = FirebaseDatabase.getInstance().getReference().child("Users").addListenerForSingleValueEvent(
                             object : ValueEventListener {
-
+                                // get everything for that audio
                                 override fun onDataChange(users_snapshot: DataSnapshot) {
                                     datalist.clear()
                                     for (id in soundboardIds.children) {
@@ -142,6 +143,7 @@ class BoardActivity : AppCompatActivity(){
                                         }
 
                                     }
+                                    // put the data into the adapter to render in the recyclerview
                                     soundbyteAdapter = SoundbyteAdapter(
                                         applicationContext,
                                         R.layout.soundbyte_item,
@@ -174,6 +176,7 @@ class BoardActivity : AppCompatActivity(){
         super.onDestroy()
     }
 
+    // used to test locally without firebase, wont use in our release edition
     private fun initData(){
         repeat(10){
             datalist.add(SoundByteEntry( "@ username", "NA","soundbyte title", "12s"))

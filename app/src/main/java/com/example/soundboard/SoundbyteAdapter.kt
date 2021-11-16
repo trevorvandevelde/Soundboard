@@ -22,6 +22,7 @@ import java.net.URL
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Transformation;
 
+// similar to soundboard adapter, used to store datas
 class SoundbyteAdapter(context: Context, val resourceID: Int,
                        var data: List<SoundByteEntry>)
     : ArrayAdapter<SoundByteEntry>(context, resourceID, data) {
@@ -36,11 +37,13 @@ class SoundbyteAdapter(context: Context, val resourceID: Int,
         val viewHolder: ViewHolder
         if (convertView == null) {
             view = LayoutInflater.from(context).inflate(resourceID, parent, false)
+
             val image = view.findViewById<ImageView>(R.id.soundbyte_image)
             val title = view.findViewById<TextView>(R.id.soundbyte_title)
             val time = view.findViewById<TextView>(R.id.soundbyte_time)
             val author = view.findViewById<TextView>(R.id.soundbyte_author)
             val tag_container: TagContainerLayout = view.findViewById(R.id.soundbyte_tagContainer)
+            // set the background of the tag_container to be transparent
             tag_container.backgroundColor = Color.TRANSPARENT
             tag_container.borderColor = Color.TRANSPARENT
             tag_container.tagBackgroundColor = Color.rgb(245, 245, 245)
@@ -57,6 +60,8 @@ class SoundbyteAdapter(context: Context, val resourceID: Int,
             if (SoundByteEntry.imageUrl != "NA") {
                 //val url = URL(SoundByteEntry.imageUrl)
                 // viewHolder.image.setImageURI(Uri.parse(SoundByteEntry.imageUrl))
+
+                    // use the third party plugin to set image from internet giving url
                 Picasso.get().load(SoundByteEntry.imageUrl).into(viewHolder.image)
             } else {
                 viewHolder.image.setImageResource(R.drawable.dartmouth)

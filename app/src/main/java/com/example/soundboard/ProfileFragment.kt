@@ -21,6 +21,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import org.w3c.dom.Text
 
+// used to show the user's information together with all of the user's boards
 class ProfileFragment : Fragment(){
 
     companion object {
@@ -68,6 +69,7 @@ class ProfileFragment : Fragment(){
         val settingsFragment: Fragment = SettingsFragment()
         val transaction: FragmentTransaction = parentFragmentManager.beginTransaction()
 
+        // set the information about the user
         userDescription.setOnClickListener { view ->
             transaction.replace(R.id.fragmentContainer, settingsFragment).commit()
         }
@@ -75,10 +77,12 @@ class ProfileFragment : Fragment(){
             transaction.replace(R.id.fragmentContainer, settingsFragment).commit()
         }
 
+        // used sharedprefrence to load the local saved profile image, supposed to save in firebase
         val pref : SharedPreferences =requireActivity().getSharedPreferences("saved_profile_image",
             Context.MODE_PRIVATE)
         userImage.setImageResource(pref.getInt("profile image", R.drawable.profile_icon_1))
 
+        // get the user's boards from the firebase
         user_reference = FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().currentUser!!.uid)
         user_event_listener =  object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -106,6 +110,7 @@ class ProfileFragment : Fragment(){
         return view
     }
 
+    // set the profile image
     override fun onResume() {
         super.onResume()
         val pref : SharedPreferences =requireActivity().getSharedPreferences("saved_profile_image",
@@ -122,6 +127,7 @@ class ProfileFragment : Fragment(){
         viewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
     }
 
+    // used to do local test, wont use in release edition
     private fun initData(){
         repeat(10){
             datalist.add(BoardEntry( "NA","Board name", "23 soundbytes", HashMap()))
@@ -133,14 +139,17 @@ class ProfileFragment : Fragment(){
         super.onDestroy()
     }
 
+    // used to pop out the dialogs in the fragment
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        // pop out the add board dialog
         createbutton_view.setOnClickListener(object: View.OnClickListener{
             override fun onClick(p0: View?) {
                 Add_Board_Dialog().show(childFragmentManager, "add_board_dialog")
                 true
             }
         })
+        // pop out the delete board dialog
         userImage.setOnClickListener(object: View.OnClickListener{
             override fun onClick(p0: View) {
                 change_profile_image(p0)

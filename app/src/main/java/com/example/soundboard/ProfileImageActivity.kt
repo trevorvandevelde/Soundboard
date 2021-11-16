@@ -12,6 +12,7 @@ import com.google.firebase.database.ValueEventListener
 import java.util.*
 import kotlin.collections.ArrayList
 
+// used to choose the user's profile image
 class ProfileImageActivity: AppCompatActivity() {
 
     private lateinit var image_choose_recyclerview: RecyclerView
@@ -30,6 +31,7 @@ class ProfileImageActivity: AppCompatActivity() {
         val headername: TextView = findViewById(R.id.header_name)
         headername.setText("Choose a Profile Image")
 
+        // add all of the local pre-provided potential profile images
         val local_images = Arrays.asList(R.drawable.profile_icon_1,
             R.drawable.profile_icon_2, R.drawable.profile_icon_3,
             R.drawable.profile_icon_4, R.drawable.profile_icon_5,
@@ -39,6 +41,7 @@ class ProfileImageActivity: AppCompatActivity() {
 
         datalist.addAll(local_images)
 
+        // set these profile images in the recyclerview
         image_choose_recyclerview = findViewById(R.id.image_recyclerview)
         val adapter = ProfileImageAdapter(datalist)
         image_choose_recyclerview.adapter = adapter

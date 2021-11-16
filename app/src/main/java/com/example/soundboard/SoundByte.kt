@@ -1,5 +1,6 @@
 package com.example.soundboard
 
+// interface of the soundbyte
 class SoundByte {
 
     private lateinit var soundName: String

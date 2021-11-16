@@ -18,20 +18,26 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import java.util.*
 
+// dialog allows user to set the new borad's name and add it (to the firebase)
 class Add_Board_Dialog: DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        // board layout
         val view = requireActivity().layoutInflater.inflate(
             R.layout.add_board_dialog, null
         )
+        // the way to build the board
         val builder = AlertDialog.Builder(requireContext())
             .setTitle("Add Board")
             .setView(view)
             .setPositiveButton("OK"){ _, _ ->
+                // then create the new board with the given name
+
                 val text = view.findViewById<EditText>(R.id.add_board_dialog).text.toString()
 
                 val user_reference : (DatabaseReference) = FirebaseDatabase.getInstance().getReference("Users").child(
                     FirebaseAuth.getInstance().currentUser!!.uid)
 
+                // save to the firebase
                 val user_event_listener =  object : ValueEventListener {
                     override fun onDataChange(snapshot: DataSnapshot) {
                         //for (ds in snapshot.child("Audio").children)
@@ -63,6 +69,7 @@ class Add_Board_Dialog: DialogFragment() {
     }
 }
 
+// dialog allows user to delete the chosen board
 class Delete_Board_Dialog: DialogFragment(){
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val view = requireActivity().layoutInflater.inflate(
@@ -75,25 +82,29 @@ class Delete_Board_Dialog: DialogFragment(){
             .setTitle("Delete Board")
             .setView(view)
             .setPositiveButton("Yes") { _, _ ->
+                // then delete the board from the firebase
 
                 val user_reference : (DatabaseReference) = FirebaseDatabase.getInstance().getReference("Users").child(
                     FirebaseAuth.getInstance().currentUser!!.uid)
 
                 val soundBoardPosition = arguments?.getString("board_position")
 
+                // firebase delete part
                 val user_event_listener =  object : ValueEventListener {
                     override fun onDataChange(snapshot: DataSnapshot) {
-                        //for (ds in snapshot.child("Audio").children)
                         val user : User? =  snapshot.getValue(User::class.java)
                         if(user != null){
                             val soundBoardList = user.getSoundBoardList()
                             val soundBoardToDelete = soundBoardList[soundBoardPosition!!.toInt()]
+                            // we can not delete the original board
                             if (soundBoardPosition.toInt() != 0 && soundBoardToDelete.getSoundBoardName() != "My sounds") {
                                 soundBoardList.remove(soundBoardToDelete)
                                 user_reference.child("soundBoardList").setValue(soundBoardList)
+
                                 Toast.makeText(requireContext(), "Removed SoundBoard", Toast.LENGTH_SHORT)
                                     .show()
                             } else {
+
                                 Toast.makeText(requireContext(), "Cannot remove My Sounds Board", Toast.LENGTH_SHORT)
                                     .show()
                             }
@@ -115,6 +126,7 @@ class Delete_Board_Dialog: DialogFragment(){
     }
 }
 
+// similarly, dialog allows to delete audio in a board
 class Delete_Soundbyte_Dialog: DialogFragment(){
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val view = requireActivity().layoutInflater.inflate(
@@ -127,6 +139,7 @@ class Delete_Soundbyte_Dialog: DialogFragment(){
             .setTitle("Delete Soundbyte")
             .setView(view)
             .setPositiveButton("Yes") { _, _ ->
+                  // then delete the audio from that board, also change that board's hashmap in firebase
 
                 val user_reference : (DatabaseReference) = FirebaseDatabase.getInstance().getReference("Users").child(
                     FirebaseAuth.getInstance().currentUser!!.uid)
@@ -134,6 +147,7 @@ class Delete_Soundbyte_Dialog: DialogFragment(){
                 val soundBoardName = arguments?.getString("board_name")
                 val soundBoardPosition = arguments?.getString("board_position")
 
+                // change the firebase
                 val user_event_listener =  object : ValueEventListener {
                     override fun onDataChange(snapshot: DataSnapshot) {
                         //for (ds in snapshot.child("Audio").children)
@@ -141,6 +155,7 @@ class Delete_Soundbyte_Dialog: DialogFragment(){
                         if(user != null){
                             val soundBoardList = user.getSoundBoardList()
                             val soundBoardToEdit = soundBoardList[soundBoardPosition!!.toInt()]
+                            // set the hashmap of that board in firebase
                             soundBoardToEdit.removeSoundByteIdMap(soundbyteId.toString())
                             soundBoardList[soundBoardPosition!!.toInt()] = soundBoardToEdit
                             user_reference.child("soundBoardList").setValue(soundBoardList)
