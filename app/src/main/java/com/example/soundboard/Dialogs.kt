@@ -18,7 +18,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import java.util.*
 
-// dialog allows user to set the new borad's name and add it (to the firebase)
+// dialog allows user to set the new board's name and add it (to the firebase)
 class Add_Board_Dialog: DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         // board layout
