@@ -89,6 +89,7 @@ class UploadSoundByteActivity : AppCompatActivity() {
 
     val DEFAULT_IMAGE_ID : Int = R.drawable.soundbyte_image_placeholder
 
+    //for audio playback
     var handler = object: Handler(){
 
         override fun handleMessage(msg: Message){
@@ -193,7 +194,7 @@ class UploadSoundByteActivity : AppCompatActivity() {
 
 
     }
-
+    //after selecting audio from storage
     val audioResult: ActivityResultLauncher<Intent> = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     )
@@ -239,7 +240,7 @@ class UploadSoundByteActivity : AppCompatActivity() {
 
     }
 
-
+    //after choosing gallery image
     val imageResult: ActivityResultLauncher<Intent> = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     )
@@ -272,7 +273,7 @@ class UploadSoundByteActivity : AppCompatActivity() {
         original.recycle()
         return rotatedBitmap
     }
-
+    //get name of file uri of image
     private fun getFileName(uri : Uri) : String? {
         var result = uri.path
         //println(result)
@@ -285,6 +286,7 @@ class UploadSoundByteActivity : AppCompatActivity() {
         return result
     }
 
+    //intent to pick song
     private fun pickSong(){
         uploadedAudio = false
         intent = Intent(Intent.ACTION_GET_CONTENT, MediaStore.Audio.Media.EXTERNAL_CONTENT_URI)
@@ -292,6 +294,7 @@ class UploadSoundByteActivity : AppCompatActivity() {
         audioResult.launch(intent)
     }
 
+    //intent to pick photo
     private fun pickPhoto(){
         intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
         intent.type = "image/"
@@ -301,7 +304,7 @@ class UploadSoundByteActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
     }
-
+    //upload audio/image to cloud storage
     private fun uploadFileToServer(uri : Uri, songName : String, uploadName : String) {
         var filePath = storageReference.child("Audios").child(songName)
         progressDialog.show()
@@ -336,7 +339,7 @@ class UploadSoundByteActivity : AppCompatActivity() {
             Toast.makeText(this, "Upload Failed!", Toast.LENGTH_SHORT).show()
         }
     }
-
+    //upload details and url to audio to realtime database
     private fun uploadDetailsToDatabase(songName : String, imageUrl: String, songUrl : String, uploader : String, description : String, tags: MutableList<String>){
         var soundByte = SoundByte()
         soundByte.SoundByte(songName, imageUrl, songUrl, uploader, description, tags, durationSeconds)
@@ -375,7 +378,7 @@ class UploadSoundByteActivity : AppCompatActivity() {
         user_reference.addListenerForSingleValueEvent(user_event_listener)
 
     }
-
+    //upload everything: check if things are in the right aplces
     private fun upload() {
         if (!this::uriAudio.isInitialized) {
             Toast.makeText(this, "Please select an audio clip", Toast.LENGTH_SHORT).show()
@@ -417,7 +420,7 @@ class UploadSoundByteActivity : AppCompatActivity() {
              */
         }
     }
-
+    //upload image
     fun uploadImageToServer(image: ByteArray?, fileName: String?) {
         val uploadTask = storageReference.child("Thumbnails").child(fileName!!).putBytes(
             image!!
