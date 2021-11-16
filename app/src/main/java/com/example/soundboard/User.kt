@@ -1,7 +1,7 @@
 package com.example.soundboard
 
 class User {
-
+    //User class
     //note: storing user with key as userid in firebase,
     //FirebaseDatabase.getInstance().getReference() -> snapshot.child("Users").child(<userId>).getValue(User::class.java)
     private lateinit var userNickname : String
