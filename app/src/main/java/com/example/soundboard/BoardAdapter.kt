@@ -49,7 +49,6 @@ class BoardAdapter(var data: List<BoardEntry>)
         viewholder.itemView.setOnLongClickListener{
             val position = viewholder.adapterPosition
             val board = data[position]
-            Delete_Board_Dialog().show((view.context as AppCompatActivity).getSupportFragmentManager(),"Delete_Board_Dialog")
 
             println(position)
             val deleteBoardDialog = Delete_Board_Dialog()
